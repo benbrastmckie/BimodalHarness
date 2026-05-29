@@ -5,6 +5,12 @@ Bimodal.Automation.DataExport.  The primary type is TrainingRecord, which
 combines a labelled formula with proof or countermodel evidence and
 structural features.
 
+Also defines ProofStepRecord, which captures a single step in a derivation
+tree for supervised (imitation learning) pretraining of the policy network.
+Each ProofStepRecord records the (context, goal, action, subgoals) tuple at
+one node of a DerivationTree, together with the action index in the 49-action
+space and metadata for frame class masking.
+
 Lean correspondence:
 - TrainingRecord: mirrors LabeledFormula from DataExport.lean (conceptual)
 - PatternKey: mirrors PatternKey struct in Bimodal.Automation.SuccessPatterns
@@ -12,6 +18,7 @@ Lean correspondence:
 - ProofTrace: derived from DerivationTree metrics (height, RuleProfile)
 - SimpleCountermodel: mirrors Bimodal.Metalogic.Decidability.SimpleCountermodel
 - DifficultyMetrics: aggregated from multiple proof/search statistics
+- ProofStepRecord: mirrors ProofStep from Bimodal.Automation.DataExport (planned)
 """
 
 from __future__ import annotations
@@ -401,3 +408,155 @@ class TrainingRecord:
     def make_id(cls) -> str:
         """Generate a fresh UUID4 record ID."""
         return str(uuid.uuid4())
+
+
+@dataclass(frozen=True, slots=True)
+class ProofStepRecord:
+    """A single step in a DerivationTree for supervised policy network pretraining.
+
+    Captures the (context, goal, action, subgoals) tuple at one node of a
+    DerivationTree.  Intended for imitation learning: the policy network is
+    trained to predict ``action_index`` given ``context``, ``goal_json``, and
+    ``goal_pretty``.
+
+    Lean correspondence:
+    - Mirrors the ProofStep structure planned for Bimodal.Automation.DataExport
+    - Emitted by ``extractStepSequence`` (planned Lean function)
+    - Serialized via ``ProofStep.toJson`` in the proof_extractor executable
+
+    Fields
+    ------
+    step_id:
+        Unique identifier for this step (e.g. ``"<theorem_name>/<step_index>"``).
+    theorem_name:
+        Name of the theorem whose DerivationTree this step comes from.
+    context:
+        Ordered tuple of formula strings representing the sequent context Γ.
+    goal_json:
+        The goal formula serialized as a JSON tree (Formula.toJson format).
+    goal_pretty:
+        Human-readable goal formula string (Formula.prettyPrint format).
+    rule:
+        DerivationTree constructor name.  One of: ``"axiom"``, ``"assumption"``,
+        ``"modus_ponens"``, ``"necessitation"``, ``"temporal_necessitation"``,
+        ``"temporal_duality"``, ``"weakening"``.
+    axiom_name:
+        When ``rule == "axiom"``, the Axiom constructor name (e.g. ``"prop_k"``).
+        None for all other rules.
+    action_index:
+        Zero-based index into ALL_ACTIONS (0-48).  Must equal
+        ``step_to_action_index(rule, axiom_name)``.
+    subgoals:
+        Tuple of goal JSON dicts for the immediate subgoals produced by this
+        rule application.  Empty for leaf nodes (axiom, assumption).
+    depth:
+        Depth of this node in the DerivationTree (root = 0).
+    frame_class:
+        Frame class constraint for this proof.  One of ``VALID_FRAME_CLASSES``.
+    proof_height:
+        Height of the full DerivationTree this step belongs to.
+    """
+
+    step_id: str
+    """Unique step identifier, e.g. "<theorem_name>/<step_index>"."""
+
+    theorem_name: str
+    """Name of the theorem whose DerivationTree contains this step."""
+
+    context: tuple[str, ...]
+    """Ordered tuple of formula strings (the sequent context Γ)."""
+
+    goal_json: dict[str, Any]
+    """Goal formula as JSON tree (Formula.toJson format)."""
+
+    goal_pretty: str
+    """Human-readable goal formula string."""
+
+    rule: str
+    """DerivationTree constructor name (one of the 7 rule names)."""
+
+    axiom_name: str | None
+    """Axiom constructor name when rule == 'axiom', else None."""
+
+    action_index: int
+    """Zero-based index into ALL_ACTIONS (range 0-48)."""
+
+    subgoals: tuple[dict[str, Any], ...]
+    """JSON dicts for immediate subgoal formulas; empty for leaf nodes."""
+
+    depth: int
+    """Depth of this node in the DerivationTree (root = 0)."""
+
+    frame_class: str
+    """Frame class for this proof step.  One of VALID_FRAME_CLASSES."""
+
+    proof_height: int
+    """Height of the full DerivationTree this step belongs to."""
+
+    def __post_init__(self) -> None:
+        if self.action_index < 0 or self.action_index > 48:
+            raise ValueError(
+                f"action_index must be in [0, 48], got {self.action_index}"
+            )
+        if self.frame_class not in VALID_FRAME_CLASSES:
+            raise ValueError(
+                f"frame_class must be one of {VALID_FRAME_CLASSES}, "
+                f"got {self.frame_class!r}"
+            )
+        if self.depth < 0:
+            raise ValueError(f"depth must be >= 0, got {self.depth}")
+        if self.proof_height < 0:
+            raise ValueError(f"proof_height must be >= 0, got {self.proof_height}")
+
+    def to_dict(self) -> dict[str, Any]:
+        """Serialize to a flat dictionary for JSON round-tripping.
+
+        All tuple fields are converted to lists for JSON compatibility.
+        Matches the field structure emitted by the Lean proof_extractor.
+        """
+        return {
+            "step_id": self.step_id,
+            "theorem_name": self.theorem_name,
+            "context": list(self.context),
+            "goal_json": self.goal_json,
+            "goal_pretty": self.goal_pretty,
+            "rule": self.rule,
+            "axiom_name": self.axiom_name,
+            "action_index": self.action_index,
+            "subgoals": list(self.subgoals),
+            "depth": self.depth,
+            "frame_class": self.frame_class,
+            "proof_height": self.proof_height,
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict[str, Any]) -> "ProofStepRecord":
+        """Deserialize from a flat dictionary (round-trip or Lean export).
+
+        Accepts both the Python ``to_dict()`` format and the Lean proof_extractor
+        JSONL format.  List fields are coerced to tuples for immutability.
+
+        Parameters
+        ----------
+        data:
+            A Python dict decoded from a JSONL line (Lean export or ``to_dict()``).
+
+        Returns
+        -------
+        ProofStepRecord
+            Fully constructed frozen record.
+        """
+        return cls(
+            step_id=str(data["step_id"]),
+            theorem_name=str(data["theorem_name"]),
+            context=tuple(str(c) for c in data.get("context", [])),
+            goal_json=dict(data["goal_json"]),
+            goal_pretty=str(data["goal_pretty"]),
+            rule=str(data["rule"]),
+            axiom_name=data.get("axiom_name"),
+            action_index=int(data["action_index"]),
+            subgoals=tuple(dict(sg) for sg in data.get("subgoals", [])),
+            depth=int(data["depth"]),
+            frame_class=str(data.get("frame_class", "Base")),
+            proof_height=int(data["proof_height"]),
+        )

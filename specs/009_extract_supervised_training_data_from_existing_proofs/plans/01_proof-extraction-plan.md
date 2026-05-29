@@ -101,7 +101,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 2: Python ProofStepRecord Schema and Action Mapping [NOT STARTED]
+### Phase 2: Python ProofStepRecord Schema and Action Mapping [COMPLETED]
 
 **Goal**: Extend the Python schema to represent step-level proof data and provide the mapping from (rule, axiom_name) pairs to the 49-action index.
 

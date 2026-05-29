@@ -290,3 +290,66 @@ def get_mask_for_frame_class(frame_class: str | FrameClass) -> list[bool]:
     if isinstance(frame_class, FrameClass):
         frame_class = frame_class.value
     return FRAME_CLASS_MASKS[frame_class]
+
+
+def step_to_action_index(rule: str, axiom_name: str | None) -> int:
+    """Map a (rule, axiom_name) pair to its zero-based action index in ALL_ACTIONS.
+
+    The 49-action space is partitioned as follows:
+    - Indices 0-41: axiom constructor names (AXIOM_ACTIONS)
+    - Indices 42-48: inference rule names (RULE_ACTIONS)
+
+    For the special rule ``"axiom"``, the action index is determined by the
+    axiom constructor name (``axiom_name``), not the rule name itself.  All
+    other rule names are looked up directly in ACTION_TO_INDEX.
+
+    Parameters
+    ----------
+    rule:
+        The DerivationTree constructor name, e.g. ``"axiom"``,
+        ``"modus_ponens"``, ``"necessitation"``, etc.
+    axiom_name:
+        When ``rule == "axiom"``, the Axiom constructor name, e.g.
+        ``"prop_k"``, ``"modal_t"``.  Must be None when ``rule != "axiom"``.
+
+    Returns
+    -------
+    int
+        Zero-based action index in the range [0, 48].
+
+    Raises
+    ------
+    ValueError
+        If ``rule == "axiom"`` but ``axiom_name`` is None, or if either name
+        is not found in ACTION_TO_INDEX.
+    KeyError
+        If the resolved name is not present in ACTION_TO_INDEX.
+
+    Examples
+    --------
+    >>> step_to_action_index("axiom", "prop_k")
+    0
+    >>> step_to_action_index("modus_ponens", None)
+    44
+    """
+    if rule == "axiom":
+        if axiom_name is None:
+            raise ValueError(
+                "axiom_name must not be None when rule == 'axiom'. "
+                "Provide the Axiom constructor name (e.g. 'prop_k')."
+            )
+        lookup_name = axiom_name
+    else:
+        if axiom_name is not None:
+            raise ValueError(
+                f"axiom_name must be None when rule == {rule!r}. "
+                f"Got axiom_name={axiom_name!r}."
+            )
+        lookup_name = rule
+
+    if lookup_name not in ACTION_TO_INDEX:
+        raise KeyError(
+            f"Unknown action name {lookup_name!r}. "
+            f"Valid names: {sorted(ACTION_TO_INDEX.keys())}"
+        )
+    return ACTION_TO_INDEX[lookup_name]
