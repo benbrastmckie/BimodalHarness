@@ -1,22 +1,10 @@
 {
-  "status": "planned",
-  "artifacts": [
-    {
-      "type": "plan",
-      "path": "specs/014_implement_policy_network_tactic_predictor/plans/01_policy-network-plan.md",
-      "summary": "6-phase implementation plan for policy network: MLP baseline with 25-dim features, ProofStepDataset, PolicyTrainer, synthetic data generator, CLI scripts, and formula AST transformer encoder"
-    }
-  ],
-  "next_steps": "Run /implement 14 to execute the plan",
+  "status": "in_progress",
+  "summary": "Implementation in progress",
+  "artifacts": [],
   "metadata": {
-    "session_id": "sess_1780089600_202d1d",
-    "agent_type": "planner-agent",
-    "duration_seconds": 300,
-    "delegation_depth": 1,
-    "delegation_path": ["orchestrator", "plan", "planner-agent"],
-    "phase_count": 6,
-    "estimated_hours": 8,
-    "dependency_waves": [[1], [2, 3], [4], [5], [6]]
-  },
-  "memory_candidates": []
+    "phases_completed": 0,
+    "phases_total": 6,
+    "session_id": "sess_1780090536_455880"
+  }
 }

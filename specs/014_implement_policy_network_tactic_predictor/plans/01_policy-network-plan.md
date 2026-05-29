@@ -76,7 +76,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 1: PolicyNetwork and Feature Encoder [NOT STARTED]
+### Phase 1: PolicyNetwork and Feature Encoder [COMPLETED]
 
 **Goal**: Implement the core PolicyNetwork MLP architecture and the 25-dim proof step feature encoder in `models/policy.py`.
 
