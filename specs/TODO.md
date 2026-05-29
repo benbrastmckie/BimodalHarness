@@ -119,9 +119,10 @@ next_project_number: 24
 
 ### 12. Build evaluation benchmark suite
 - **Effort**: M
-- **Status**: [RESEARCHING]
+- **Status**: [RESEARCHED]
 - **Task Type**: python
 - **Dependencies**: Task 7
+- **Research**: [specs/012_build_evaluation_benchmark_suite/reports/01_benchmark-design.md]
 
 **Description**: Create held-out benchmark of 500-1K formulas with ground-truth provability, difficulty tier, DerivationTree.height. Implement metrics: nodes visited, time-to-proof, success rate. Compare against SuccessPatterns.lean baseline. Design as publishable open benchmark.
 

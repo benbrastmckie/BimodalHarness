@@ -333,14 +333,22 @@
     {
       "project_number": 12,
       "project_name": "build_evaluation_benchmark_suite",
-      "status": "researching",
+      "status": "researched",
       "task_type": "python",
       "dependencies": [
         7
       ],
       "created": "2026-05-29T18:00:00Z",
-      "last_updated": "2026-05-29T19:15:06Z",
-      "session_id": "sess_1780082099_328b90"
+      "last_updated": "2026-05-29T19:22:00Z",
+      "session_id": "sess_1780082099_328b90",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "path": "specs/012_build_evaluation_benchmark_suite/reports/01_benchmark-design.md",
+          "type": "research",
+          "summary": "700-formula stratified benchmark design: SR@K/NV/TTP metrics, SuccessPatterns.lean baseline characterization, TABLEAUX/CADE publication format, 4-phase implementation roadmap"
+        }
+      ]
     },
     {
       "project_number": 13,
