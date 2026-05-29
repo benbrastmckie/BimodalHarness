@@ -72,7 +72,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 1: Rule-Based Heuristic Port and Search Data Structures [NOT STARTED]
+### Phase 1: Rule-Based Heuristic Port and Search Data Structures [COMPLETED]
 
 **Goal**: Port Lean's heuristic scoring functions to Python and define all data structures needed by the search loop.
 
@@ -99,7 +99,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 2: Python Best-First Search Loop [NOT STARTED]
+### Phase 2: Python Best-First Search Loop [COMPLETED]
 
 **Goal**: Implement the core A* search loop that expands nodes using the priority queue, generates successor nodes (modus ponens, modal, temporal expansions), and calls LeanBridge for leaf verification.
 
@@ -129,7 +129,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 3: Value Network Integration and Score Blending [NOT STARTED]
+### Phase 3: Value Network Integration and Score Blending [COMPLETED]
 
 **Goal**: Wire the value network into the search heuristic with proper tensor encoding, batched inference, and temperature scaling. Handle the case where task 11 is not yet complete by supporting a mock/dummy value network.
 
@@ -157,7 +157,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 4: A/B Comparison Runner and Integration Tests [NOT STARTED]
+### Phase 4: A/B Comparison Runner and Integration Tests [COMPLETED]
 
 **Goal**: Build the comparison infrastructure that runs baseline vs. neural search on a benchmark suite and computes statistical significance. Write integration tests that validate end-to-end behavior.
 
