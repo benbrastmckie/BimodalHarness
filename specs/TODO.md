@@ -108,9 +108,10 @@ next_project_number: 24
 
 ### 13. Integrate value network with Lean proof search
 - **Effort**: L
-- **Status**: [RESEARCHING]
+- **Status**: [RESEARCHED]
 - **Task Type**: python
 - **Dependencies**: Task 6, Task 11, Task 12
+- **Research**: [013_integrate_value_network_with_lean_proof_search/reports/01_value-integration.md]
 
 **Description**: Connect trained value network to Lean proof search via bridge. Network provides additive bonus to modal_search heuristic scorer. Evaluate performance vs baseline on benchmark. Requires runtime bridge.
 

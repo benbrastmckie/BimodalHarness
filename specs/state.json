@@ -345,7 +345,7 @@
     {
       "project_number": 13,
       "project_name": "integrate_value_network_with_lean_proof_search",
-      "status": "researching",
+      "status": "researched",
       "task_type": "python",
       "dependencies": [
         6,
@@ -353,8 +353,16 @@
         12
       ],
       "created": "2026-05-29T18:00:00Z",
-      "last_updated": "2026-05-29T19:15:06Z",
-      "session_id": "sess_1780082099_328b90"
+      "last_updated": "2026-05-29T19:30:00Z",
+      "session_id": "sess_1780082099_328b90",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "path": "specs/013_integrate_value_network_with_lean_proof_search/reports/01_value-integration.md",
+          "type": "research",
+          "summary": "Architecture analysis: Python A* loop in search/best_first.py mirrors Lean bestFirst_search but scores nodes with neural additive bonus from value network. Covers search node design, heuristic combination formula, latency constraints, evaluation protocol (McNemar test, 200-formula benchmark), and full dependency chain."
+        }
+      ]
     },
     {
       "project_number": 14,
