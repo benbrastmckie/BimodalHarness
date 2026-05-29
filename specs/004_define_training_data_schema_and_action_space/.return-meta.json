@@ -1,0 +1,29 @@
+{
+  "status": "planned",
+  "artifacts": [
+    {
+      "type": "plan",
+      "path": "specs/004_define_training_data_schema_and_action_space/plans/01_data-schema-plan.md",
+      "summary": "4-phase implementation plan for training data schema (42-axiom action space, JSONL/Parquet serialization, validation, tests)"
+    }
+  ],
+  "next_steps": "Run /implement 4 to execute the plan",
+  "metadata": {
+    "session_id": "sess_1780078556_451cee",
+    "agent_type": "planner-agent",
+    "delegation_depth": 1,
+    "delegation_path": ["orchestrator", "plan", "planner-agent"],
+    "phase_count": 4,
+    "estimated_hours": 4,
+    "dependency_waves": [[1], [2, 3], [4]]
+  },
+  "memory_candidates": [
+    {
+      "content": "BimodalLogic DataExport.lean already implements complete JSON serialization for Formula, PatternKey, SimpleCountermodel, and RuleProfile using a tag-based discriminant pattern. Python schema modules should mirror these Lean types directly (same field names, same JSON structure) to minimize translation bugs. The Lean Axiom inductive has exactly 42 constructors (not 57 -- the higher count was a grep artifact from counting all pipe lines including FrameClass enum and pattern match arms). Use the canonical Lean constructor names as action identifiers.",
+      "category": "PATTERN",
+      "source_artifact": "specs/004_define_training_data_schema_and_action_space/plans/01_data-schema-plan.md",
+      "confidence": 0.9,
+      "suggested_keywords": ["schema", "action-space", "lean-export", "bimodal-logic", "formula-json", "dataexport"]
+    }
+  ]
+}

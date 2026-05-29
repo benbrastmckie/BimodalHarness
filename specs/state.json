@@ -57,54 +57,69 @@
     {
       "project_number": 2,
       "project_name": "initialize_python_project_structure",
-      "status": "researched",
+      "status": "planned",
       "task_type": "python",
       "dependencies": [],
       "created": "2026-05-29T18:00:00Z",
-      "last_updated": "2026-05-29T18:04:31Z",
-      "session_id": "sess_1780077715_24640e",
+      "last_updated": "2026-05-29T18:19:08Z",
+      "session_id": "sess_1780078556_451cee",
       "next_artifact_number": 2,
       "artifacts": [
         {
           "path": "specs/002_initialize_python_project_structure/reports/01_python-project-setup.md",
           "type": "research",
           "summary": "Python project setup research: hatchling, src layout, dependency versions, CI/CD, ruff/mypy config"
+        },
+        {
+          "path": "specs/002_initialize_python_project_structure/plans/01_python-project-plan.md",
+          "type": "plan",
+          "summary": "Python project setup implementation plan"
         }
       ]
     },
     {
       "project_number": 3,
       "project_name": "design_cross_repo_integration_architecture",
-      "status": "researched",
+      "status": "planned",
       "task_type": "general",
       "dependencies": [],
       "created": "2026-05-29T18:00:00Z",
-      "last_updated": "2026-05-29T18:00:23Z",
-      "session_id": "sess_1780077263_bef9fc",
+      "last_updated": "2026-05-29T18:19:08Z",
+      "session_id": "sess_1780078556_451cee",
       "next_artifact_number": 2,
       "artifacts": [
         {
           "path": "specs/003_design_cross_repo_integration_architecture/reports/01_cross-repo-design.md",
           "type": "research",
           "summary": "Cross-repo integration architecture research"
+        },
+        {
+          "path": "specs/003_design_cross_repo_integration_architecture/plans/01_cross-repo-plan.md",
+          "type": "plan",
+          "summary": "Cross-repo integration architecture plan"
         }
       ]
     },
     {
       "project_number": 4,
       "project_name": "define_training_data_schema_and_action_space",
-      "status": "researched",
+      "status": "planned",
       "task_type": "python",
       "dependencies": [],
       "created": "2026-05-29T18:00:00Z",
-      "last_updated": "2026-05-29T18:00:23Z",
-      "session_id": "sess_1780077263_bef9fc",
+      "last_updated": "2026-05-29T18:19:08Z",
+      "session_id": "sess_1780078556_451cee",
       "next_artifact_number": 2,
       "artifacts": [
         {
           "path": "specs/004_define_training_data_schema_and_action_space/reports/01_data-schema-research.md",
           "type": "research",
           "summary": "Training data schema and action space research"
+        },
+        {
+          "path": "specs/004_define_training_data_schema_and_action_space/plans/01_data-schema-plan.md",
+          "type": "plan",
+          "summary": "Training data schema and action space plan"
         }
       ]
     },
