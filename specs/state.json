@@ -413,15 +413,30 @@
     {
       "project_number": 14,
       "project_name": "implement_policy_network_tactic_predictor",
-      "status": "not_started",
+      "status": "planned",
       "task_type": "python",
       "dependencies": [
         9,
         11
       ],
       "created": "2026-05-29T18:00:00Z",
-      "last_updated": "2026-05-29T18:00:00Z",
-      "notes": "GPU REQUIRED - de-prioritized until GPU available"
+      "last_updated": "2026-05-29T21:24:08Z",
+      "notes": "GPU REQUIRED - de-prioritized until GPU available",
+      "session_id": "sess_1780089600_202d1d",
+      "researched": "2026-05-29T21:15:10Z",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "path": "specs/014_implement_policy_network_tactic_predictor/reports/01_team-research.md",
+          "type": "research",
+          "summary": "Team research with 4 teammates"
+        },
+        {
+          "path": "specs/014_implement_policy_network_tactic_predictor/plans/01_policy-network-plan.md",
+          "type": "plan",
+          "summary": "6-phase implementation plan for policy network: MLP baseline, data pipeline, trainer, synthetic data, CLI scripts, AST encoder"
+        }
+      ]
     },
     {
       "project_number": 15,

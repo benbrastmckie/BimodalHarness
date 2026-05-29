@@ -108,9 +108,11 @@ next_project_number: 25
 
 ### 14. Implement policy network (tactic predictor)
 - **Effort**: XL
-- **Status**: [NOT STARTED]
+- **Status**: [PLANNED]
 - **Task Type**: python
 - **Dependencies**: Task 9, Task 11
+- **Research**: [014_implement_policy_network_tactic_predictor/reports/01_team-research.md]
+- **Plan**: [014_implement_policy_network_tactic_predictor/plans/01_policy-network-plan.md]
 
 **Description**: Build neural network predicting next tactic from axiom constructors + inference rules given proof goal state. Evaluate architectures: fine-tuned small LM (LoRA), GNN over formula AST, T5-small. Start with SFT on proof trace dataset. NOTE: Requires GPU for training — de-prioritized until GPU available.
 
