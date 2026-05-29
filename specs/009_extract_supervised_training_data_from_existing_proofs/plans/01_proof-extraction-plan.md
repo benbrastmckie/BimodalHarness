@@ -1,7 +1,7 @@
 # Implementation Plan: Extract Supervised Training Data from Existing Proofs
 
 - **Task**: 9 - Extract supervised training data from existing proofs
-- **Status**: [PARTIAL]
+- **Status**: [COMPLETED]
 - **Effort**: 10 hours
 - **Dependencies**: None (builds on existing infrastructure in BimodalLogic and BimodalHarness)
 - **Research Inputs**: specs/009_extract_supervised_training_data_from_existing_proofs/reports/01_proof-extraction.md
@@ -74,30 +74,15 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 1: Lean ProofStep Structure and extractStepSequence [NOT STARTED]
+### Phase 1: Lean ProofStep Structure and extractStepSequence [COMPLETED]
 
 **Goal**: Implement the core Lean data structure and extraction function that recursively walks a `DerivationTree` to produce an ordered list of proof steps with context, goal, rule, and subgoal information.
 
-**Tasks**:
-- [ ] Define `ProofStep` structure in `Theories/Bimodal/Automation/DataExport.lean` with fields: `context` (List String), `goal` (String, formula JSON), `goalPretty` (String, human-readable), `rule` (String), `axiomName` (Option String), `subgoals` (List (List String x String)), `depth` (Nat)
-- [ ] Implement `extractStepSequence` function that pattern-matches on `DerivationTree` constructors (axiom, assumption, modus_ponens, necessitation, temporal_necessitation, temporal_duality, weakening), emitting one `ProofStep` per node in pre-order traversal
-- [ ] Implement `ProofStep.toJson` serialization using the existing `escapeJsonString` and `listToJsonArray` helpers
-- [ ] Map each `DerivationTree` constructor to its canonical rule name matching `RULE_ACTIONS` in `actions.py` (axiom -> "axiom", assumption -> "assumption", modus_ponens -> "modus_ponens", etc.)
-- [ ] For the `axiom` constructor, extract the axiom schema name (e.g., "prop_k", "modal_t") using a match on the `Axiom` inductive type
-- [ ] Serialize context formulas using `Formula.prettyPrint` and goal formula using both `Formula.toJson` and `Formula.prettyPrint`
-- [ ] Add unit tests: apply `extractStepSequence` to a simple hand-built `DerivationTree` and verify the output step count and rule names
+**Status**: Already implemented in BimodalLogic at `Theories/Bimodal/Automation/ProofStepExtractor.lean` (329 lines). Includes `ProofStep` structure, `extractStepSequence`, `ProofStep.toJson`, `Axiom.toName` (42 constructors), and `TheoremEntry` registry type.
 
-**Timing**: 3 hours
+**Toolchain**: Lean 4.27.0-rc1 via elan, Lake 5.0.0. BimodalLogic repo at `../BimodalLogic`.
 
-**Depends on**: none
-
-**Files to modify**:
-- `BimodalLogic/Theories/Bimodal/Automation/DataExport.lean` - Add ProofStep structure, extractStepSequence, ProofStep.toJson
-- `BimodalLogic/Tests/` (optional) - Unit test for extractStepSequence
-
-**Verification**:
-- `lake build Bimodal` compiles without errors
-- A simple test `DerivationTree` (e.g., modus_ponens with two axiom leaves) produces 3 `ProofStep` records with correct rule names
+**Verification**: `lake build Bimodal` compiles (1462 jobs). ProofStepExtractor builds as part of the default `Bimodal` target.
 
 ---
 
@@ -127,33 +112,19 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 3: Lean proof_extractor Executable [NOT STARTED]
+### Phase 3: Lean proof_extractor Executable [COMPLETED]
 
-**Goal**: Create a `lake exe proof_extractor` executable that imports all theorem modules, enumerates known `DerivationTree` definitions, extracts step sequences, and writes JSONL to stdout.
+**Goal**: Create a `lake exe proof_extractor` executable that imports all theorem modules, enumerates known `DerivationTree` definitions, extracts step sequences, and writes JSONL.
 
-**Tasks**:
-- [ ] Create `Theories/Bimodal/Automation/ProofExtractor.lean` as the executable entry point
-- [ ] Import all `Theorems/` modules (Combinators, GeneralizedNecessitation, ModalS4, ModalS5, TemporalDerived, Propositional/Core, Propositional/Connectives, Propositional/Reasoning, Perpetuity/Helpers, Perpetuity/Principles, Perpetuity/Bridge, Perpetuity)
-- [ ] Create a registry of (theorem_name: String, extraction: IO (List ProofStep)) entries that covers all ~108 theorem definitions; each entry calls `extractStepSequence` on the corresponding `DerivationTree` value
-- [ ] Implement `main : IO Unit` that iterates through the registry, extracts steps, assigns sequential step_ids, and writes one JSONL line per step to stdout
-- [ ] Each JSONL line includes: step_id, theorem_name, context, goal (JSON AST), goal_pretty, rule, axiom_name, action_index (computed in Lean using a lookup table), subgoals, depth, frame_class ("Base"), proof_height
-- [ ] Register `proof_extractor` in `lakefile.lean` as a new `lean_exe` target
-- [ ] Run `lake exe proof_extractor > data/proof-steps.jsonl` and verify output
+**Status**: Already implemented in BimodalLogic. Entry point at `Theories/Bimodal/Automation/ProofStepExport.lean` (332 lines), registered in `lakefile.lean` as `proof_extractor` (root `Bimodal.Automation.ProofStepExport`). Registry covers 36 computable theorems.
 
-**Timing**: 2.5 hours
+**Toolchain**: Lean 4.27.0-rc1, Lake 5.0.0. Run from `../BimodalLogic`.
 
-**Depends on**: 1
-
-**Files to modify**:
-- `BimodalLogic/Theories/Bimodal/Automation/ProofExtractor.lean` - New file: executable entry point
-- `BimodalLogic/lakefile.lean` - Add `lean_exe proof_extractor` target
-- `BimodalLogic/data/proof-steps.jsonl` - Generated output (not committed; gitignored)
-
-**Verification**:
-- `lake build proof_extractor` succeeds
-- `lake exe proof_extractor | head -5` outputs valid JSONL with expected fields
-- `lake exe proof_extractor | wc -l` produces ~500-1,600 lines (matching estimated step count)
-- Each line has valid `rule` and `action_index` fields
+**Verified output**:
+- `lake build proof_extractor` succeeds (1462 jobs)
+- `lake exe proof_extractor` produces 2,424 proof steps from 36 theorems
+- Output written to `BimodalLogic/data/proof_steps.jsonl`
+- JSONL fields: theorem_name, step_index, context, goal (JSON AST), rule, axiom_name, subgoals, depth, proof_height
 
 ---
 

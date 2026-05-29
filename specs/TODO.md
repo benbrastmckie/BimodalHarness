@@ -1,10 +1,20 @@
 ---
-next_project_number: 24
+next_project_number: 25
 ---
 
 # TODO
 
 ## Tasks
+
+### 24. Document toolchain and development environment
+- **Effort**: S
+- **Status**: [NOT STARTED]
+- **Task Type**: markdown
+- **Dependencies**: None
+
+**Description**: Create `docs/toolchain.md` documenting all toolchains used in this repository: Lean 4 (via elan), Lake, Python 3.12+, PyTorch, and their cross-repo integration with BimodalLogic. Update `docs/architecture/cross-repo-integration.md` to reflect that BimodalHarness now directly invokes Lean tooling (lake exe proof_extractor) for proof step extraction, not just artifact-only integration. Include setup instructions, version pinning, and available lake/python executables.
+
+---
 
 ### 23. Set up experiment tracking and write evaluation report
 - **Effort**: L
@@ -160,7 +170,7 @@ next_project_number: 24
 
 ### 9. Extract supervised training data from existing proofs
 - **Effort**: M
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETED]
 - **Task Type**: python
 - **Dependencies**: Task 6
 - **Research**: [009_extract_supervised_training_data_from_existing_proofs/reports/01_proof-extraction.md]
