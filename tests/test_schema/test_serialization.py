@@ -14,8 +14,6 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-import pytest
-
 from bimodal_harness.schema.constants import SCHEMA_VERSION
 from bimodal_harness.schema.records import (
     DifficultyMetrics,
@@ -32,10 +30,10 @@ from bimodal_harness.schema.serialization import (
     write_jsonl,
 )
 
-
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
+
 
 def make_valid_record() -> TrainingRecord:
     return TrainingRecord(
@@ -44,12 +42,20 @@ def make_valid_record() -> TrainingRecord:
         formula_pretty="(p → ⊥)",
         label="valid",
         pattern_key=PatternKey(
-            modal_depth=0, temporal_depth=0, imp_count=1, complexity=3,
+            modal_depth=0,
+            temporal_depth=0,
+            imp_count=1,
+            complexity=3,
             top_operator="Implication",
         ),
         difficulty_metrics=DifficultyMetrics(
-            atom_count=1, modal_depth=0, temporal_depth=0, complexity=3,
-            decision_time_ms=15, search_depth=2, difficulty_tier="easy",
+            atom_count=1,
+            modal_depth=0,
+            temporal_depth=0,
+            complexity=3,
+            decision_time_ms=15,
+            search_depth=2,
+            difficulty_tier="easy",
         ),
         proof_trace=ProofTrace(
             height=2,
@@ -67,12 +73,20 @@ def make_invalid_record() -> TrainingRecord:
         formula_pretty="p",
         label="invalid",
         pattern_key=PatternKey(
-            modal_depth=0, temporal_depth=0, imp_count=0, complexity=1,
+            modal_depth=0,
+            temporal_depth=0,
+            imp_count=0,
+            complexity=1,
             top_operator="Atom",
         ),
         difficulty_metrics=DifficultyMetrics(
-            atom_count=1, modal_depth=0, temporal_depth=0, complexity=1,
-            decision_time_ms=5, search_depth=0, difficulty_tier="trivial",
+            atom_count=1,
+            modal_depth=0,
+            temporal_depth=0,
+            complexity=1,
+            decision_time_ms=5,
+            search_depth=0,
+            difficulty_tier="trivial",
         ),
         proof_trace=None,
         countermodel=SimpleCountermodel(
@@ -86,6 +100,7 @@ def make_invalid_record() -> TrainingRecord:
 # ---------------------------------------------------------------------------
 # record_to_jsonl_dict tests
 # ---------------------------------------------------------------------------
+
 
 class TestRecordToJsonlDict:
     def test_returns_dict(self):
@@ -140,6 +155,7 @@ class TestRecordToJsonlDict:
 # ---------------------------------------------------------------------------
 # jsonl_dict_to_record tests
 # ---------------------------------------------------------------------------
+
 
 class TestJsonlDictToRecord:
     def test_round_trip_valid(self):
@@ -224,6 +240,7 @@ class TestJsonlDictToRecord:
 # write_jsonl / read_jsonl tests
 # ---------------------------------------------------------------------------
 
+
 class TestJsonlRoundTrip:
     def test_write_and_read_single_record(self, tmp_path: Path):
         rec = make_valid_record()
@@ -247,7 +264,7 @@ class TestJsonlRoundTrip:
         records = [make_valid_record(), make_invalid_record()]
         path = tmp_path / "test.jsonl"
         write_jsonl(records, path)
-        lines = [l for l in path.read_text().splitlines() if l.strip()]
+        lines = [ln for ln in path.read_text().splitlines() if ln.strip()]
         assert len(lines) == 2
 
     def test_empty_list_writes_empty_file(self, tmp_path: Path):

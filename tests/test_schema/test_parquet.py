@@ -13,8 +13,6 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-import pytest
-
 from bimodal_harness.schema.constants import SCHEMA_VERSION
 from bimodal_harness.schema.parquet import (
     PARQUET_SCHEMA,
@@ -32,10 +30,10 @@ from bimodal_harness.schema.records import (
 )
 from bimodal_harness.schema.serialization import write_jsonl
 
-
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
+
 
 def make_valid_record(rec_id: str = "rec-valid") -> TrainingRecord:
     return TrainingRecord(
@@ -44,12 +42,20 @@ def make_valid_record(rec_id: str = "rec-valid") -> TrainingRecord:
         formula_pretty="(p → ⊥)",
         label="valid",
         pattern_key=PatternKey(
-            modal_depth=1, temporal_depth=0, imp_count=1, complexity=3,
+            modal_depth=1,
+            temporal_depth=0,
+            imp_count=1,
+            complexity=3,
             top_operator="Implication",
         ),
         difficulty_metrics=DifficultyMetrics(
-            atom_count=1, modal_depth=1, temporal_depth=0, complexity=3,
-            decision_time_ms=20, search_depth=3, difficulty_tier="easy",
+            atom_count=1,
+            modal_depth=1,
+            temporal_depth=0,
+            complexity=3,
+            decision_time_ms=20,
+            search_depth=3,
+            difficulty_tier="easy",
         ),
         proof_trace=ProofTrace(
             height=3,
@@ -68,12 +74,20 @@ def make_invalid_record(rec_id: str = "rec-invalid") -> TrainingRecord:
         formula_pretty="q",
         label="invalid",
         pattern_key=PatternKey(
-            modal_depth=0, temporal_depth=0, imp_count=0, complexity=1,
+            modal_depth=0,
+            temporal_depth=0,
+            imp_count=0,
+            complexity=1,
             top_operator="Atom",
         ),
         difficulty_metrics=DifficultyMetrics(
-            atom_count=1, modal_depth=0, temporal_depth=0, complexity=1,
-            decision_time_ms=3, search_depth=0, difficulty_tier="trivial",
+            atom_count=1,
+            modal_depth=0,
+            temporal_depth=0,
+            complexity=1,
+            decision_time_ms=3,
+            search_depth=0,
+            difficulty_tier="trivial",
         ),
         proof_trace=None,
         countermodel=SimpleCountermodel(
@@ -89,22 +103,42 @@ def make_invalid_record(rec_id: str = "rec-invalid") -> TrainingRecord:
 # Schema tests
 # ---------------------------------------------------------------------------
 
+
 class TestParquetSchema:
     def test_schema_has_expected_columns(self):
         column_names = [f.name for f in PARQUET_SCHEMA]
         expected = [
-            "record_id", "formula_json", "formula_pretty", "label",
-            "modalDepth", "temporalDepth", "impCount", "complexity",
-            "topOperator", "atom_count", "decision_time_ms", "search_depth",
-            "difficulty_tier", "proof_height", "proof_axioms_used",
-            "countermodel_true_atoms", "countermodel_false_atoms",
-            "frame_class", "schema_version", "source", "logic_system",
+            "record_id",
+            "formula_json",
+            "formula_pretty",
+            "label",
+            "modalDepth",
+            "temporalDepth",
+            "impCount",
+            "complexity",
+            "topOperator",
+            "atom_count",
+            "decision_time_ms",
+            "search_depth",
+            "difficulty_tier",
+            "proof_height",
+            "proof_axioms_used",
+            "countermodel_true_atoms",
+            "countermodel_false_atoms",
+            "frame_class",
+            "schema_version",
+            "source",
+            "logic_system",
         ]
         assert column_names == expected
 
     def test_nullable_columns(self):
-        nullable_names = {"proof_height", "proof_axioms_used",
-                          "countermodel_true_atoms", "countermodel_false_atoms"}
+        nullable_names = {
+            "proof_height",
+            "proof_axioms_used",
+            "countermodel_true_atoms",
+            "countermodel_false_atoms",
+        }
         for field in PARQUET_SCHEMA:
             if field.name in nullable_names:
                 assert field.nullable, f"{field.name} should be nullable"
@@ -115,6 +149,7 @@ class TestParquetSchema:
 # ---------------------------------------------------------------------------
 # Round-trip tests
 # ---------------------------------------------------------------------------
+
 
 class TestParquetRoundTrip:
     def test_single_valid_record(self, tmp_path: Path):
@@ -196,9 +231,11 @@ class TestParquetRoundTrip:
 # Nullable column tests
 # ---------------------------------------------------------------------------
 
+
 class TestNullableColumns:
     def test_valid_record_has_null_countermodel_columns(self, tmp_path: Path):
         import pyarrow.parquet as pq
+
         rec = make_valid_record()
         path = tmp_path / "test.parquet"
         records_to_parquet([rec], path)
@@ -211,6 +248,7 @@ class TestNullableColumns:
 
     def test_invalid_record_has_null_proof_columns(self, tmp_path: Path):
         import pyarrow.parquet as pq
+
         rec = make_invalid_record()
         path = tmp_path / "test.parquet"
         records_to_parquet([rec], path)
@@ -225,6 +263,7 @@ class TestNullableColumns:
 # ---------------------------------------------------------------------------
 # Metadata tests
 # ---------------------------------------------------------------------------
+
 
 class TestParquetMetadata:
     def test_metadata_contains_schema_version(self, tmp_path: Path):
@@ -264,6 +303,7 @@ class TestParquetMetadata:
 # ---------------------------------------------------------------------------
 # Size comparison test
 # ---------------------------------------------------------------------------
+
 
 class TestParquetSizeEfficiency:
     def test_parquet_smaller_than_jsonl_for_100_records(self, tmp_path: Path):

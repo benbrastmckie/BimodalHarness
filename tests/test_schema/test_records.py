@@ -23,7 +23,6 @@ from bimodal_harness.schema.records import (
     TrainingRecord,
 )
 
-
 # ---------------------------------------------------------------------------
 # Shared fixtures
 # ---------------------------------------------------------------------------
@@ -115,6 +114,7 @@ def make_invalid_record(formula_json=None, **kwargs) -> TrainingRecord:
 # PatternKey tests
 # ---------------------------------------------------------------------------
 
+
 class TestPatternKey:
     def test_valid_pattern_key(self):
         pk = make_pattern_key(modal_depth=2, temporal_depth=1, imp_count=3, complexity=7)
@@ -153,16 +153,23 @@ class TestPatternKey:
 
     def test_all_valid_top_operators(self):
         valid_ops = [
-            "Atom", "Bottom", "Implication", "Box",
-            "AllPast", "AllFuture", "Until", "Since",
+            "Atom",
+            "Bottom",
+            "Implication",
+            "Box",
+            "AllPast",
+            "AllFuture",
+            "Until",
+            "Since",
         ]
         for op in valid_ops:
             pk = make_pattern_key(top_operator=op)
             assert pk.top_operator == op
 
     def test_to_dict_camel_case(self):
-        pk = make_pattern_key(modal_depth=1, temporal_depth=2, imp_count=3,
-                               complexity=5, top_operator="Box")
+        pk = make_pattern_key(
+            modal_depth=1, temporal_depth=2, imp_count=3, complexity=5, top_operator="Box"
+        )
         d = pk.to_dict()
         assert d["modalDepth"] == 1
         assert d["temporalDepth"] == 2
@@ -171,8 +178,9 @@ class TestPatternKey:
         assert d["topOperator"] == "Box"
 
     def test_from_dict_round_trip(self):
-        pk = make_pattern_key(modal_depth=1, temporal_depth=2, imp_count=3,
-                               complexity=5, top_operator="Box")
+        pk = make_pattern_key(
+            modal_depth=1, temporal_depth=2, imp_count=3, complexity=5, top_operator="Box"
+        )
         pk2 = PatternKey.from_dict(pk.to_dict())
         assert pk == pk2
 
@@ -180,6 +188,7 @@ class TestPatternKey:
 # ---------------------------------------------------------------------------
 # RuleProfile tests
 # ---------------------------------------------------------------------------
+
 
 class TestRuleProfile:
     def test_default_zero_counts(self):
@@ -221,6 +230,7 @@ class TestRuleProfile:
 # ProofTrace tests
 # ---------------------------------------------------------------------------
 
+
 class TestProofTrace:
     def test_valid_proof_trace(self):
         pt = make_proof_trace(axioms=("modal_t", "prop_k"))
@@ -258,6 +268,7 @@ class TestProofTrace:
 # SimpleCountermodel tests
 # ---------------------------------------------------------------------------
 
+
 class TestSimpleCountermodel:
     def test_basic_countermodel(self):
         cm = make_countermodel()
@@ -292,6 +303,7 @@ class TestSimpleCountermodel:
 # DifficultyMetrics tests
 # ---------------------------------------------------------------------------
 
+
 class TestDifficultyMetrics:
     def test_valid_metrics(self):
         dm = make_difficulty(difficulty_tier="hard")
@@ -316,6 +328,7 @@ class TestDifficultyMetrics:
 # ---------------------------------------------------------------------------
 # TrainingRecord tests
 # ---------------------------------------------------------------------------
+
 
 class TestTrainingRecordValid:
     def test_valid_record_instantiation(self):

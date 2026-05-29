@@ -8,8 +8,6 @@ Verifies:
 
 from __future__ import annotations
 
-import pytest
-
 from bimodal_harness.schema.formula import validate_formula_json
 from bimodal_harness.schema.records import (
     DifficultyMetrics,
@@ -21,10 +19,10 @@ from bimodal_harness.schema.records import (
 )
 from bimodal_harness.schema.validation import validate_training_record
 
-
 # ---------------------------------------------------------------------------
 # Formula validation tests
 # ---------------------------------------------------------------------------
+
 
 class TestValidateFormulaJson:
     def test_atom_valid(self):
@@ -34,28 +32,43 @@ class TestValidateFormulaJson:
         assert validate_formula_json({"tag": "bot"}) is True
 
     def test_imp_valid(self):
-        assert validate_formula_json({
-            "tag": "imp",
-            "left": {"tag": "bot"},
-            "right": {"tag": "atom", "name": "p"},
-        }) is True
+        assert (
+            validate_formula_json(
+                {
+                    "tag": "imp",
+                    "left": {"tag": "bot"},
+                    "right": {"tag": "atom", "name": "p"},
+                }
+            )
+            is True
+        )
 
     def test_box_valid(self):
         assert validate_formula_json({"tag": "box", "child": {"tag": "bot"}}) is True
 
     def test_untl_valid(self):
-        assert validate_formula_json({
-            "tag": "untl",
-            "event": {"tag": "atom", "name": "p"},
-            "guard": {"tag": "bot"},
-        }) is True
+        assert (
+            validate_formula_json(
+                {
+                    "tag": "untl",
+                    "event": {"tag": "atom", "name": "p"},
+                    "guard": {"tag": "bot"},
+                }
+            )
+            is True
+        )
 
     def test_snce_valid(self):
-        assert validate_formula_json({
-            "tag": "snce",
-            "event": {"tag": "atom", "name": "r"},
-            "guard": {"tag": "bot"},
-        }) is True
+        assert (
+            validate_formula_json(
+                {
+                    "tag": "snce",
+                    "event": {"tag": "atom", "name": "r"},
+                    "guard": {"tag": "bot"},
+                }
+            )
+            is True
+        )
 
     def test_nested_formula_valid(self):
         # □(p → ⊥)
@@ -101,10 +114,15 @@ class TestValidateFormulaJson:
 
     def test_invalid_child_node_invalid(self):
         # Valid parent, invalid child
-        assert validate_formula_json({
-            "tag": "box",
-            "child": {"tag": "invalid_tag"},
-        }) is False
+        assert (
+            validate_formula_json(
+                {
+                    "tag": "box",
+                    "child": {"tag": "invalid_tag"},
+                }
+            )
+            is False
+        )
 
     def test_deeply_nested_formula(self):
         # Build a chain of implication nodes
@@ -118,6 +136,7 @@ class TestValidateFormulaJson:
 # Record validation tests
 # ---------------------------------------------------------------------------
 
+
 def make_base_valid_record() -> TrainingRecord:
     """Create a minimal structurally valid record with label='valid'."""
     return TrainingRecord(
@@ -126,12 +145,19 @@ def make_base_valid_record() -> TrainingRecord:
         formula_pretty="p",
         label="valid",
         pattern_key=PatternKey(
-            modal_depth=0, temporal_depth=0, imp_count=0,
-            complexity=1, top_operator="Atom",
+            modal_depth=0,
+            temporal_depth=0,
+            imp_count=0,
+            complexity=1,
+            top_operator="Atom",
         ),
         difficulty_metrics=DifficultyMetrics(
-            atom_count=1, modal_depth=0, temporal_depth=0,
-            complexity=1, decision_time_ms=5, search_depth=1,
+            atom_count=1,
+            modal_depth=0,
+            temporal_depth=0,
+            complexity=1,
+            decision_time_ms=5,
+            search_depth=1,
             difficulty_tier="trivial",
         ),
         proof_trace=ProofTrace(
@@ -151,12 +177,19 @@ def make_base_invalid_record() -> TrainingRecord:
         formula_pretty="⊥",
         label="invalid",
         pattern_key=PatternKey(
-            modal_depth=0, temporal_depth=0, imp_count=0,
-            complexity=1, top_operator="Bottom",
+            modal_depth=0,
+            temporal_depth=0,
+            imp_count=0,
+            complexity=1,
+            top_operator="Bottom",
         ),
         difficulty_metrics=DifficultyMetrics(
-            atom_count=0, modal_depth=0, temporal_depth=0,
-            complexity=1, decision_time_ms=2, search_depth=0,
+            atom_count=0,
+            modal_depth=0,
+            temporal_depth=0,
+            complexity=1,
+            decision_time_ms=2,
+            search_depth=0,
             difficulty_tier="trivial",
         ),
         proof_trace=None,
@@ -230,6 +263,7 @@ class TestAxiomNameValidation:
 
     def test_all_valid_axiom_names_pass(self):
         from bimodal_harness.schema.actions import AXIOM_ACTIONS
+
         rec = make_base_valid_record()
         pt = ProofTrace(
             height=5,
