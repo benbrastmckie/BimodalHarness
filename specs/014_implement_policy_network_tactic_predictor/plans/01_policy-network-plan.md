@@ -129,7 +129,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 3: PolicyTrainer [NOT STARTED]
+### Phase 3: PolicyTrainer [COMPLETED]
 
 **Goal**: Build the training orchestrator for the policy network, mirroring `ValueTrainer` structure but adapted for classification with frame-class masking.
 
