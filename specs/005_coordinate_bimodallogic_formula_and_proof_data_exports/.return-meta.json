@@ -1,34 +1,29 @@
 {
-  "status": "researched",
-  "summary": "Identified all field-name mismatches between Lean dataset_generator JSONL output and Python schema layers; sync workflow via make sync-data is ready; ingestion.py adapter is the critical missing implementation.",
+  "status": "planned",
   "artifacts": [
     {
-      "type": "research",
-      "path": "specs/005_coordinate_bimodallogic_formula_and_proof_data_exports/reports/01_export-coordination.md",
-      "summary": "Complete gap analysis of Lean export fields vs Python schema (records.py and schema.py), with mapping table, prioritized fix list, and sync workflow specification."
+      "type": "plan",
+      "path": "specs/005_coordinate_bimodallogic_formula_and_proof_data_exports/plans/01_export-coordination-plan.md",
+      "summary": "5-phase implementation plan resolving 12 field-level mismatches between Lean JSONL export and Python schema layers"
     }
   ],
+  "next_steps": "Run /implement 5 to execute the plan",
   "metadata": {
-    "session_id": "sess_1780079961_663e2a",
-    "agent_type": "general-research-agent",
-    "delegation_path": ["orchestrator", "research", "general-research-agent"],
-    "findings_count": 12
+    "session_id": "sess_1780080650_26f8aa",
+    "agent_type": "planner-agent",
+    "delegation_depth": 1,
+    "delegation_path": ["orchestrator", "plan", "planner-agent"],
+    "phase_count": 5,
+    "estimated_hours": 5,
+    "dependency_waves": [[1], [2, 3], [4], [5]]
   },
-  "next_steps": "Run /plan 5 to create implementation plan",
   "memory_candidates": [
     {
-      "content": "BimodalLogic lake exe dataset_generator emits JSONL with camelCase PatternKey keys (modalDepth, temporalDepth, impCount, topOperator), lowercase labels (valid/invalid/timeout), ProofTrace as {height, axioms_used: string[], rules_applied: string[]}, SimpleCountermodel.trueAtoms as Atom objects {base, fresh_index}, and DifficultyMetrics in camelCase (decisionTimeMs, difficultyTier as string). The canonical Python consumer is TrainingRecord in schema/records.py; schema.py LabeledFormula is a secondary layer with several wrong field mappings.",
+      "content": "When integrating data exports between Lean 4 and Python, the primary friction is naming convention mismatch: Lean emits camelCase JSON keys while Python dataclasses use snake_case. The most maintainable pattern is to keep Lean idiomatic and build a single Python ingest adapter that handles all field-name translations, rather than modifying the Lean export or scattering translation logic across multiple Python modules. Avoid maintaining parallel schema layers (here data/schema.py vs schema/records.py) -- pick one canonical type and deprecate the other early.",
       "category": "PATTERN",
-      "source_artifact": "specs/005_coordinate_bimodallogic_formula_and_proof_data_exports/reports/01_export-coordination.md",
-      "confidence": 0.95,
-      "suggested_keywords": ["bimodallogic", "dataset_generator", "jsonl", "schema", "field-mapping", "TrainingRecord"]
-    },
-    {
-      "content": "BimodalHarness sync workflow: (1) In BimodalLogic run 'lake exe dataset_generator -- --max-complexity 5 --output data/bmlogic.jsonl'. (2) In BimodalHarness run 'make sync-data BIMODAL_LOGIC_PATH=../BimodalLogic' which rsyncs *.jsonl and *.parquet to data/bimodal/. (3) Run 'make validate-data'. (4) Update data/VERSION with the BimodalLogic git commit. The bimodal/ subdirectory is gitignored; samples/ is tracked.",
-      "category": "WORKFLOW",
-      "source_artifact": "specs/005_coordinate_bimodallogic_formula_and_proof_data_exports/reports/01_export-coordination.md",
-      "confidence": 0.9,
-      "suggested_keywords": ["sync-data", "make", "rsync", "dataset_generator", "bimodal", "workflow"]
+      "source_artifact": "specs/005_coordinate_bimodallogic_formula_and_proof_data_exports/plans/01_export-coordination-plan.md",
+      "confidence": 0.85,
+      "suggested_keywords": ["lean-python-integration", "schema-mismatch", "ingest-adapter", "camelCase-snake_case", "data-contract"]
     }
   ]
 }

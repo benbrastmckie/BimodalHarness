@@ -144,81 +144,101 @@
     {
       "project_number": 5,
       "project_name": "coordinate_bimodallogic_formula_and_proof_data_exports",
-      "status": "researched",
+      "status": "planned",
       "task_type": "general",
       "dependencies": [
         3,
         4
       ],
       "created": "2026-05-29T18:00:00Z",
-      "last_updated": "2026-05-29T18:43:55Z",
-      "session_id": "sess_1780079961_663e2a",
+      "last_updated": "2026-05-29T18:54:04Z",
+      "session_id": "sess_1780080650_26f8aa",
       "next_artifact_number": 2,
       "artifacts": [
         {
           "path": "specs/005_coordinate_bimodallogic_formula_and_proof_data_exports/reports/01_export-coordination.md",
           "type": "research",
           "summary": "BimodalLogic export coordination: 12 field-level mismatches identified, sync pipeline ready"
+        },
+        {
+          "path": "specs/005_coordinate_bimodallogic_formula_and_proof_data_exports/plans/01_export-coordination-plan.md",
+          "type": "plan",
+          "summary": "Export coordination plan: 5 phases, resolve 12 field mismatches, canonical ingest adapter"
         }
       ]
     },
     {
       "project_number": 6,
       "project_name": "validate_python_lean_bridge_options",
-      "status": "researched",
+      "status": "planned",
       "task_type": "python",
       "dependencies": [
         2
       ],
       "created": "2026-05-29T18:00:00Z",
-      "last_updated": "2026-05-29T18:43:55Z",
-      "session_id": "sess_1780079961_663e2a",
+      "last_updated": "2026-05-29T18:54:04Z",
+      "session_id": "sess_1780080650_26f8aa",
       "next_artifact_number": 2,
       "artifacts": [
         {
           "path": "specs/006_validate_python_lean_bridge_options/reports/01_bridge-validation.md",
           "type": "research",
           "summary": "Python-Lean bridge: lean-interact v0.11.3 confirmed compatible, LeanDojo/PyPantograph rejected"
+        },
+        {
+          "path": "specs/006_validate_python_lean_bridge_options/plans/01_bridge-validation-plan.md",
+          "type": "plan",
+          "summary": "Bridge validation plan: lean-interact wrapper, smoke tests, latency benchmarks"
         }
       ]
     },
     {
       "project_number": 7,
       "project_name": "build_static_data_ingestion_pipeline",
-      "status": "researched",
+      "status": "planned",
       "task_type": "python",
       "dependencies": [
         4
       ],
       "created": "2026-05-29T18:00:00Z",
-      "last_updated": "2026-05-29T18:43:55Z",
-      "session_id": "sess_1780079961_663e2a",
+      "last_updated": "2026-05-29T18:54:04Z",
+      "session_id": "sess_1780080650_26f8aa",
       "next_artifact_number": 2,
       "artifacts": [
         {
           "path": "specs/007_build_static_data_ingestion_pipeline/reports/01_data-ingestion.md",
           "type": "research",
           "summary": "Data ingestion pipeline: dual-schema bridging design, BimodalDataset + CurriculumSampler"
+        },
+        {
+          "path": "specs/007_build_static_data_ingestion_pipeline/plans/01_data-ingestion-plan.md",
+          "type": "plan",
+          "summary": "Data ingestion plan: 5 phases, fix box bug, BimodalDataset + CurriculumSampler"
         }
       ]
     },
     {
       "project_number": 8,
       "project_name": "implement_python_side_formula_generator",
-      "status": "researched",
+      "status": "planned",
       "task_type": "python",
       "dependencies": [
         4
       ],
       "created": "2026-05-29T18:00:00Z",
-      "last_updated": "2026-05-29T18:43:55Z",
-      "session_id": "sess_1780079961_663e2a",
+      "last_updated": "2026-05-29T18:54:04Z",
+      "session_id": "sess_1780080650_26f8aa",
       "next_artifact_number": 2,
       "artifacts": [
         {
           "path": "specs/008_implement_python_side_formula_generator/reports/01_formula-generator.md",
           "type": "research",
           "summary": "Formula generator: algebraic AST types, exhaustive enumerator, 10 mutation operators"
+        },
+        {
+          "path": "specs/008_implement_python_side_formula_generator/plans/01_formula-generator-plan.md",
+          "type": "plan",
+          "summary": "Formula generator plan: 4 phases, AST types + enumerator + 10 mutators"
         }
       ]
     },
@@ -236,20 +256,25 @@
     {
       "project_number": 10,
       "project_name": "implement_patternkey_feature_extractor_in_python",
-      "status": "researched",
+      "status": "planned",
       "task_type": "python",
       "dependencies": [
         4
       ],
       "created": "2026-05-29T18:00:00Z",
-      "last_updated": "2026-05-29T18:43:55Z",
-      "session_id": "sess_1780079961_663e2a",
+      "last_updated": "2026-05-29T18:54:04Z",
+      "session_id": "sess_1780080650_26f8aa",
       "next_artifact_number": 2,
       "artifacts": [
         {
           "path": "specs/010_implement_patternkey_feature_extractor_in_python/reports/01_patternkey-extractor.md",
           "type": "research",
           "summary": "PatternKey extractor: 5 features from SuccessPatterns.lean, GoalCategory enum, tensor encoding"
+        },
+        {
+          "path": "specs/010_implement_patternkey_feature_extractor_in_python/plans/01_patternkey-plan.md",
+          "type": "plan",
+          "summary": "PatternKey extractor plan: 5 features, GoalCategory enum, tensor encoding"
         }
       ]
     },
