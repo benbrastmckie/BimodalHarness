@@ -269,13 +269,14 @@
     {
       "project_number": 9,
       "project_name": "extract_supervised_training_data_from_existing_proofs",
-      "status": "not_started",
+      "status": "researching",
       "task_type": "python",
       "dependencies": [
         6
       ],
       "created": "2026-05-29T18:00:00Z",
-      "last_updated": "2026-05-29T18:00:00Z"
+      "last_updated": "2026-05-29T19:15:06Z",
+      "session_id": "sess_1780082099_328b90"
     },
     {
       "project_number": 10,
@@ -311,30 +312,40 @@
     {
       "project_number": 11,
       "project_name": "implement_value_network_proof_progress_predictor",
-      "status": "not_started",
+      "status": "researched",
       "task_type": "python",
       "dependencies": [
         7,
         10
       ],
       "created": "2026-05-29T18:00:00Z",
-      "last_updated": "2026-05-29T18:00:00Z"
+      "last_updated": "2026-05-29T19:22:00Z",
+      "session_id": "sess_1780082099_328b90",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "path": "specs/011_implement_value_network_proof_progress_predictor/reports/01_value-network.md",
+          "type": "research",
+          "summary": "MLP value network design: D_IN=12 (log1p+one-hot), hidden=[2048,1024,512,256] (2.78M params), GELU+LayerNorm, Softplus output, Huber loss, SuccessPatterns.lean baseline analysis"
+        }
+      ]
     },
     {
       "project_number": 12,
       "project_name": "build_evaluation_benchmark_suite",
-      "status": "not_started",
+      "status": "researching",
       "task_type": "python",
       "dependencies": [
         7
       ],
       "created": "2026-05-29T18:00:00Z",
-      "last_updated": "2026-05-29T18:00:00Z"
+      "last_updated": "2026-05-29T19:15:06Z",
+      "session_id": "sess_1780082099_328b90"
     },
     {
       "project_number": 13,
       "project_name": "integrate_value_network_with_lean_proof_search",
-      "status": "not_started",
+      "status": "researching",
       "task_type": "python",
       "dependencies": [
         6,
@@ -342,7 +353,8 @@
         12
       ],
       "created": "2026-05-29T18:00:00Z",
-      "last_updated": "2026-05-29T18:00:00Z"
+      "last_updated": "2026-05-29T19:15:06Z",
+      "session_id": "sess_1780082099_328b90"
     },
     {
       "project_number": 14,

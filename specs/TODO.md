@@ -108,7 +108,7 @@ next_project_number: 24
 
 ### 13. Integrate value network with Lean proof search
 - **Effort**: L
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHING]
 - **Task Type**: python
 - **Dependencies**: Task 6, Task 11, Task 12
 
@@ -118,7 +118,7 @@ next_project_number: 24
 
 ### 12. Build evaluation benchmark suite
 - **Effort**: M
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHING]
 - **Task Type**: python
 - **Dependencies**: Task 7
 
@@ -128,9 +128,10 @@ next_project_number: 24
 
 ### 11. Implement value network (proof-progress predictor)
 - **Effort**: L
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHED]
 - **Task Type**: python
 - **Dependencies**: Task 7, Task 10
+- **Research**: [specs/011_implement_value_network_proof_progress_predictor/reports/01_value-network.md]
 
 **Description**: Build PyTorch MLP taking PatternKey features, predicting DerivationTree.height. Start with shallow MLP (1.5M-10M params, CPU-trainable). Include configurable hyperparameters and training script.
 
@@ -151,7 +152,7 @@ next_project_number: 24
 
 ### 9. Extract supervised training data from existing proofs
 - **Effort**: M
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHING]
 - **Task Type**: python
 - **Dependencies**: Task 6
 
