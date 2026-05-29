@@ -127,7 +127,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 3: Parquet Serialization [IN PROGRESS]
+### Phase 3: Parquet Serialization [COMPLETED]
 
 **Goal**: Implement Parquet read/write with flattened columnar layout for efficient ML training.
 
@@ -151,7 +151,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 4: Tests and Documentation [NOT STARTED]
+### Phase 4: Tests and Documentation [IN PROGRESS]
 
 **Goal**: Comprehensive test suite validating all schema components and a docstring-level API reference.
 

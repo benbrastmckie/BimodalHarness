@@ -38,29 +38,7 @@ sync-data: ## Sync JSONL exports from BimodalLogic to data/bimodal/
 
 validate-data: ## Validate JSONL files against the LabeledFormula schema
 	@echo "Validating data files..."
-	@$(PYTHON) -c "\
-import sys, pathlib, json; \
-from bimodal_harness.data import load_jsonl, LabeledFormula; \
-data_dir = pathlib.Path('data'); \
-files = list(data_dir.glob('**/*.jsonl')); \
-if not files: \
-    print('No .jsonl files found in data/'); \
-    sys.exit(0); \
-errors = 0; \
-for f in files: \
-    count = 0; \
-    try: \
-        for record in load_jsonl(f): \
-            count += 1; \
-        print(f'  OK  {f} ({count} records)') \
-    except Exception as e: \
-        print(f'  ERR {f}: {e}'); \
-        errors += 1; \
-if errors: \
-    print(f'Validation failed: {errors} file(s) with errors'); \
-    sys.exit(1); \
-else: \
-    print(f'All {len(files)} file(s) valid')"
+	@$(PYTHON) scripts/validate_data.py
 
 # ---------------------------------------------------------------------------
 # Development targets

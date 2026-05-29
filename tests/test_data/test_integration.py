@@ -12,7 +12,6 @@ Tests cover:
 from __future__ import annotations
 
 import importlib.util
-import json
 from pathlib import Path
 
 import pytest
@@ -25,7 +24,9 @@ from bimodal_harness.data.schema import (
 )
 
 # Path to the sample JSONL file (relative to project root, found via this file's location)
-TESTS_DIR = Path(__file__).parent
+# File is at tests/test_data/test_integration.py, so go up two levels to reach project root
+TESTS_DATA_DIR = Path(__file__).parent
+TESTS_DIR = TESTS_DATA_DIR.parent
 PROJECT_ROOT = TESTS_DIR.parent
 SAMPLE_JSONL = PROJECT_ROOT / "data" / "samples" / "test_formulas.jsonl"
 DATA_VERSION = PROJECT_ROOT / "data" / "VERSION"
@@ -34,6 +35,7 @@ DATA_VERSION = PROJECT_ROOT / "data" / "VERSION"
 # ---------------------------------------------------------------------------
 # JSONL loading tests
 # ---------------------------------------------------------------------------
+
 
 class TestSampleJsonlLoading:
     def test_sample_file_exists(self):
@@ -113,6 +115,7 @@ class TestSampleJsonlLoading:
 # data/VERSION file tests
 # ---------------------------------------------------------------------------
 
+
 class TestDataVersion:
     def test_version_file_exists(self):
         assert DATA_VERSION.exists(), f"data/VERSION not found at {DATA_VERSION}"
@@ -136,6 +139,7 @@ class TestDataVersion:
 # ModelChecker import test (skipped if not installed)
 # ---------------------------------------------------------------------------
 
+
 @pytest.mark.skipif(
     importlib.util.find_spec("model_checker") is None,
     reason="model-checker package not installed",
@@ -144,6 +148,7 @@ class TestModelCheckerImport:
     def test_bimodal_theory_importable(self):
         """BimodalSemantics must be importable from model_checker.theory_lib.bimodal."""
         from model_checker.theory_lib import bimodal  # type: ignore[import]
+
         assert hasattr(bimodal, "BimodalSemantics"), (
             "model_checker.theory_lib.bimodal.BimodalSemantics not found"
         )
@@ -151,6 +156,7 @@ class TestModelCheckerImport:
     def test_bimodal_semantics_instantiable(self):
         """BimodalSemantics must be instantiable (basic smoke test)."""
         from model_checker.theory_lib.bimodal import BimodalSemantics  # type: ignore[import]
+
         # Just verifying the class exists and is callable; don't pass arguments
         # since the constructor signature may vary between versions
         assert callable(BimodalSemantics)
