@@ -1,8 +1,37 @@
 {
-  "status": "in_progress",
+  "status": "completed",
   "task_number": 2,
   "session_id": "sess_1780078869_8696d2",
-  "phases_completed": [],
+  "phases_completed": [1, 2, 3, 4],
   "phases_total": 4,
-  "started_at": "2026-05-29T00:00:00Z"
+  "summary_path": "specs/002_initialize_python_project_structure/summaries/01_project-setup-summary.md",
+  "artifacts": [
+    "pyproject.toml",
+    "src/bimodal_harness/__init__.py",
+    "src/bimodal_harness/config.py",
+    "src/bimodal_harness/data/",
+    "src/bimodal_harness/models/",
+    "src/bimodal_harness/search/",
+    "src/bimodal_harness/training/",
+    "src/bimodal_harness/evaluation/",
+    "src/bimodal_harness/lean/",
+    "src/bimodal_harness/z3/",
+    "src/bimodal_harness/schema/",
+    "tests/conftest.py",
+    "tests/test_smoke.py",
+    "scripts/train.py",
+    "scripts/evaluate.py",
+    ".github/workflows/ci.yml"
+  ],
+  "verification": {
+    "ruff_check": "passed",
+    "ruff_format_check": "passed",
+    "mypy": "deferred_not_installed",
+    "pytest": "198 passed, 2 skipped"
+  },
+  "deviations": [
+    "build_backend_switched_to_setuptools",
+    "mypy_deferred_not_installed",
+    "additional_schema_subpackage_auto_generated"
+  ]
 }
