@@ -138,9 +138,10 @@ next_project_number: 24
 
 ### 10. Implement PatternKey feature extractor in Python
 - **Effort**: M
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHED]
 - **Task Type**: python
 - **Dependencies**: Task 4
+- **Research**: [010_implement_patternkey_feature_extractor_in_python/reports/01_patternkey-extractor.md]
 
 **Description**: Port PatternKey feature extraction from SuccessPatterns.lean to Python. Extract modalDepth, temporalDepth, impCount, complexity, topOperator from formula ASTs. Primary neural network input features.
 
@@ -158,9 +159,10 @@ next_project_number: 24
 
 ### 8. Implement Python-side formula generator
 - **Effort**: M
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHED]
 - **Task Type**: python
 - **Dependencies**: Task 4
+- **Research**: [008_implement_python_side_formula_generator/reports/01_formula-generator.md]
 
 **Description**: Build Python formula generator using operator grammar (6 constructors: atom, bot, imp, box, untl, snce). Generate formulas by depth/complexity for rapid prototyping. Include near-miss mutation generator for contrastive pairs.
 
@@ -168,9 +170,10 @@ next_project_number: 24
 
 ### 7. Build static data ingestion pipeline
 - **Effort**: M
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHED]
 - **Task Type**: python
 - **Dependencies**: Task 4
+- **Research**: [007_build_static_data_ingestion_pipeline/reports/01_data-ingestion.md]
 
 **Description**: Create pipeline to import pre-exported datasets from Lean (formula enumerator output, DecisionResult, countermodels). Produce PyTorch-compatible datasets in training data schema.
 
@@ -178,9 +181,10 @@ next_project_number: 24
 
 ### 6. Validate Python-Lean bridge options
 - **Effort**: L
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHED]
 - **Task Type**: python
 - **Dependencies**: Task 2
+- **Research**: [006_validate_python_lean_bridge_options/reports/01_bridge-validation.md]
 
 **Description**: Test LeanDojo-v2, lean-interact, PyPantograph against BimodalLogic (Lean v4.27.0-rc1). Determine which can load ProofChecker, send tactic steps, receive goal states. Produce latency benchmarks. Critical risk gate.
 
@@ -188,9 +192,10 @@ next_project_number: 24
 
 ### 5. Coordinate BimodalLogic formula and proof data exports
 - **Effort**: M
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHED]
 - **Task Type**: general
 - **Dependencies**: Task 3, Task 4
+- **Research**: [005_coordinate_bimodallogic_formula_and_proof_data_exports/reports/01_export-coordination.md]
 
 **Description**: Define what BimodalLogic needs to export (formulas, DecisionResults, proof traces, countermodels). Specify JSON/Parquet export format matching training data schema. Set up data sync pipeline between repos. Coordinate with BimodalLogic task 201.
 
