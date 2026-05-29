@@ -1,7 +1,7 @@
 # Implementation Plan: Extract Supervised Training Data from Existing Proofs
 
 - **Task**: 9 - Extract supervised training data from existing proofs
-- **Status**: [NOT STARTED]
+- **Status**: [PARTIAL]
 - **Effort**: 10 hours
 - **Dependencies**: None (builds on existing infrastructure in BimodalLogic and BimodalHarness)
 - **Research Inputs**: specs/009_extract_supervised_training_data_from_existing_proofs/reports/01_proof-extraction.md
