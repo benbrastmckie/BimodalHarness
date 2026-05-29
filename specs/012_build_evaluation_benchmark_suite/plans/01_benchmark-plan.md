@@ -75,7 +75,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 1: Benchmark Data Model and Generator [NOT STARTED]
+### Phase 1: Benchmark Data Model and Generator [COMPLETED]
 
 **Goal**: Implement the BenchmarkProblem data model and BenchmarkGenerator class that produces stratified formula sets with ground-truth labels.
 
