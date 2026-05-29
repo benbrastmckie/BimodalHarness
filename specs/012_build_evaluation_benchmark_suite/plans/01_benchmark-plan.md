@@ -117,7 +117,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 2: Metrics Collection Framework [NOT STARTED]
+### Phase 2: Metrics Collection Framework [COMPLETED]
 
 **Goal**: Implement the metrics computation engine that calculates SR@K, NV, TTP, PL, and per-stratum breakdowns from a list of search results.
 
