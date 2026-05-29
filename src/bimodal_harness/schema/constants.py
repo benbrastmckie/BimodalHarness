@@ -21,12 +21,15 @@ SCHEMA_VERSION = "1.0.0"
 ACTION_SPACE_VERSION = "1.0.0"
 
 # Valid label values for a TrainingRecord.
-VALID_LABELS: frozenset[str] = frozenset({"valid", "invalid"})
+# "timeout" is included because Lean's dataset_generator emits it for formulas
+# that exceed the proof-search time limit.
+VALID_LABELS: frozenset[str] = frozenset({"valid", "invalid", "timeout"})
 
 # Valid difficulty tier strings.
+# Note: "trivial" has been removed -- Lean's dataset_generator never emits it.
+# Lean emits only "easy", "medium", "hard", and "very_hard".
 VALID_DIFFICULTY_TIERS: frozenset[str] = frozenset(
     {
-        "trivial",
         "easy",
         "medium",
         "hard",

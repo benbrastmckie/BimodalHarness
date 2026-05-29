@@ -87,7 +87,7 @@ def make_invalid_record(rec_id: str = "rec-invalid") -> TrainingRecord:
             complexity=1,
             decision_time_ms=3,
             search_depth=0,
-            difficulty_tier="trivial",
+            difficulty_tier="easy",
         ),
         proof_trace=None,
         countermodel=SimpleCountermodel(

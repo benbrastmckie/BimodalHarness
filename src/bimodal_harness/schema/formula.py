@@ -12,6 +12,10 @@ Lean correspondence (DataExport.lean Formula.toJson):
 - snce  -> {"tag": "snce", "event": <formula>, "guard": <formula>}
 
 The 6 constructor names match Formula.toJson in DataExport.lean exactly.
+
+Note on ``box``: Lean's DataExport.lean emits ``{"tag": "box", "child": <formula>}``
+with a single ``child`` field.  The older ``event`` field was a mismatch from
+``data/schema.py``'s S4-modal interpretation and is NOT required here.
 """
 
 from __future__ import annotations
@@ -59,6 +63,8 @@ class AtomRepr:
 
 
 # Required fields for each formula tag (beyond "tag" itself).
+# "box" requires only "child" -- Lean's DataExport.lean does not emit "event"
+# for box nodes (that was a data/schema.py S4-modal mismatch).
 _REQUIRED_FIELDS: dict[str, frozenset[str]] = {
     "atom": frozenset({"name"}),
     "bot": frozenset(),
@@ -158,11 +164,12 @@ def formula_json_to_pretty(data: FormulaJson) -> str:
         child = formula_json_to_pretty(data["child"])
         return f"□{child}"
     if tag == "untl":
-        event = formula_json_to_pretty(data["event"])
+        # "event" is the consequent (reached), "guard" is the antecedent (until-condition)
+        event = formula_json_to_pretty(data.get("event", data.get("child", {})))
         guard = formula_json_to_pretty(data["guard"])
         return f"U({event}, {guard})"
     if tag == "snce":
-        event = formula_json_to_pretty(data["event"])
+        event = formula_json_to_pretty(data.get("event", data.get("child", {})))
         guard = formula_json_to_pretty(data["guard"])
         return f"S({event}, {guard})"
     return f"<unknown:{tag}>"

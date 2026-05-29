@@ -310,7 +310,7 @@ class TestDifficultyMetrics:
         assert dm.difficulty_tier == "hard"
 
     def test_all_valid_tiers(self):
-        for tier in ["trivial", "easy", "medium", "hard", "very_hard"]:
+        for tier in ["easy", "medium", "hard", "very_hard"]:
             dm = make_difficulty(difficulty_tier=tier)
             assert dm.difficulty_tier == tier
 
@@ -381,7 +381,7 @@ class TestTrainingRecordValidation:
                 record_id="x",
                 formula_json=FORMULA_BOT,
                 formula_pretty="⊥",
-                label="timeout",  # invalid
+                label="UNKNOWN_BAD_LABEL",  # invalid
                 pattern_key=make_pattern_key(),
                 difficulty_metrics=make_difficulty(),
                 proof_trace=None,

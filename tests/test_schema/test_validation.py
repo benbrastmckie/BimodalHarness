@@ -158,7 +158,7 @@ def make_base_valid_record() -> TrainingRecord:
             complexity=1,
             decision_time_ms=5,
             search_depth=1,
-            difficulty_tier="trivial",
+            difficulty_tier="easy",
         ),
         proof_trace=ProofTrace(
             height=0,
@@ -190,7 +190,7 @@ def make_base_invalid_record() -> TrainingRecord:
             complexity=1,
             decision_time_ms=2,
             search_depth=0,
-            difficulty_tier="trivial",
+            difficulty_tier="easy",
         ),
         proof_trace=None,
         countermodel=SimpleCountermodel(

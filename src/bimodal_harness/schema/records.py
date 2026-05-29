@@ -171,10 +171,44 @@ class ProofTrace:
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> ProofTrace:
-        """Deserialize from serialized dict."""
+        """Deserialize from serialized dict.
+
+        Accepts two formats:
+        - Python/internal format: ``rules`` key holds a RuleProfile dict
+          (keys: ``axiom``, ``modus_ponens``, ``necessitation``, etc.)
+        - Lean export format: ``rules_applied`` key holds a list of rule-name
+          strings (e.g. ``["axiom", "modus_ponens", "axiom"]``).  When this
+          form is received a synthetic RuleProfile is built by counting string
+          occurrences.
+        """
+        rules_raw = data.get("rules")
+        rules_applied_raw = data.get("rules_applied")
+
+        if rules_raw is not None and isinstance(rules_raw, dict):
+            # Python / round-trip format: RuleProfile dict
+            rule_profile = RuleProfile.from_dict(rules_raw)
+        elif rules_applied_raw is not None and isinstance(rules_applied_raw, list):
+            # Lean export format: list of rule-name strings -- count occurrences
+            rule_name_map: dict[str, str] = {
+                "axiom": "axiom",
+                "assumption": "assumption",
+                "modus_ponens": "modus_ponens",
+                "necessitation": "necessitation",
+                "temporal_necessitation": "temporal_necessitation",
+                "temporal_duality": "temporal_duality",
+                "weakening": "weakening",
+            }
+            counts: dict[str, int] = {k: 0 for k in rule_name_map}
+            for name in rules_applied_raw:
+                if name in counts:
+                    counts[name] += 1
+            rule_profile = RuleProfile.from_dict(counts)
+        else:
+            rule_profile = RuleProfile()
+
         return cls(
             height=int(data["height"]),
-            rule_profile=RuleProfile.from_dict(data.get("rules", {})),
+            rule_profile=rule_profile,
             axioms_used=tuple(data.get("axioms_used", [])),
         )
 
@@ -273,15 +307,28 @@ class DifficultyMetrics:
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> DifficultyMetrics:
-        """Deserialize from a flat dictionary."""
+        """Deserialize from a flat dictionary.
+
+        Accepts both snake_case (Python/internal) and camelCase (Lean export)
+        field names.  camelCase keys take precedence when both are present.
+
+        Lean export camelCase keys:
+        - ``atomCount`` -> ``atom_count``
+        - ``modalDepth`` -> ``modal_depth``
+        - ``temporalDepth`` -> ``temporal_depth``
+        - ``decisionTimeMs`` -> ``decision_time_ms``
+        - ``difficultyTier`` -> ``difficulty_tier``
+
+        ``search_depth`` has no Lean counterpart and defaults to 0 when absent.
+        """
         return cls(
-            atom_count=int(data["atom_count"]),
-            modal_depth=int(data["modal_depth"]),
-            temporal_depth=int(data["temporal_depth"]),
-            complexity=int(data["complexity"]),
-            decision_time_ms=int(data["decision_time_ms"]),
-            search_depth=int(data["search_depth"]),
-            difficulty_tier=str(data["difficulty_tier"]),
+            atom_count=int(data.get("atomCount", data.get("atom_count", 0))),
+            modal_depth=int(data.get("modalDepth", data.get("modal_depth", 0))),
+            temporal_depth=int(data.get("temporalDepth", data.get("temporal_depth", 0))),
+            complexity=int(data.get("complexity", 0)),
+            decision_time_ms=int(data.get("decisionTimeMs", data.get("decision_time_ms", 0))),
+            search_depth=int(data.get("search_depth", 0)),
+            difficulty_tier=str(data.get("difficultyTier", data.get("difficulty_tier", "easy"))),
         )
 
 

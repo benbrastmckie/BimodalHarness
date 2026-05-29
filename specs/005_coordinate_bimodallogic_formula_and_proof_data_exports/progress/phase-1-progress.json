@@ -1,0 +1,26 @@
+{
+  "phase": 1,
+  "phase_name": "Align constants.py and records.py with Lean export format",
+  "started_at": "2026-05-29T00:00:00Z",
+  "last_updated": "2026-05-29T00:30:00Z",
+  "objectives": [
+    {"id": 1, "description": "Extend VALID_LABELS to include 'timeout'", "status": "done"},
+    {"id": 2, "description": "Remove 'trivial' from VALID_DIFFICULTY_TIERS", "status": "done"},
+    {"id": 3, "description": "Update ProofTrace.from_dict to accept both 'rules' key and 'rules_applied' key", "status": "done"},
+    {"id": 4, "description": "Update DifficultyMetrics.from_dict to accept camelCase keys from Lean", "status": "done"},
+    {"id": 5, "description": "Verify PatternKey.from_dict already handles camelCase correctly (confirmed)", "status": "done"},
+    {"id": 6, "description": "Verify SimpleCountermodel.from_dict already handles trueAtoms/falseAtoms (confirmed)", "status": "done"}
+  ],
+  "current_objective": null,
+  "approaches_tried": [],
+  "handoff_count": 0,
+  "deviations": [
+    {
+      "task_id": "1.extra",
+      "description": "Also fixed formula.py: box required 'child' AND 'event' but Lean emits 'child' only",
+      "type": "altered",
+      "reason": "formula.py _REQUIRED_FIELDS['box'] had 'event' as required; changed to just 'child' to match Lean export",
+      "annotation": "*(deviation: altered — fixed formula.py box validation to match Lean format)*"
+    }
+  ]
+}

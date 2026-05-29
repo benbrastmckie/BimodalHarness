@@ -1,7 +1,7 @@
 # Implementation Plan: Task #5
 
 - **Task**: 5 - Coordinate BimodalLogic formula and proof data exports
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 5 hours
 - **Dependencies**: Task 3 (completed), Task 4 (completed)
 - **Research Inputs**: specs/005_coordinate_bimodallogic_formula_and_proof_data_exports/reports/01_export-coordination.md
@@ -74,17 +74,17 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 1: Align constants.py and records.py with Lean export format [NOT STARTED]
+### Phase 1: Align constants.py and records.py with Lean export format [COMPLETED]
 
 **Goal**: Fix the `constants.py` valid sets and `records.py` deserialization methods so they can accept the exact field names and values that Lean's `dataset_generator` emits.
 
 **Tasks**:
-- [ ] Extend `VALID_LABELS` in `constants.py` to include `"timeout"` (Lean emits `"timeout"` for undecided formulas)
-- [ ] Remove `"trivial"` from `VALID_DIFFICULTY_TIERS` in `constants.py` (Lean never emits it; only `"easy"`, `"medium"`, `"hard"`, `"very_hard"`)
-- [ ] Update `ProofTrace.from_dict` in `records.py` to accept both `"rules"` key (RuleProfile dict) and `"rules_applied"` key (list of strings); when receiving a list, build a synthetic `RuleProfile` by counting occurrences of known rule names
-- [ ] Update `DifficultyMetrics.from_dict` in `records.py` to accept camelCase keys from Lean (`atomCount`, `modalDepth`, `temporalDepth`, `decisionTimeMs`, `difficultyTier`) with fallback to existing snake_case keys; default `search_depth` to 0 when absent
-- [ ] Verify `PatternKey.from_dict` already handles camelCase correctly (it does -- confirmed in research)
-- [ ] Verify `SimpleCountermodel.from_dict` already handles `trueAtoms`/`falseAtoms` with Atom objects (it does -- confirmed in research)
+- [x] Extend `VALID_LABELS` in `constants.py` to include `"timeout"` *(completed)*
+- [x] Remove `"trivial"` from `VALID_DIFFICULTY_TIERS` in `constants.py` *(completed)*
+- [x] Update `ProofTrace.from_dict` in `records.py` to accept both `"rules"` key (RuleProfile dict) and `"rules_applied"` key (list of strings) *(completed)*
+- [x] Update `DifficultyMetrics.from_dict` in `records.py` to accept camelCase keys from Lean *(completed)*
+- [x] Verify `PatternKey.from_dict` already handles camelCase correctly (confirmed) *(completed)*
+- [x] Verify `SimpleCountermodel.from_dict` already handles `trueAtoms`/`falseAtoms` with Atom objects (confirmed) *(completed)*
 
 **Timing**: 1.5 hours
 

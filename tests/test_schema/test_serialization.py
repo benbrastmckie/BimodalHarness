@@ -86,7 +86,7 @@ def make_invalid_record() -> TrainingRecord:
             complexity=1,
             decision_time_ms=5,
             search_depth=0,
-            difficulty_tier="trivial",
+            difficulty_tier="easy",
         ),
         proof_trace=None,
         countermodel=SimpleCountermodel(
