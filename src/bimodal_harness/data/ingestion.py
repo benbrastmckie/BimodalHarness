@@ -1,16 +1,32 @@
 """Data ingestion pipelines for loading proof search datasets.
 
-Bridges the Lean-export schema (data.schema.LabeledFormula) to the ML-training
-schema (schema.records.TrainingRecord), enabling PyTorch-compatible training.
+Provides two API layers:
 
-The translation handles 7 field-level mismatches between the two schemas:
+**Layer 1: LabeledFormula -> TrainingRecord bridge** (data.schema -> schema.records).
+Translates the legacy Lean-export format (uppercase labels, integer tiers, etc.)
+to the richer ML-training format:
+
 1. label casing: "VALID"/"INVALID" -> "valid"/"invalid"
-2. difficulty_tier: int (1-5) -> string ("trivial".."very_hard")
+2. difficulty_tier: int (1-5) -> string ("easy".."very_hard")
 3. top_operator: lowercase -> PascalCase
 4. record_id: generated via TrainingRecord.make_id() (absent in source)
 5. formula_pretty: derived via formula_json_to_pretty() (absent in source)
 6. search_depth: derived from proof_trace.height or 0 (absent in source)
 7. countermodel format: {true_atoms, false_atoms, formula (str)} -> {true/false_atoms (tuples), formula_json (dict)}
+
+**Layer 2: Lean JSONL dict -> TrainingRecord** (direct adapter for BimodalLogic exports).
+Handles all field-name translations between the Lean dataset_generator output
+and schema.records.TrainingRecord:
+
+- ``id`` -> ``record_id``  (auto-generated UUID if absent)
+- ``formula_ast`` -> ``formula_json``
+- ``formula_str`` -> ``formula_pretty``
+- ``label``: already lowercase; passed through
+- ``pattern_key.*``: camelCase -> PatternKey.from_dict
+- ``metrics.*``: camelCase -> DifficultyMetrics.from_dict (updated in Phase 1)
+- ``proof_trace``: both formats handled by ProofTrace.from_dict (updated in Phase 1)
+- ``countermodel``: Atom-object format -> SimpleCountermodel.from_dict
+- ``frame_class``: passthrough (defaults to "Base" if absent)
 
 TIMEOUT records return None and are skipped during ingestion.
 """

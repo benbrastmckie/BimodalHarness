@@ -1,29 +1,7 @@
 {
-  "status": "planned",
-  "artifacts": [
-    {
-      "type": "plan",
-      "path": "specs/007_build_static_data_ingestion_pipeline/plans/01_data-ingestion-plan.md",
-      "summary": "Implementation plan with 5 phases covering schema translation, pipeline entry points, BimodalDataset, CurriculumSampler, and end-to-end integration"
-    }
-  ],
-  "next_steps": "Run /implement 7 to execute the plan",
-  "metadata": {
-    "session_id": "sess_1780080650_26f8aa",
-    "agent_type": "planner-agent",
-    "delegation_depth": 1,
-    "delegation_path": ["orchestrator", "plan", "planner-agent"],
-    "phase_count": 5,
-    "estimated_hours": 6,
-    "dependency_waves": [[1], [2], [3, 4], [5]]
-  },
-  "memory_candidates": [
-    {
-      "content": "When two schema layers coexist in a project (a data-contract/import layer and an ML-training layer), the ingestion pipeline must act as an explicit translation bridge. Key pattern: define mapping constants (e.g., DIFFICULTY_TIER_MAP, TOP_OPERATOR_MAP) as module-level dicts, implement a single translation function that returns None for un-translatable records (like TIMEOUT), and default absent fields to safe values (zeros for counts, UUIDs for IDs). This avoids coupling the two schemas directly and keeps the translation logic testable in isolation.",
-      "category": "PATTERN",
-      "source_artifact": "specs/007_build_static_data_ingestion_pipeline/plans/01_data-ingestion-plan.md",
-      "confidence": 0.82,
-      "suggested_keywords": ["schema-bridging", "data-ingestion", "translation-layer", "dual-schema", "ETL-pattern"]
-    }
-  ]
+  "status": "in_progress",
+  "task_number": 7,
+  "session_id": "sess_1780081000_c525c7",
+  "phases_completed": [],
+  "summary_path": "specs/007_build_static_data_ingestion_pipeline/summaries/01_ingestion-summary.md"
 }

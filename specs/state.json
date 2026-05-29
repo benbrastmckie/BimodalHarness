@@ -144,15 +144,15 @@
     {
       "project_number": 5,
       "project_name": "coordinate_bimodallogic_formula_and_proof_data_exports",
-      "status": "planned",
+      "status": "implementing",
       "task_type": "general",
       "dependencies": [
         3,
         4
       ],
       "created": "2026-05-29T18:00:00Z",
-      "last_updated": "2026-05-29T18:54:04Z",
-      "session_id": "sess_1780080650_26f8aa",
+      "last_updated": "2026-05-29T18:56:46Z",
+      "session_id": "sess_1780081000_c525c7",
       "next_artifact_number": 2,
       "artifacts": [
         {
@@ -170,14 +170,14 @@
     {
       "project_number": 6,
       "project_name": "validate_python_lean_bridge_options",
-      "status": "planned",
+      "status": "implementing",
       "task_type": "python",
       "dependencies": [
         2
       ],
       "created": "2026-05-29T18:00:00Z",
-      "last_updated": "2026-05-29T18:54:04Z",
-      "session_id": "sess_1780080650_26f8aa",
+      "last_updated": "2026-05-29T18:56:46Z",
+      "session_id": "sess_1780081000_c525c7",
       "next_artifact_number": 2,
       "artifacts": [
         {
@@ -195,14 +195,14 @@
     {
       "project_number": 7,
       "project_name": "build_static_data_ingestion_pipeline",
-      "status": "planned",
+      "status": "implementing",
       "task_type": "python",
       "dependencies": [
         4
       ],
       "created": "2026-05-29T18:00:00Z",
-      "last_updated": "2026-05-29T18:54:04Z",
-      "session_id": "sess_1780080650_26f8aa",
+      "last_updated": "2026-05-29T18:56:46Z",
+      "session_id": "sess_1780081000_c525c7",
       "next_artifact_number": 2,
       "artifacts": [
         {
@@ -220,14 +220,14 @@
     {
       "project_number": 8,
       "project_name": "implement_python_side_formula_generator",
-      "status": "planned",
+      "status": "implementing",
       "task_type": "python",
       "dependencies": [
         4
       ],
       "created": "2026-05-29T18:00:00Z",
-      "last_updated": "2026-05-29T18:54:04Z",
-      "session_id": "sess_1780080650_26f8aa",
+      "last_updated": "2026-05-29T18:56:46Z",
+      "session_id": "sess_1780081000_c525c7",
       "next_artifact_number": 2,
       "artifacts": [
         {
@@ -256,14 +256,14 @@
     {
       "project_number": 10,
       "project_name": "implement_patternkey_feature_extractor_in_python",
-      "status": "planned",
+      "status": "implementing",
       "task_type": "python",
       "dependencies": [
         4
       ],
       "created": "2026-05-29T18:00:00Z",
-      "last_updated": "2026-05-29T18:54:04Z",
-      "session_id": "sess_1780080650_26f8aa",
+      "last_updated": "2026-05-29T18:56:46Z",
+      "session_id": "sess_1780081000_c525c7",
       "next_artifact_number": 2,
       "artifacts": [
         {

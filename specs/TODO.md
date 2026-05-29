@@ -138,7 +138,7 @@ next_project_number: 24
 
 ### 10. Implement PatternKey feature extractor in Python
 - **Effort**: M
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Task Type**: python
 - **Dependencies**: Task 4
 - **Research**: [010_implement_patternkey_feature_extractor_in_python/reports/01_patternkey-extractor.md]
@@ -160,7 +160,7 @@ next_project_number: 24
 
 ### 8. Implement Python-side formula generator
 - **Effort**: M
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Task Type**: python
 - **Dependencies**: Task 4
 - **Research**: [008_implement_python_side_formula_generator/reports/01_formula-generator.md]
@@ -172,7 +172,7 @@ next_project_number: 24
 
 ### 7. Build static data ingestion pipeline
 - **Effort**: M
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Task Type**: python
 - **Dependencies**: Task 4
 - **Research**: [007_build_static_data_ingestion_pipeline/reports/01_data-ingestion.md]
@@ -184,7 +184,7 @@ next_project_number: 24
 
 ### 6. Validate Python-Lean bridge options
 - **Effort**: L
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Task Type**: python
 - **Dependencies**: Task 2
 - **Research**: [006_validate_python_lean_bridge_options/reports/01_bridge-validation.md]
@@ -196,7 +196,7 @@ next_project_number: 24
 
 ### 5. Coordinate BimodalLogic formula and proof data exports
 - **Effort**: M
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Task Type**: general
 - **Dependencies**: Task 3, Task 4
 - **Research**: [005_coordinate_bimodallogic_formula_and_proof_data_exports/reports/01_export-coordination.md]

@@ -9,7 +9,7 @@ All mutations are syntactic only; semantic filtering is deferred to the Z3 task.
 from __future__ import annotations
 
 import random as _random_module
-from typing import Callable
+from collections.abc import Callable
 
 from bimodal_harness.formula.ast import (
     Atom,

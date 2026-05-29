@@ -15,10 +15,7 @@ All metric functions mirror Lean Formula definitions exactly.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Any, Union
-
-if TYPE_CHECKING:
-    pass
+from typing import Any
 
 # ---------------------------------------------------------------------------
 # Forward-declared union type (populated after class definitions)
@@ -38,7 +35,7 @@ class Atom:
         return {"tag": "atom", "name": self.name}
 
     @classmethod
-    def from_json(cls, data: dict[str, Any]) -> "Atom":
+    def from_json(cls, data: dict[str, Any]) -> Atom:
         """Deserialize from FormulaJson dict."""
         if data.get("tag") != "atom":
             raise ValueError(f"Expected tag 'atom', got {data.get('tag')!r}")
@@ -54,7 +51,7 @@ class Bot:
         return {"tag": "bot"}
 
     @classmethod
-    def from_json(cls, data: dict[str, Any]) -> "Bot":
+    def from_json(cls, data: dict[str, Any]) -> Bot:
         """Deserialize from FormulaJson dict."""
         if data.get("tag") != "bot":
             raise ValueError(f"Expected tag 'bot', got {data.get('tag')!r}")
@@ -65,15 +62,15 @@ class Bot:
 class Imp:
     """Implication: Formula.imp in Lean."""
 
-    left: "FormulaNode"
-    right: "FormulaNode"
+    left: FormulaNode
+    right: FormulaNode
 
     def to_json(self) -> dict[str, Any]:
         """Serialize to FormulaJson dict."""
         return {"tag": "imp", "left": self.left.to_json(), "right": self.right.to_json()}
 
     @classmethod
-    def from_json(cls, data: dict[str, Any]) -> "Imp":
+    def from_json(cls, data: dict[str, Any]) -> Imp:
         """Deserialize from FormulaJson dict."""
         if data.get("tag") != "imp":
             raise ValueError(f"Expected tag 'imp', got {data.get('tag')!r}")
@@ -84,14 +81,14 @@ class Imp:
 class Box:
     """Modal necessity: Formula.box in Lean."""
 
-    child: "FormulaNode"
+    child: FormulaNode
 
     def to_json(self) -> dict[str, Any]:
         """Serialize to FormulaJson dict."""
         return {"tag": "box", "child": self.child.to_json()}
 
     @classmethod
-    def from_json(cls, data: dict[str, Any]) -> "Box":
+    def from_json(cls, data: dict[str, Any]) -> Box:
         """Deserialize from FormulaJson dict."""
         if data.get("tag") != "box":
             raise ValueError(f"Expected tag 'box', got {data.get('tag')!r}")
@@ -105,15 +102,15 @@ class Untl:
     Burgess convention: event holds eventually, guard holds in between.
     """
 
-    event: "FormulaNode"
-    guard: "FormulaNode"
+    event: FormulaNode
+    guard: FormulaNode
 
     def to_json(self) -> dict[str, Any]:
         """Serialize to FormulaJson dict."""
         return {"tag": "untl", "event": self.event.to_json(), "guard": self.guard.to_json()}
 
     @classmethod
-    def from_json(cls, data: dict[str, Any]) -> "Untl":
+    def from_json(cls, data: dict[str, Any]) -> Untl:
         """Deserialize from FormulaJson dict."""
         if data.get("tag") != "untl":
             raise ValueError(f"Expected tag 'untl', got {data.get('tag')!r}")
@@ -127,15 +124,15 @@ class Snce:
     Burgess convention: event was true, guard held in between.
     """
 
-    event: "FormulaNode"
-    guard: "FormulaNode"
+    event: FormulaNode
+    guard: FormulaNode
 
     def to_json(self) -> dict[str, Any]:
         """Serialize to FormulaJson dict."""
         return {"tag": "snce", "event": self.event.to_json(), "guard": self.guard.to_json()}
 
     @classmethod
-    def from_json(cls, data: dict[str, Any]) -> "Snce":
+    def from_json(cls, data: dict[str, Any]) -> Snce:
         """Deserialize from FormulaJson dict."""
         if data.get("tag") != "snce":
             raise ValueError(f"Expected tag 'snce', got {data.get('tag')!r}")
@@ -146,7 +143,7 @@ class Snce:
 # Union type
 # ---------------------------------------------------------------------------
 
-FormulaNode = Union[Atom, Bot, Imp, Box, Untl, Snce]
+FormulaNode = Atom | Bot | Imp | Box | Untl | Snce
 
 # ---------------------------------------------------------------------------
 # Dispatch table for from_json

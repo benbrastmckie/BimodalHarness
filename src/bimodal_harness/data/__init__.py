@@ -37,19 +37,10 @@ the legacy JSONL-deserialization layer and are being superseded by
 
 from __future__ import annotations
 
-import warnings as _warnings
-
-from bimodal_harness.data.schema import (
-    DifficultyMetrics,
-    FormulaNode,
-    FormulaTag,
-    Label,
-    LabeledFormula,
-    PatternKey,
-    ProofTrace,
-    RuleProfile,
-    SimpleCountermodel,
-    load_jsonl,
+from bimodal_harness.data.dataset import (
+    BimodalDataset,
+    CurriculumSampler,
+    split_dataset,
 )
 from bimodal_harness.data.ingestion import (
     DIFFICULTY_TIER_MAP,
@@ -61,10 +52,17 @@ from bimodal_harness.data.ingestion import (
     labeled_formula_to_training_record,
     load_cached,
 )
-from bimodal_harness.data.dataset import (
-    BimodalDataset,
-    CurriculumSampler,
-    split_dataset,
+from bimodal_harness.data.schema import (
+    DifficultyMetrics,
+    FormulaNode,
+    FormulaTag,
+    Label,
+    LabeledFormula,
+    PatternKey,
+    ProofTrace,
+    RuleProfile,
+    SimpleCountermodel,
+    load_jsonl,
 )
 
 __all__ = [

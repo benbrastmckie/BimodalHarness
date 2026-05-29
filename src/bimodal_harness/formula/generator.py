@@ -11,9 +11,8 @@ Complexity is the node count as defined in Lean Formula.complexity.
 
 from __future__ import annotations
 
-import itertools
 import random as _random_module
-from typing import Iterator
+from collections.abc import Iterator
 
 from bimodal_harness.formula.ast import (
     Atom,
@@ -23,7 +22,6 @@ from bimodal_harness.formula.ast import (
     Imp,
     Snce,
     Untl,
-    complexity,
 )
 
 # Default operator weights for random generation.

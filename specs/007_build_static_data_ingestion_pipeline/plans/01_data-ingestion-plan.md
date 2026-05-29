@@ -1,7 +1,7 @@
 # Implementation Plan: Static Data Ingestion Pipeline
 
 - **Task**: 7 - Build static data ingestion pipeline
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 6 hours
 - **Dependencies**: Task 4 (training data schema)
 - **Research Inputs**: specs/007_build_static_data_ingestion_pipeline/reports/01_data-ingestion.md
@@ -76,7 +76,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 1: Fix Box Validation Bug and Schema Translation Layer [NOT STARTED]
+### Phase 1: Fix Box Validation Bug and Schema Translation Layer [COMPLETED]
 
 **Goal**: Fix the `schema/formula.py` box validation bug and implement the core `labeled_formula_to_training_record()` translation function in `data/ingestion.py`.
 
@@ -107,7 +107,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 2: Pipeline Entry Points and Directory Ingestion [NOT STARTED]
+### Phase 2: Pipeline Entry Points and Directory Ingestion [COMPLETED]
 
 **Goal**: Implement `ingest_jsonl()`, `ingest_directory()`, and update the `data/__init__.py` public API to expose ingestion functions.
 
@@ -136,7 +136,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 3: BimodalDataset and Data Splitting [NOT STARTED]
+### Phase 3: BimodalDataset and Data Splitting [COMPLETED]
 
 **Goal**: Create `BimodalDataset(torch.utils.data.Dataset)` and `split_dataset()` for train/val/test partitioning with difficulty stratification.
 
@@ -166,7 +166,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 4: CurriculumSampler and Parquet Cache Integration [NOT STARTED]
+### Phase 4: CurriculumSampler and Parquet Cache Integration [COMPLETED]
 
 **Goal**: Implement `CurriculumSampler` for epoch-gated difficulty progression and integrate Parquet caching for repeated training runs.
 
@@ -200,7 +200,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 5: End-to-End Integration and Type Checking [NOT STARTED]
+### Phase 5: End-to-End Integration and Type Checking [COMPLETED]
 
 **Goal**: Run the full pipeline end-to-end on sample data, verify type checking, and ensure all tests pass across the codebase.
 
