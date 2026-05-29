@@ -138,11 +138,12 @@ next_project_number: 24
 
 ### 10. Implement PatternKey feature extractor in Python
 - **Effort**: M
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETED]
 - **Task Type**: python
 - **Dependencies**: Task 4
 - **Research**: [010_implement_patternkey_feature_extractor_in_python/reports/01_patternkey-extractor.md]
 - **Plan**: [010_implement_patternkey_feature_extractor_in_python/plans/01_patternkey-plan.md]
+- **Summary**: [010_implement_patternkey_feature_extractor_in_python/summaries/01_patternkey-summary.md]
 
 **Description**: Port PatternKey feature extraction from SuccessPatterns.lean to Python. Extract modalDepth, temporalDepth, impCount, complexity, topOperator from formula ASTs. Primary neural network input features.
 
@@ -160,11 +161,12 @@ next_project_number: 24
 
 ### 8. Implement Python-side formula generator
 - **Effort**: M
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETED]
 - **Task Type**: python
 - **Dependencies**: Task 4
 - **Research**: [008_implement_python_side_formula_generator/reports/01_formula-generator.md]
 - **Plan**: [008_implement_python_side_formula_generator/plans/01_formula-generator-plan.md]
+- **Summary**: [008_implement_python_side_formula_generator/summaries/01_formula-generator-summary.md]
 
 **Description**: Build Python formula generator using operator grammar (6 constructors: atom, bot, imp, box, untl, snce). Generate formulas by depth/complexity for rapid prototyping. Include near-miss mutation generator for contrastive pairs.
 
@@ -172,11 +174,12 @@ next_project_number: 24
 
 ### 7. Build static data ingestion pipeline
 - **Effort**: M
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETED]
 - **Task Type**: python
 - **Dependencies**: Task 4
 - **Research**: [007_build_static_data_ingestion_pipeline/reports/01_data-ingestion.md]
 - **Plan**: [007_build_static_data_ingestion_pipeline/plans/01_data-ingestion-plan.md]
+- **Summary**: [007_build_static_data_ingestion_pipeline/summaries/01_ingestion-summary.md]
 
 **Description**: Create pipeline to import pre-exported datasets from Lean (formula enumerator output, DecisionResult, countermodels). Produce PyTorch-compatible datasets in training data schema.
 
@@ -184,11 +187,12 @@ next_project_number: 24
 
 ### 6. Validate Python-Lean bridge options
 - **Effort**: L
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETED]
 - **Task Type**: python
 - **Dependencies**: Task 2
 - **Research**: [006_validate_python_lean_bridge_options/reports/01_bridge-validation.md]
 - **Plan**: [006_validate_python_lean_bridge_options/plans/01_bridge-validation-plan.md]
+- **Summary**: [006_validate_python_lean_bridge_options/summaries/01_bridge-summary.md]
 
 **Description**: Test LeanDojo-v2, lean-interact, PyPantograph against BimodalLogic (Lean v4.27.0-rc1). Determine which can load ProofChecker, send tactic steps, receive goal states. Produce latency benchmarks. Critical risk gate.
 
@@ -196,11 +200,12 @@ next_project_number: 24
 
 ### 5. Coordinate BimodalLogic formula and proof data exports
 - **Effort**: M
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETED]
 - **Task Type**: general
 - **Dependencies**: Task 3, Task 4
 - **Research**: [005_coordinate_bimodallogic_formula_and_proof_data_exports/reports/01_export-coordination.md]
 - **Plan**: [005_coordinate_bimodallogic_formula_and_proof_data_exports/plans/01_export-coordination-plan.md]
+- **Summary**: [005_coordinate_bimodallogic_formula_and_proof_data_exports/summaries/01_export-coordination-summary.md]
 
 **Description**: Define what BimodalLogic needs to export (formulas, DecisionResults, proof traces, countermodels). Specify JSON/Parquet export format matching training data schema. Set up data sync pipeline between repos. Coordinate with BimodalLogic task 201.
 

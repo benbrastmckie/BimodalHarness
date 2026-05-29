@@ -144,14 +144,14 @@
     {
       "project_number": 5,
       "project_name": "coordinate_bimodallogic_formula_and_proof_data_exports",
-      "status": "implementing",
+      "status": "completed",
       "task_type": "general",
       "dependencies": [
         3,
         4
       ],
       "created": "2026-05-29T18:00:00Z",
-      "last_updated": "2026-05-29T18:56:46Z",
+      "last_updated": "2026-05-29T19:13:50Z",
       "session_id": "sess_1780081000_c525c7",
       "next_artifact_number": 2,
       "artifacts": [
@@ -164,19 +164,25 @@
           "path": "specs/005_coordinate_bimodallogic_formula_and_proof_data_exports/plans/01_export-coordination-plan.md",
           "type": "plan",
           "summary": "Export coordination plan: 5 phases, resolve 12 field mismatches, canonical ingest adapter"
+        },
+        {
+          "path": "specs/005_coordinate_bimodallogic_formula_and_proof_data_exports/summaries/01_export-coordination-summary.md",
+          "type": "summary",
+          "summary": "Resolved 12 field-level mismatches, built lean_export_to_training_record adapter, deprecated data/schema.py, 61 adapter tests. 615 total passing."
         }
-      ]
+      ],
+      "completion_summary": "Resolved 12 field-level mismatches, built lean_export_to_training_record adapter, deprecated data/schema.py, 61 adapter tests. 615 total passing."
     },
     {
       "project_number": 6,
       "project_name": "validate_python_lean_bridge_options",
-      "status": "implementing",
+      "status": "completed",
       "task_type": "python",
       "dependencies": [
         2
       ],
       "created": "2026-05-29T18:00:00Z",
-      "last_updated": "2026-05-29T18:56:46Z",
+      "last_updated": "2026-05-29T19:13:50Z",
       "session_id": "sess_1780081000_c525c7",
       "next_artifact_number": 2,
       "artifacts": [
@@ -189,19 +195,25 @@
           "path": "specs/006_validate_python_lean_bridge_options/plans/01_bridge-validation-plan.md",
           "type": "plan",
           "summary": "Bridge validation plan: lean-interact wrapper, smoke tests, latency benchmarks"
+        },
+        {
+          "path": "specs/006_validate_python_lean_bridge_options/summaries/01_bridge-summary.md",
+          "type": "summary",
+          "summary": "LeanBridge wrapper with lazy lean-interact import, REPL + subprocess paths, 15 non-lean tests pass. Risk gate: conditional pass."
         }
-      ]
+      ],
+      "completion_summary": "LeanBridge wrapper with lazy lean-interact import, REPL + subprocess paths, 15 non-lean tests pass. Risk gate: conditional pass."
     },
     {
       "project_number": 7,
       "project_name": "build_static_data_ingestion_pipeline",
-      "status": "implementing",
+      "status": "completed",
       "task_type": "python",
       "dependencies": [
         4
       ],
       "created": "2026-05-29T18:00:00Z",
-      "last_updated": "2026-05-29T18:56:46Z",
+      "last_updated": "2026-05-29T19:13:50Z",
       "session_id": "sess_1780081000_c525c7",
       "next_artifact_number": 2,
       "artifacts": [
@@ -214,19 +226,25 @@
           "path": "specs/007_build_static_data_ingestion_pipeline/plans/01_data-ingestion-plan.md",
           "type": "plan",
           "summary": "Data ingestion plan: 5 phases, fix box bug, BimodalDataset + CurriculumSampler"
+        },
+        {
+          "path": "specs/007_build_static_data_ingestion_pipeline/summaries/01_ingestion-summary.md",
+          "type": "summary",
+          "summary": "BimodalDataset + CurriculumSampler + Parquet cache, labeled_formula_to_training_record translator, 90 new tests. 554 total passing."
         }
-      ]
+      ],
+      "completion_summary": "BimodalDataset + CurriculumSampler + Parquet cache, labeled_formula_to_training_record translator, 90 new tests. 554 total passing."
     },
     {
       "project_number": 8,
       "project_name": "implement_python_side_formula_generator",
-      "status": "implementing",
+      "status": "completed",
       "task_type": "python",
       "dependencies": [
         4
       ],
       "created": "2026-05-29T18:00:00Z",
-      "last_updated": "2026-05-29T18:56:46Z",
+      "last_updated": "2026-05-29T19:13:50Z",
       "session_id": "sess_1780081000_c525c7",
       "next_artifact_number": 2,
       "artifacts": [
@@ -239,8 +257,14 @@
           "path": "specs/008_implement_python_side_formula_generator/plans/01_formula-generator-plan.md",
           "type": "plan",
           "summary": "Formula generator plan: 4 phases, AST types + enumerator + 10 mutators"
+        },
+        {
+          "path": "specs/008_implement_python_side_formula_generator/summaries/01_formula-generator-summary.md",
+          "type": "summary",
+          "summary": "Algebraic formula AST (6 frozen dataclasses), enumerate_by_complexity, random_formula, 10 mutation operators, 210 tests. 554 total passing."
         }
-      ]
+      ],
+      "completion_summary": "Algebraic formula AST (6 frozen dataclasses), enumerate_by_complexity, random_formula, 10 mutation operators, 210 tests. 554 total passing."
     },
     {
       "project_number": 9,
@@ -256,13 +280,13 @@
     {
       "project_number": 10,
       "project_name": "implement_patternkey_feature_extractor_in_python",
-      "status": "implementing",
+      "status": "completed",
       "task_type": "python",
       "dependencies": [
         4
       ],
       "created": "2026-05-29T18:00:00Z",
-      "last_updated": "2026-05-29T18:56:46Z",
+      "last_updated": "2026-05-29T19:13:50Z",
       "session_id": "sess_1780081000_c525c7",
       "next_artifact_number": 2,
       "artifacts": [
@@ -275,8 +299,14 @@
           "path": "specs/010_implement_patternkey_feature_extractor_in_python/plans/01_patternkey-plan.md",
           "type": "plan",
           "summary": "PatternKey extractor plan: 5 features, GoalCategory enum, tensor encoding"
+        },
+        {
+          "path": "specs/010_implement_patternkey_feature_extractor_in_python/summaries/01_patternkey-summary.md",
+          "type": "summary",
+          "summary": "PatternKey extractor porting 5 Lean features, GoalCategory enum, extract_pattern_key + extract_atom_count, 41 tests."
         }
-      ]
+      ],
+      "completion_summary": "PatternKey extractor porting 5 Lean features, GoalCategory enum, extract_pattern_key + extract_atom_count, 41 tests."
     },
     {
       "project_number": 11,
