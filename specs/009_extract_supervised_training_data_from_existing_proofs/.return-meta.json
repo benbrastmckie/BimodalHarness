@@ -1,10 +1,16 @@
 {
-  "status": "in_progress",
-  "artifacts": [],
+  "status": "partial",
+  "artifacts": [
+    {
+      "type": "summary",
+      "path": "specs/009_extract_supervised_training_data_from_existing_proofs/summaries/01_proof-extraction-summary.md",
+      "summary": "Python phases 2, 4, 5 complete. Phase 2: ProofStepRecord dataclass and step_to_action_index. Phase 4: load_proof_steps, get_frame_class_mask, proof_step_statistics ingestion pipeline. Phase 5: temporal_dual_augmentation, context_variation_augmentation, augment_all, augmented_statistics, split_dataset. 172 new tests, all passing. Phases 1 and 3 (Lean) remain NOT STARTED."
+    }
+  ],
   "partial_progress": {
-    "stage": "phase_5_in_progress",
-    "details": "Phase 5 implementation in progress.",
-    "phases_completed": 2,
+    "stage": "phase_5_completed",
+    "details": "Python phases 2, 4, 5 completed. Lean phases 1, 3 still NOT STARTED.",
+    "phases_completed": 3,
     "phases_total": 5
   },
   "metadata": {
@@ -12,7 +18,7 @@
     "agent_type": "python-implementation-agent",
     "delegation_depth": 2,
     "delegation_path": ["orchestrator", "implement", "skill-python-implementation", "python-implementation-agent"],
-    "phases_completed": 2,
+    "phases_completed": 3,
     "phases_total": 5
   }
 }
