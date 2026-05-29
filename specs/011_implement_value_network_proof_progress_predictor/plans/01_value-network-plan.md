@@ -167,7 +167,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 4: Unit Tests [NOT STARTED]
+### Phase 4: Unit Tests [COMPLETED]
 
 **Goal**: Comprehensive test coverage for the value network, feature encoding, collate function, and trainer.
 
