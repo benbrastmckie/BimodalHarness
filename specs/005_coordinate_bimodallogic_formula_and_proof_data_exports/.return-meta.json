@@ -1,8 +1,60 @@
 {
-  "status": "in_progress",
+  "status": "implemented",
   "agent_type": "general-implementation-agent",
   "delegation_path": ["orchestrator", "implement", "general-implementation-agent"],
   "session_id": "sess_1780081000_c525c7",
   "task_number": 5,
-  "started_at": "2026-05-29T00:00:00Z"
+  "started_at": "2026-05-29T00:00:00Z",
+  "completed_at": "2026-05-29T02:00:00Z",
+  "phases_completed": 5,
+  "phases_total": 5,
+  "artifacts": [
+    {
+      "type": "summary",
+      "path": "specs/005_coordinate_bimodallogic_formula_and_proof_data_exports/summaries/01_export-coordination-summary.md",
+      "summary": "Implementation summary for task 5: all 12 field mismatches resolved, 615 tests passing"
+    },
+    {
+      "type": "fixture",
+      "path": "data/samples/test_lean_export.jsonl",
+      "summary": "Lean-format JSONL test fixture with all 6 formula tags and 3 labels"
+    },
+    {
+      "type": "tests",
+      "path": "tests/test_data/test_lean_ingestion.py",
+      "summary": "61 tests for the Lean export -> TrainingRecord adapter"
+    },
+    {
+      "type": "documentation",
+      "path": ".context/data-contract.md",
+      "summary": "Cross-repo field mapping reference for BimodalLogic -> BimodalHarness"
+    }
+  ],
+  "completion_data": {
+    "completion_summary": "Resolved all 12 field-level mismatches between BimodalLogic's Lean JSONL export and BimodalHarness's Python schema. Added lean_export_to_training_record() adapter, fixed box validation in formula.py, extended VALID_LABELS with 'timeout', removed 'trivial' from VALID_DIFFICULTY_TIERS, and created a comprehensive data-contract reference document. All 615 tests pass.",
+    "roadmap_items": []
+  },
+  "memory_candidates": [
+    {
+      "content": "BimodalLogic Lean export format: box AST nodes use only 'child' field (no 'event'). untl/snce use 'event' and 'guard'. ProofTrace 'rules_applied' is a list of rule-name strings (not a dict). DifficultyMetrics uses camelCase keys: atomCount, modalDepth, temporalDepth, decisionTimeMs, difficultyTier. PatternKey camelCase: modalDepth, temporalDepth, impCount, topOperator. Labels are lowercase: valid/invalid/timeout. Difficulty tiers are strings: easy/medium/hard/very_hard (no 'trivial').",
+      "category": "PATTERN",
+      "source_artifact": "specs/005_coordinate_bimodallogic_formula_and_proof_data_exports/summaries/01_export-coordination-summary.md",
+      "confidence": 0.95,
+      "suggested_keywords": ["bimodallogic", "lean-export", "jsonl", "field-mapping", "camelcase", "schema"]
+    },
+    {
+      "content": "When a Python schema needs to accept both camelCase (Lean) and snake_case (Python) keys for the same field, use data.get('camelKey', data.get('snake_key', default)) pattern. This allows both formats in from_dict methods without breaking existing tests.",
+      "category": "TECHNIQUE",
+      "source_artifact": "specs/005_coordinate_bimodallogic_formula_and_proof_data_exports/summaries/01_export-coordination-summary.md",
+      "confidence": 0.85,
+      "suggested_keywords": ["schema", "deserialization", "camelcase", "snake-case", "fallback", "from-dict"]
+    },
+    {
+      "content": "ProofTrace.from_dict can accept 'rules_applied' as a list of rule-name strings and converts it to a RuleProfile by counting occurrences. Mapping: 'axiom'->axiom_count, 'modus_ponens'->mp_count, 'necessitation'->necessitation_count, 'temporal_necessitation'->temporal_necessitation_count, 'temporal_duality'->temporal_duality_count, 'weakening'->weakening_count.",
+      "category": "PATTERN",
+      "source_artifact": "specs/005_coordinate_bimodallogic_formula_and_proof_data_exports/summaries/01_export-coordination-summary.md",
+      "confidence": 0.9,
+      "suggested_keywords": ["proof-trace", "rule-profile", "rules-applied", "lean-export", "counting"]
+    }
+  ]
 }
