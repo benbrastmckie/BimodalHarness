@@ -29,6 +29,12 @@ and schema.records.TrainingRecord:
 - ``frame_class``: passthrough (defaults to "Base" if absent)
 
 TIMEOUT records return None and are skipped during ingestion.
+
+**Layer 3: Proof step JSONL -> ProofStepRecord** (for supervised training data).
+Loads step-level proof data emitted by the ``lake exe proof_extractor`` executable
+(or any conforming JSONL producer) and returns a list of ``ProofStepRecord`` objects.
+Validates action_index consistency against ``step_to_action_index`` and attaches
+frame_class_mask metadata.  See ``load_proof_steps`` for details.
 """
 
 from __future__ import annotations
@@ -38,10 +44,12 @@ from pathlib import Path
 from typing import TYPE_CHECKING
 
 from bimodal_harness.data.schema import Label, LabeledFormula, load_jsonl
+from bimodal_harness.schema.actions import FRAME_CLASS_MASKS, RULE_ACTIONS, step_to_action_index
 from bimodal_harness.schema.formula import formula_json_to_pretty
 from bimodal_harness.schema.records import (
     DifficultyMetrics,
     PatternKey,
+    ProofStepRecord,
     ProofTrace,
     RuleProfile,
     SimpleCountermodel,
@@ -549,3 +557,201 @@ def filter_timeout_records(records: list[TrainingRecord]) -> list[TrainingRecord
         New list with all ``label == "timeout"`` records excluded.
     """
     return [r for r in records if r.label != "timeout"]
+
+
+# ---------------------------------------------------------------------------
+# Layer 3: Proof step JSONL -> ProofStepRecord
+# ---------------------------------------------------------------------------
+
+
+def load_proof_steps(
+    path: "Path",
+    *,
+    validate_action_index: bool = True,
+) -> list[ProofStepRecord]:
+    """Load a proof step JSONL file and return a list of ProofStepRecord objects.
+
+    Each line in the file must be a JSON object whose fields match the
+    ``ProofStepRecord`` schema (as emitted by ``lake exe proof_extractor`` or
+    any conforming producer).  Records are deserialized via
+    ``ProofStepRecord.from_dict``.
+
+    When ``validate_action_index=True`` (default), each record's
+    ``action_index`` field is cross-checked against ``step_to_action_index``
+    to ensure Lean-side and Python-side action mappings agree.  A mismatch
+    raises ``ValueError``.
+
+    Parameters
+    ----------
+    path:
+        Path to a JSONL file produced by ``lake exe proof_extractor``.
+    validate_action_index:
+        If True (default), validate every record's ``action_index`` against
+        ``step_to_action_index(record.rule, record.axiom_name)``.
+
+    Returns
+    -------
+    list[ProofStepRecord]
+        Deserialized and validated proof step records in file order.
+
+    Raises
+    ------
+    FileNotFoundError
+        If ``path`` does not exist.
+    ValueError
+        If ``validate_action_index=True`` and a record's ``action_index``
+        does not match the expected value from ``step_to_action_index``.
+    json.JSONDecodeError
+        If a line cannot be parsed as JSON.
+    """
+    import json as _json
+
+    if not path.exists():
+        raise FileNotFoundError(f"Proof step JSONL file not found: {path}")
+
+    records: list[ProofStepRecord] = []
+    with path.open("r", encoding="utf-8") as fh:
+        for line_no, line in enumerate(fh, start=1):
+            stripped = line.strip()
+            if not stripped or stripped.startswith("#"):
+                continue
+            data = _json.loads(stripped)
+            record = ProofStepRecord.from_dict(data)
+
+            if validate_action_index:
+                expected_idx = step_to_action_index(record.rule, record.axiom_name)
+                if record.action_index != expected_idx:
+                    raise ValueError(
+                        f"Line {line_no}: action_index mismatch for step {record.step_id!r}. "
+                        f"Got action_index={record.action_index}, but "
+                        f"step_to_action_index({record.rule!r}, {record.axiom_name!r}) "
+                        f"= {expected_idx}."
+                    )
+
+            records.append(record)
+
+    log.info("load_proof_steps: %s -> %d records", path, len(records))
+    return records
+
+
+def get_frame_class_mask(record: ProofStepRecord) -> list[bool]:
+    """Return the frame-class boolean mask for a ProofStepRecord.
+
+    Looks up the appropriate mask from FRAME_CLASS_MASKS using the record's
+    ``frame_class`` field.
+
+    Parameters
+    ----------
+    record:
+        A ProofStepRecord with a valid ``frame_class`` field.
+
+    Returns
+    -------
+    list[bool]
+        Boolean mask of length 49 (one entry per action in ALL_ACTIONS).
+        True for actions valid in ``record.frame_class``, False otherwise.
+
+    Raises
+    ------
+    KeyError
+        If ``record.frame_class`` is not in FRAME_CLASS_MASKS.
+    """
+    return FRAME_CLASS_MASKS[record.frame_class]
+
+
+def proof_step_statistics(records: list[ProofStepRecord]) -> dict:
+    """Compute and return summary statistics for a list of ProofStepRecord objects.
+
+    Computes:
+    - Total step count
+    - Number of distinct theorems
+    - Depth distribution (min, max, mean)
+    - Rule distribution (count per rule name)
+    - Axiom distribution (count per axiom name, when rule == "axiom")
+    - Action index coverage (number of distinct action indices)
+
+    Parameters
+    ----------
+    records:
+        List of ProofStepRecord objects (may be empty).
+
+    Returns
+    -------
+    dict
+        Statistics dictionary with keys: ``total_steps``, ``theorem_count``,
+        ``depth_min``, ``depth_max``, ``depth_mean``, ``rule_distribution``,
+        ``axiom_distribution``, ``action_index_coverage``.
+    """
+    if not records:
+        return {
+            "total_steps": 0,
+            "theorem_count": 0,
+            "depth_min": None,
+            "depth_max": None,
+            "depth_mean": None,
+            "rule_distribution": {},
+            "axiom_distribution": {},
+            "action_index_coverage": 0,
+        }
+
+    depths = [r.depth for r in records]
+    theorems = set(r.theorem_name for r in records)
+
+    rule_dist: dict[str, int] = {}
+    for r in records:
+        rule_dist[r.rule] = rule_dist.get(r.rule, 0) + 1
+
+    axiom_dist: dict[str, int] = {}
+    for r in records:
+        if r.rule == "axiom" and r.axiom_name is not None:
+            axiom_dist[r.axiom_name] = axiom_dist.get(r.axiom_name, 0) + 1
+
+    action_indices = set(r.action_index for r in records)
+
+    return {
+        "total_steps": len(records),
+        "theorem_count": len(theorems),
+        "depth_min": min(depths),
+        "depth_max": max(depths),
+        "depth_mean": sum(depths) / len(depths),
+        "rule_distribution": dict(sorted(rule_dist.items())),
+        "axiom_distribution": dict(sorted(axiom_dist.items())),
+        "action_index_coverage": len(action_indices),
+    }
+
+
+def print_proof_step_statistics(records: list[ProofStepRecord]) -> None:
+    """Print human-readable statistics for a list of ProofStepRecord objects.
+
+    Prints to stdout: theorem count, total steps, depth distribution,
+    rule distribution, axiom distribution, and action index coverage.
+
+    Parameters
+    ----------
+    records:
+        List of ProofStepRecord objects.
+    """
+    stats = proof_step_statistics(records)
+    print(f"Proof Step Statistics")
+    print(f"=====================")
+    print(f"Total steps:            {stats['total_steps']}")
+    print(f"Distinct theorems:      {stats['theorem_count']}")
+    if stats["depth_min"] is not None:
+        print(
+            f"Depth (min/max/mean):   "
+            f"{stats['depth_min']} / {stats['depth_max']} / "
+            f"{stats['depth_mean']:.2f}"
+        )
+    print(f"Action index coverage:  {stats['action_index_coverage']} / 49")
+    print()
+    print("Rule distribution:")
+    for rule, count in stats["rule_distribution"].items():
+        print(f"  {rule:<30} {count}")
+    if stats["axiom_distribution"]:
+        print()
+        print("Axiom distribution (top 10 by count):")
+        top_axioms = sorted(
+            stats["axiom_distribution"].items(), key=lambda x: x[1], reverse=True
+        )[:10]
+        for axiom, count in top_axioms:
+            print(f"  {axiom:<30} {count}")

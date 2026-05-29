@@ -157,7 +157,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 4: Python Ingestion Pipeline for Proof Steps [NOT STARTED]
+### Phase 4: Python Ingestion Pipeline for Proof Steps [COMPLETED]
 
 **Goal**: Build the Python pipeline to load proof step JSONL, validate action indices, and produce the supervised training dataset.
 
