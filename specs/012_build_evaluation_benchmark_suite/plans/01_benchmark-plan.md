@@ -197,7 +197,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 4: BenchmarkSuite Orchestrator and CLI [NOT STARTED]
+### Phase 4: BenchmarkSuite Orchestrator and CLI [COMPLETED]
 
 **Goal**: Fill in the existing `benchmark.py` stub with the end-to-end BenchmarkSuite that ties together generation, evaluation, metrics, and reporting. Wire up the `scripts/evaluate.py` CLI.
 
@@ -243,7 +243,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 5: Integration Tests and Documentation [NOT STARTED]
+### Phase 5: Integration Tests and Documentation [COMPLETED]
 
 **Goal**: Run end-to-end integration tests, validate the full 700-formula generation pipeline, and ensure the benchmark artifact is publication-ready.
 

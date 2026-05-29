@@ -37,7 +37,6 @@ from bimodal_harness.formula.generator import (
     enumerate_up_to_complexity,
     random_formula,
 )
-from bimodal_harness.schema.constants import VALID_FRAME_CLASSES
 from bimodal_harness.schema.records import PatternKey
 
 # Deterministic seeds matching research plan
@@ -295,7 +294,7 @@ class BenchmarkGenerator:
         # Shuffle frame class assignments
         rng.shuffle(frame_classes)
 
-        for idx, (formula, frame_class) in enumerate(zip(formulas, frame_classes)):
+        for idx, (formula, frame_class) in enumerate(zip(formulas, frame_classes, strict=True)):
             benchmark_id = f"bench_{idx:04d}"
             formula_json = formula.to_json()
             formula_pretty = _formula_to_pretty(formula)
