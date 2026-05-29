@@ -107,7 +107,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 2: Training Infrastructure [NOT STARTED]
+### Phase 2: Training Infrastructure [COMPLETED]
 
 **Goal**: Implement `ValueTrainer` and `value_collate_fn` in a new `training/value_trainer.py` module, providing train/evaluate/checkpoint functionality.
 
