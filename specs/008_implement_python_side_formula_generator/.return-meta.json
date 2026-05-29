@@ -1,21 +1,10 @@
 {
-  "status": "planned",
-  "artifacts": [
-    {
-      "type": "plan",
-      "path": "specs/008_implement_python_side_formula_generator/plans/01_formula-generator-plan.md",
-      "summary": "Implementation plan with 4 phases: AST types and metrics, enumerator and random generator, near-miss mutation operators, integration tests"
-    }
-  ],
-  "next_steps": "Run /implement 8 to execute the plan",
-  "metadata": {
-    "session_id": "sess_1780080650_26f8aa",
-    "agent_type": "planner-agent",
-    "delegation_depth": 1,
-    "delegation_path": ["orchestrator", "plan", "planner-agent"],
-    "phase_count": 4,
-    "estimated_hours": 5,
-    "dependency_waves": [[1], [2, 3], [4]]
-  },
-  "memory_candidates": []
+  "status": "in_progress",
+  "task_number": 8,
+  "session_id": "sess_1780081000_c525c7",
+  "phases_completed": [],
+  "files_created": [],
+  "files_modified": [],
+  "tests_passed": false,
+  "summary_path": "specs/008_implement_python_side_formula_generator/summaries/01_formula-generator-summary.md"
 }

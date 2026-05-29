@@ -1,7 +1,7 @@
 # Implementation Plan: Python Formula Generator
 
 - **Task**: 8 - Implement Python-side formula generator
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 5 hours
 - **Dependencies**: Task 4 (training data schema)
 - **Research Inputs**: specs/008_implement_python_side_formula_generator/reports/01_formula-generator.md
@@ -68,7 +68,7 @@ No ROADMAP.md found.
 
 Phases within the same wave can execute in parallel.
 
-### Phase 1: AST Types and Complexity Metrics [NOT STARTED]
+### Phase 1: AST Types and Complexity Metrics [COMPLETED]
 
 **Goal**: Create the foundational `formula/` package with 6 frozen dataclass node types, a `FormulaNode` union type, `to_json()`/`from_json()` serialization, and 4 metric functions mirroring Lean.
 
