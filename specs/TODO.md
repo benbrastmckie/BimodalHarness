@@ -1,10 +1,20 @@
 ---
-next_project_number: 25
+next_project_number: 26
 ---
 
 # TODO
 
 ## Tasks
+
+### 25. Optimize Lean verification bottleneck for expert iteration
+- **Effort**: L
+- **Status**: [NOT STARTED]
+- **Task Type**: python
+- **Dependencies**: Task 16
+
+**Description**: Research and address the performance bottleneck where Lean verification (lake exe proof_extractor / proof checking) dominates the expert iteration training loop (Task 16). Investigate approaches: batch verification, persistent Lean server process, caching verified proof states, parallel Lean invocations, incremental checking, and potential use of the lean-lsp MCP bridge for faster roundtrips. Goal is to reduce per-proof verification latency enough that expert iteration is not I/O-bound on Lean calls.
+
+---
 
 ### 24. Document toolchain and development environment
 - **Effort**: S

@@ -1,6 +1,17 @@
 {
-  "next_project_number": 25,
+  "next_project_number": 26,
   "active_projects": [
+    {
+      "project_number": 25,
+      "project_name": "optimize_lean_verification_bottleneck",
+      "status": "not_started",
+      "task_type": "python",
+      "dependencies": [
+        16
+      ],
+      "created": "2026-05-29T22:32:53Z",
+      "last_updated": "2026-05-29T22:32:53Z"
+    },
     {
       "project_number": 24,
       "project_name": "document_toolchain_and_development_environment",
