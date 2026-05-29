@@ -4,13 +4,23 @@
     {
       "project_number": 25,
       "project_name": "optimize_lean_verification_bottleneck",
-      "status": "not_started",
+      "status": "researched",
       "task_type": "python",
       "dependencies": [
         16
       ],
       "created": "2026-05-29T22:32:53Z",
-      "last_updated": "2026-05-29T22:32:53Z"
+      "last_updated": "2026-05-29T22:50:34Z",
+      "session_id": "sess_1780094525_bd653c",
+      "researched": "2026-05-29T22:50:34Z",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "path": "specs/025_optimize_lean_verification_bottleneck/reports/01_team-research.md",
+          "type": "research",
+          "summary": "Team research with 4 teammates"
+        }
+      ]
     },
     {
       "project_number": 24,
