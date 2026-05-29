@@ -139,7 +139,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 3: CLI Training Script [NOT STARTED]
+### Phase 3: CLI Training Script [COMPLETED]
 
 **Goal**: Create a standalone CLI entry point that loads JSONL data, trains the value network, saves a checkpoint, and prints evaluation metrics.
 
