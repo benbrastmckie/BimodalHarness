@@ -42,6 +42,11 @@ from bimodal_harness.data.dataset import (
     CurriculumSampler,
     split_dataset,
 )
+from bimodal_harness.data.policy_dataset import (
+    ProofStepDataset,
+    policy_collate_fn,
+    split_proof_steps,
+)
 from bimodal_harness.data.ingestion import (
     DIFFICULTY_TIER_MAP,
     TOP_OPERATOR_MAP,
@@ -87,8 +92,12 @@ __all__ = [
     "ingest_and_cache",
     "load_cached",
     "is_cache_fresh",
-    # ML dataset
+    # ML dataset (value network)
     "BimodalDataset",
     "split_dataset",
     "CurriculumSampler",
+    # Policy network dataset
+    "ProofStepDataset",
+    "policy_collate_fn",
+    "split_proof_steps",
 ]

@@ -2,6 +2,12 @@
 
 from __future__ import annotations
 
+from bimodal_harness.models.policy import (
+    PolicyFeatureEncoder,
+    PolicyNetwork,
+    PolicyNetworkConfig,
+    encode_proof_step,
+)
 from bimodal_harness.models.value import (
     FeatureNormalizer,
     TOP_OPERATOR_INDEX,
@@ -11,6 +17,12 @@ from bimodal_harness.models.value import (
 )
 
 __all__ = [
+    # Policy network
+    "PolicyFeatureEncoder",
+    "PolicyNetwork",
+    "PolicyNetworkConfig",
+    "encode_proof_step",
+    # Value network
     "FeatureNormalizer",
     "TOP_OPERATOR_INDEX",
     "ValueNetwork",
