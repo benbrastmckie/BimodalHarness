@@ -25,10 +25,10 @@ Lean correspondence:
 
 from __future__ import annotations
 
-from enum import Enum
+from enum import StrEnum
 
 
-class FrameClass(str, Enum):
+class FrameClass(StrEnum):
     """Frame class classification matching Lean FrameClass in Axioms.lean.
 
     Partial order: Base <= Dense and Base <= Discrete; Dense and Discrete
