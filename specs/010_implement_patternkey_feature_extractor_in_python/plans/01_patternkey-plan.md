@@ -1,7 +1,7 @@
 # Implementation Plan: PatternKey Feature Extractor
 
 - **Task**: 10 - Implement PatternKey feature extractor in Python
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 3 hours
 - **Dependencies**: None (schema package and PatternKey dataclass already exist)
 - **Research Inputs**: specs/010_implement_patternkey_feature_extractor_in_python/reports/01_patternkey-extractor.md
@@ -67,7 +67,7 @@ No ROADMAP.md found.
 
 Phases within the same wave can execute in parallel.
 
-### Phase 1: Core Feature Extraction Module [NOT STARTED]
+### Phase 1: Core Feature Extraction Module [COMPLETED]
 
 **Goal**: Create `schema/features.py` with all five feature extraction helpers and the two public functions.
 
