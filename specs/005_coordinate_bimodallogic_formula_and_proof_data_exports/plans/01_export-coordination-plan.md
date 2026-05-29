@@ -181,22 +181,13 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 5: Create data-contract reference document [NOT STARTED]
+### Phase 5: Create data-contract reference document [COMPLETED]
 
 **Goal**: Write a canonical field-mapping reference document that developers can consult when working across the Lean/Python boundary.
 
 **Tasks**:
-- [ ] Create `.context/data-contract.md` containing:
-  - Complete field-mapping table: Lean `dataset_generator` field name -> Python `TrainingRecord` field name
-  - Type mapping table: Lean JSON types -> Python types
-  - Label value mapping (lowercase passthrough)
-  - PatternKey camelCase-to-snake_case mapping
-  - DifficultyMetrics camelCase-to-snake_case mapping
-  - ProofTrace format variants (string list vs RuleProfile dict)
-  - SimpleCountermodel Atom object format
-  - Sync workflow documentation (existing `make sync-data` usage)
-  - Schema version compatibility notes
-- [ ] Add entry to `.context/index.json` (if it exists) for the new data-contract document
+- [x] Create `.context/data-contract.md` with complete field-mapping tables *(completed)*
+- [x] Create `.context/index.json` with entry for data-contract document *(completed)*
 
 **Timing**: 0.5 hours (documentation only)
 

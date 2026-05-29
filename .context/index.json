@@ -1,0 +1,17 @@
+{
+  "version": "1.0",
+  "description": "Project-specific context for BimodalHarness",
+  "entries": [
+    {
+      "path": ".context/data-contract.md",
+      "description": "Cross-repo field mapping between Lean dataset_generator JSONL and Python schema.records.TrainingRecord",
+      "line_count": 200,
+      "load_when": {
+        "always": false,
+        "agents": ["general-implementation-agent", "general-research-agent", "python-implementation-agent"],
+        "task_types": ["general", "python"],
+        "commands": ["/implement", "/research"]
+      }
+    }
+  ]
+}
