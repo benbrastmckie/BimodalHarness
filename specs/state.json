@@ -1,0 +1,17 @@
+{
+  "next_project_number": 2,
+  "active_projects": [
+    {
+      "project_number": 1,
+      "project_name": "implement_alphazero_proof_search_training_harness",
+      "status": "not_started",
+      "task_type": "python",
+      "created": "2026-05-29T17:21:22Z",
+      "last_updated": "2026-05-29T17:21:22Z"
+    }
+  ],
+  "repository_health": {
+    "last_assessed": "2026-05-29T00:00:00Z",
+    "status": "healthy"
+  }
+}
