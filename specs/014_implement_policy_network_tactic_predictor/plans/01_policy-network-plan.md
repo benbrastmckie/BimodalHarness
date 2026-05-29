@@ -218,7 +218,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 6: Formula AST Tokenizer and Transformer Encoder [NOT STARTED]
+### Phase 6: Formula AST Tokenizer and Transformer Encoder [COMPLETED]
 
 **Goal**: Implement the formula AST tokenizer and small transformer encoder as the Tier 2 architecture upgrade, replacing handcrafted 25-dim features with learned formula embeddings.
 

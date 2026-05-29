@@ -227,3 +227,30 @@ class TestPolicyNetwork:
             logits = net(x)
         assert logits.shape == (8, 49)
         assert torch.all(torch.isfinite(logits))
+
+
+# ---------------------------------------------------------------------------
+# PolicyNetworkV2 tests (in test_policy.py for integration)
+# ---------------------------------------------------------------------------
+
+class TestPolicyNetworkV2Integration:
+    def test_v2_forward_records_shape(self):
+        from bimodal_harness.models.formula_encoder import PolicyNetworkV2
+        net = PolicyNetworkV2()
+        records = [_make_record() for _ in range(4)]
+        logits = net.forward_records(records)
+        assert logits.shape == (4, 49)
+
+    def test_v2_param_count_approx(self):
+        from bimodal_harness.models.formula_encoder import PolicyNetworkV2
+        net = PolicyNetworkV2()
+        # Should be around 1-2M params (transformer + MLP head)
+        assert 500_000 < net.param_count < 3_000_000
+
+    def test_v2_compatible_with_feature_tensor(self):
+        from bimodal_harness.models.formula_encoder import PolicyNetworkV2
+        net = PolicyNetworkV2()
+        # V2 forward() takes [B, 137] feature tensors
+        x = torch.randn(8, 137)
+        logits = net(x)
+        assert logits.shape == (8, 49)
