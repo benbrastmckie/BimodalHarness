@@ -1,0 +1,61 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# Type checking
+.mypy_cache/
+.ruff_cache/
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# BimodalHarness data files
+# Keep: data/samples/ (synthetic fixtures, tracked in git)
+# Exclude: data/bimodal/ (large exported JSONL from BimodalLogic)
+# Exclude: data/*.jsonl (any JSONL at root of data/)
+data/bimodal/
+data/*.jsonl
+data/*.parquet
+
+# Wandb experiment tracking
+wandb/
+
+# Model checkpoints (large binary files)
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Secrets
+.env
+.env.local
+*.key

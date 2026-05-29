@@ -1,7 +1,7 @@
 # Implementation Plan: Task #3
 
 - **Task**: 3 - Design cross-repo integration architecture
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 4 hours
 - **Dependencies**: Task 2 (Python project structure) -- recommended but not blocking
 - **Research Inputs**: specs/003_design_cross_repo_integration_architecture/reports/01_cross-repo-design.md
@@ -70,12 +70,12 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 1: Define Python Data Contract [NOT STARTED]
+### Phase 1: Define Python Data Contract [COMPLETED]
 
 **Goal**: Create the Python schema module with dataclasses/types that exactly mirror the Lean JSON export format, enabling type-safe loading of JSONL records.
 
 **Tasks**:
-- [ ] Create `src/bimodal_harness/data/schema.py` (or `schema.py` at project root if Task 2 not done)
+- [x] Create `src/bimodal_harness/data/schema.py` (or `schema.py` at project root if Task 2 not done) *(completed)*
 - [ ] Define `FormulaTag` enum: `ATOM`, `BOT`, `IMP`, `BOX`, `UNTL`, `SNCE`
 - [ ] Define recursive `FormulaNode` dataclass with `tag`, `name?`, `child?`, `left?`, `right?`, `event?`, `guard?` fields matching the Lean JSON schema
 - [ ] Define `Label` enum: `VALID`, `INVALID`, `TIMEOUT`
@@ -87,7 +87,7 @@ Phases within the same wave can execute in parallel.
 - [ ] Define `LabeledFormula` dataclass: `formula`, `label`, `proof_trace?`, `countermodel?`, `metrics`, `pattern_key`
 - [ ] Implement `FormulaNode.from_json(data: dict)` class method for recursive deserialization
 - [ ] Implement `LabeledFormula.from_json(data: dict)` class method for full record deserialization
-- [ ] Create `tests/test_schema.py` with round-trip serialization/deserialization tests
+- [x] Create `tests/test_schema.py` with round-trip serialization/deserialization tests *(completed)*
 
 **Timing**: 1.5 hours
 
@@ -106,7 +106,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 2: Configure Integration Infrastructure [NOT STARTED]
+### Phase 2: Configure Integration Infrastructure [COMPLETED]
 
 **Goal**: Set up the data directory structure, data sync tooling, ModelChecker dependency pin, and version tracking for reproducible integration.
 
@@ -141,7 +141,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 3: Document Architecture and Version Compatibility [NOT STARTED]
+### Phase 3: Document Architecture and Version Compatibility [COMPLETED]
 
 **Goal**: Create a comprehensive architecture document that defines the integration boundary, data flow, version compatibility matrix, and integration points for downstream tasks.
 
@@ -170,7 +170,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 4: Validate Integration End-to-End [NOT STARTED]
+### Phase 4: Validate Integration End-to-End [IN PROGRESS]
 
 **Goal**: Verify the complete integration path works by loading sample JSONL through the Python schema, confirming ModelChecker imports, and running all tests.
 

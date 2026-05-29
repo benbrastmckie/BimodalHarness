@@ -79,8 +79,7 @@ def validate_training_record(record: TrainingRecord) -> list[str]:
     # Schema version check
     if record.schema_version != SCHEMA_VERSION:
         errors.append(
-            f"schema_version mismatch: got {record.schema_version!r}, "
-            f"expected {SCHEMA_VERSION!r}."
+            f"schema_version mismatch: got {record.schema_version!r}, expected {SCHEMA_VERSION!r}."
         )
 
     # Formula JSON structural validation
@@ -117,9 +116,7 @@ def validate_training_record(record: TrainingRecord) -> list[str]:
 
     # Axiom name validation in proof_trace
     if record.proof_trace is not None:
-        unknown_axioms = [
-            a for a in record.proof_trace.axioms_used if a not in _VALID_AXIOM_SET
-        ]
+        unknown_axioms = [a for a in record.proof_trace.axioms_used if a not in _VALID_AXIOM_SET]
         if unknown_axioms:
             errors.append(
                 f"proof_trace contains unknown axiom names: {unknown_axioms}.  "

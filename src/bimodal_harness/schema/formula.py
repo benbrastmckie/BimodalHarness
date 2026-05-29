@@ -111,13 +111,15 @@ def validate_formula_json(data: Any, *, depth: int = 0, max_depth: int = 500) ->
         return False
     # Recursively validate child nodes.
     if tag == "imp":
-        return validate_formula_json(data["left"], depth=depth + 1, max_depth=max_depth) and \
-               validate_formula_json(data["right"], depth=depth + 1, max_depth=max_depth)
+        return validate_formula_json(
+            data["left"], depth=depth + 1, max_depth=max_depth
+        ) and validate_formula_json(data["right"], depth=depth + 1, max_depth=max_depth)
     if tag == "box":
         return validate_formula_json(data["child"], depth=depth + 1, max_depth=max_depth)
     if tag in ("untl", "snce"):
-        return validate_formula_json(data["event"], depth=depth + 1, max_depth=max_depth) and \
-               validate_formula_json(data["guard"], depth=depth + 1, max_depth=max_depth)
+        return validate_formula_json(
+            data["event"], depth=depth + 1, max_depth=max_depth
+        ) and validate_formula_json(data["guard"], depth=depth + 1, max_depth=max_depth)
     # "atom" and "bot" have no child nodes.
     return True
 

@@ -45,10 +45,10 @@ class FrameClass(StrEnum):
 # Valid on: Base (and all classes)
 # ---------------------------------------------------------------------------
 _LAYER_1_PROPOSITIONAL = [
-    "prop_k",       # (φ→(ψ→χ))→((φ→ψ)→(φ→χ))
-    "prop_s",       # φ→(ψ→φ)  (weakening)
-    "ex_falso",     # ⊥→φ
-    "peirce",       # ((φ→ψ)→φ)→φ
+    "prop_k",  # (φ→(ψ→χ))→((φ→ψ)→(φ→χ))
+    "prop_s",  # φ→(ψ→φ)  (weakening)
+    "ex_falso",  # ⊥→φ
+    "peirce",  # ((φ→ψ)→φ)→φ
 ]
 
 # ---------------------------------------------------------------------------
@@ -56,11 +56,11 @@ _LAYER_1_PROPOSITIONAL = [
 # Valid on: Base (and all classes)
 # ---------------------------------------------------------------------------
 _LAYER_2_S5_MODAL = [
-    "modal_t",          # □φ→φ                  (reflexivity / T)
-    "modal_4",          # □φ→□□φ                (transitivity / 4)
-    "modal_b",          # φ→□◇φ                 (symmetry / B)
-    "modal_5_collapse", # ◇□φ→□φ                (S5 characteristic)
-    "modal_k_dist",     # □(φ→ψ)→(□φ→□ψ)       (K distribution)
+    "modal_t",  # □φ→φ                  (reflexivity / T)
+    "modal_4",  # □φ→□□φ                (transitivity / 4)
+    "modal_b",  # φ→□◇φ                 (symmetry / B)
+    "modal_5_collapse",  # ◇□φ→□φ                (S5 characteristic)
+    "modal_k_dist",  # □(φ→ψ)→(□φ→□ψ)       (K distribution)
 ]
 
 # ---------------------------------------------------------------------------
@@ -70,38 +70,38 @@ _LAYER_2_S5_MODAL = [
 # ---------------------------------------------------------------------------
 _LAYER_3_BX_TEMPORAL = [
     # BX1/BX1': Seriality
-    "serial_future",          # ⊤→F(⊤)
-    "serial_past",            # ⊤→P(⊤)
+    "serial_future",  # ⊤→F(⊤)
+    "serial_past",  # ⊤→P(⊤)
     # BX2G/BX2H: Guard monotonicity under G/H
-    "left_mono_until_G",      # G(φ→χ)→(ψUφ→ψUχ)
-    "left_mono_since_H",      # H(φ→χ)→(ψSφ→ψSχ)
+    "left_mono_until_G",  # G(φ→χ)→(ψUφ→ψUχ)
+    "left_mono_since_H",  # H(φ→χ)→(ψSφ→ψSχ)
     # BX3/BX3': Event monotonicity
-    "right_mono_until",       # G(φ→ψ)→(φUχ→ψUχ)
-    "right_mono_since",       # H(φ→ψ)→(φSχ→ψSχ)
+    "right_mono_until",  # G(φ→ψ)→(φUχ→ψUχ)
+    "right_mono_since",  # H(φ→ψ)→(φSχ→ψSχ)
     # BX4/BX4': Temporal connectedness
-    "connect_future",         # φ→G(P(φ))
-    "connect_past",           # φ→H(F(φ))
+    "connect_future",  # φ→G(P(φ))
+    "connect_past",  # φ→H(F(φ))
     # BX13/BX13': Until-Since / Since-Until enrichment
-    "enrichment_until",       # p∧U(ψ,φ)→U(ψ∧S(p,φ),φ)
-    "enrichment_since",       # p∧S(ψ,φ)→S(ψ∧U(p,φ),φ)
+    "enrichment_until",  # p∧U(ψ,φ)→U(ψ∧S(p,φ),φ)
+    "enrichment_since",  # p∧S(ψ,φ)→S(ψ∧U(p,φ),φ)
     # BX5/BX5': Self-accumulation
-    "self_accum_until",       # U(ψ,φ)→U(ψ,φ∧U(ψ,φ))
-    "self_accum_since",       # S(ψ,φ)→S(ψ,φ∧S(ψ,φ))
+    "self_accum_until",  # U(ψ,φ)→U(ψ,φ∧U(ψ,φ))
+    "self_accum_since",  # S(ψ,φ)→S(ψ,φ∧S(ψ,φ))
     # BX6/BX6': Absorption
-    "absorb_until",           # U(φ∧U(ψ,φ),φ)→U(ψ,φ)
-    "absorb_since",           # S(φ∧S(ψ,φ),φ)→S(ψ,φ)
+    "absorb_until",  # U(φ∧U(ψ,φ),φ)→U(ψ,φ)
+    "absorb_since",  # S(φ∧S(ψ,φ),φ)→S(ψ,φ)
     # BX7/BX7': Linearity
-    "linear_until",           # U(ψ,φ)∧U(θ,χ)→U(ψ∧θ,φ∧χ)∨U(ψ∧χ,φ∧χ)∨U(φ∧θ,φ∧χ)
-    "linear_since",           # S(ψ,φ)∧S(θ,χ)→... (past dual)
+    "linear_until",  # U(ψ,φ)∧U(θ,χ)→U(ψ∧θ,φ∧χ)∨U(ψ∧χ,φ∧χ)∨U(φ∧θ,φ∧χ)
+    "linear_since",  # S(ψ,φ)∧S(θ,χ)→... (past dual)
     # BX10/BX10': Eventuality extraction
-    "until_F",                # U(ψ,φ)→F(ψ)
-    "since_P",                # S(ψ,φ)→P(ψ)
+    "until_F",  # U(ψ,φ)→F(ψ)
+    "since_P",  # S(ψ,φ)→P(ψ)
     # BX11/BX11': F/P linearity
-    "temp_linearity",         # F(φ)∧F(ψ)→F(φ∧ψ)∨F(φ∧F(ψ))∨F(F(φ)∧ψ)
-    "temp_linearity_past",    # P(φ)∧P(ψ)→... (past dual)
+    "temp_linearity",  # F(φ)∧F(ψ)→F(φ∧ψ)∨F(φ∧F(ψ))∨F(F(φ)∧ψ)
+    "temp_linearity_past",  # P(φ)∧P(ψ)→... (past dual)
     # BX12/BX12': F-Until / P-Since bridge
-    "F_until_equiv",          # F(φ)→U(φ,⊤)
-    "P_since_equiv",          # P(φ)→S(φ,⊤)
+    "F_until_equiv",  # F(φ)→U(φ,⊤)
+    "P_since_equiv",  # P(φ)→S(φ,⊤)
 ]
 
 # ---------------------------------------------------------------------------
@@ -110,7 +110,7 @@ _LAYER_3_BX_TEMPORAL = [
 # Note: TF (□φ→G□φ) is derived; only MF is primitive.
 # ---------------------------------------------------------------------------
 _LAYER_4_INTERACTION = [
-    "modal_future",   # □φ→□(Gφ)
+    "modal_future",  # □φ→□(Gφ)
 ]
 
 # ---------------------------------------------------------------------------
@@ -119,11 +119,11 @@ _LAYER_4_INTERACTION = [
 # Encode translation-invariance of discreteness witness U(⊤,⊥).
 # ---------------------------------------------------------------------------
 _LAYER_5_UNIFORMITY = [
-    "discrete_symm_fwd",        # U(⊤,⊥)→S(⊤,⊥)
-    "discrete_symm_bwd",        # S(⊤,⊥)→U(⊤,⊥)
-    "discrete_propagate_fwd",   # U(⊤,⊥)→G(U(⊤,⊥))
-    "discrete_propagate_bwd",   # U(⊤,⊥)→H(U(⊤,⊥))
-    "discrete_box_necessity",   # U(⊤,⊥)→□(U(⊤,⊥))
+    "discrete_symm_fwd",  # U(⊤,⊥)→S(⊤,⊥)
+    "discrete_symm_bwd",  # S(⊤,⊥)→U(⊤,⊥)
+    "discrete_propagate_fwd",  # U(⊤,⊥)→G(U(⊤,⊥))
+    "discrete_propagate_bwd",  # U(⊤,⊥)→H(U(⊤,⊥))
+    "discrete_box_necessity",  # U(⊤,⊥)→□(U(⊤,⊥))
 ]
 
 # ---------------------------------------------------------------------------
@@ -131,8 +131,8 @@ _LAYER_5_UNIFORMITY = [
 # Valid on: Discrete frame class only.
 # ---------------------------------------------------------------------------
 _LAYER_6_PRIOR = [
-    "prior_UZ",   # F(φ)→U(φ,¬φ)
-    "prior_SZ",   # P(φ)→S(φ,¬φ)
+    "prior_UZ",  # F(φ)→U(φ,¬φ)
+    "prior_SZ",  # P(φ)→S(φ,¬φ)
 ]
 
 # ---------------------------------------------------------------------------
@@ -140,7 +140,7 @@ _LAYER_6_PRIOR = [
 # Valid on: Discrete frame class only.
 # ---------------------------------------------------------------------------
 _LAYER_7_Z1 = [
-    "z1",   # G(Gφ→φ)→(FGφ→Gφ)
+    "z1",  # G(Gφ→φ)→(FGφ→Gφ)
 ]
 
 # ---------------------------------------------------------------------------
@@ -148,8 +148,8 @@ _LAYER_7_Z1 = [
 # Valid on: Dense frame class only.
 # ---------------------------------------------------------------------------
 _LAYER_8_DENSITY = [
-    "density",         # GGφ→Gφ
-    "dense_indicator", # ¬U(⊤,⊥)
+    "density",  # GGφ→Gφ
+    "dense_indicator",  # ¬U(⊤,⊥)
 ]
 
 # ---------------------------------------------------------------------------
@@ -180,13 +180,13 @@ Layer 8 (indices 40-41): Density (2)
 """
 
 RULE_ACTIONS: list[str] = [
-    "axiom",                    # DerivationTree.axiom
-    "assumption",               # DerivationTree.assumption
-    "modus_ponens",             # DerivationTree.modus_ponens
-    "necessitation",            # DerivationTree.necessitation
-    "temporal_necessitation",   # DerivationTree.temporal_necessitation
-    "temporal_duality",         # DerivationTree.temporal_duality
-    "weakening",                # DerivationTree.weakening
+    "axiom",  # DerivationTree.axiom
+    "assumption",  # DerivationTree.assumption
+    "modus_ponens",  # DerivationTree.modus_ponens
+    "necessitation",  # DerivationTree.necessitation
+    "temporal_necessitation",  # DerivationTree.temporal_necessitation
+    "temporal_duality",  # DerivationTree.temporal_duality
+    "weakening",  # DerivationTree.weakening
 ]
 """Canonical ordered list of 7 inference rule names from DerivationTree."""
 
@@ -218,6 +218,7 @@ _DISCRETE_ONLY_AXIOMS: frozenset[str] = frozenset(_LAYER_6_PRIOR + _LAYER_7_Z1)
 
 # Base frame class: all axioms EXCEPT dense-only and discrete-only.
 _BASE_AXIOMS: frozenset[str] = frozenset(AXIOM_ACTIONS) - _DENSE_ONLY_AXIOMS - _DISCRETE_ONLY_AXIOMS
+
 
 def _build_mask(allowed_axioms: frozenset[str]) -> list[bool]:
     """Build a boolean mask over ALL_ACTIONS.

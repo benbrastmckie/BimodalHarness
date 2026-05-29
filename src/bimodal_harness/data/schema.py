@@ -39,6 +39,7 @@ from typing import Any
 
 class FormulaTag(StrEnum):
     """Formula constructor tags as serialized by BimodalLogic's DataExport.lean."""
+
     ATOM = "atom"
     BOT = "bot"
     IMP = "imp"
@@ -49,6 +50,7 @@ class FormulaTag(StrEnum):
 
 class Label(StrEnum):
     """Validity classification produced by the BimodalLogic tableau prover."""
+
     VALID = "VALID"
     INVALID = "INVALID"
     TIMEOUT = "TIMEOUT"
@@ -72,13 +74,14 @@ class FormulaNode:
       untl: guard and child are set (Until: p U q)
       snce: guard and child are set (Since: p S q)
     """
+
     tag: FormulaTag
-    name: str | None = None       # atom only
-    child: FormulaNode | None = None   # box, untl, snce
-    left: FormulaNode | None = None    # imp
-    right: FormulaNode | None = None   # imp
-    event: FormulaNode | None = None   # box (event modality)
-    guard: FormulaNode | None = None   # untl, snce (guard formula)
+    name: str | None = None  # atom only
+    child: FormulaNode | None = None  # box, untl, snce
+    left: FormulaNode | None = None  # imp
+    right: FormulaNode | None = None  # imp
+    event: FormulaNode | None = None  # box (event modality)
+    guard: FormulaNode | None = None  # untl, snce (guard formula)
 
     @classmethod
     def from_json(cls, data: dict) -> FormulaNode:
@@ -138,7 +141,7 @@ class FormulaNode:
         if self.tag == FormulaTag.ATOM:
             d["name"] = self.name
         elif self.tag == FormulaTag.IMP:
-            d["left"] = self.left.to_json()   # type: ignore[union-attr]
+            d["left"] = self.left.to_json()  # type: ignore[union-attr]
             d["right"] = self.right.to_json()  # type: ignore[union-attr]
         elif self.tag == FormulaTag.BOX:
             d["child"] = self.child.to_json()  # type: ignore[union-attr]
@@ -161,6 +164,7 @@ class PatternKey:
 
     Maps to PatternKey in BimodalLogic's DataExport.lean.
     """
+
     modal_depth: int
     temporal_depth: int
     imp_count: int
@@ -203,6 +207,7 @@ class SimpleCountermodel:
 
     Maps to SimpleCountermodel in BimodalLogic's DataExport.lean.
     """
+
     true_atoms: list[str]
     false_atoms: list[str]
     formula: str
@@ -238,6 +243,7 @@ class RuleProfile:
 
     Maps to RuleProfile in BimodalLogic's DataExport.lean.
     """
+
     imp_left: int = 0
     imp_right: int = 0
     box_left: int = 0
@@ -286,6 +292,7 @@ class ProofTrace:
 
     Maps to ProofTrace in BimodalLogic's DataExport.lean.
     """
+
     height: int
     axioms_used: list[str]
     rules_applied: RuleProfile
@@ -318,6 +325,7 @@ class DifficultyMetrics:
 
     Maps to DifficultyMetrics in BimodalLogic's DataExport.lean.
     """
+
     complexity: int
     modal_depth: int
     temporal_depth: int
@@ -373,6 +381,7 @@ class LabeledFormula:
 
     Maps to LabeledFormula in BimodalLogic's DataExport.lean.
     """
+
     formula: FormulaNode
     label: Label
     metrics: DifficultyMetrics

@@ -212,12 +212,10 @@ class SimpleCountermodel:
     def from_dict(cls, data: dict[str, Any]) -> SimpleCountermodel:
         """Deserialize from DataExport.lean SimpleCountermodel.toJson format."""
         true_atoms = tuple(
-            a["base"] if isinstance(a, dict) else str(a)
-            for a in data.get("trueAtoms", [])
+            a["base"] if isinstance(a, dict) else str(a) for a in data.get("trueAtoms", [])
         )
         false_atoms = tuple(
-            a["base"] if isinstance(a, dict) else str(a)
-            for a in data.get("falseAtoms", [])
+            a["base"] if isinstance(a, dict) else str(a) for a in data.get("falseAtoms", [])
         )
         return cls(
             true_atoms=true_atoms,

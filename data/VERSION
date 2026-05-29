@@ -1,0 +1,16 @@
+# BimodalHarness Data Schema Version
+
+SCHEMA_VERSION=1
+LEAN_VERSION=4.27.0-rc1
+MODEL_CHECKER_VERSION=1.2.12
+
+# Source tracking
+# After each sync from BimodalLogic, update these fields:
+BIMODAL_LOGIC_COMMIT=<unknown>
+SYNC_DATE=<not-yet-synced>
+
+# Schema version history:
+# v1 (2026-05-29): Initial schema. Supports formula tags: atom, bot, imp, box, untl, snce.
+#                   Labels: VALID, INVALID, TIMEOUT.
+#                   Record type: LabeledFormula with ProofTrace, SimpleCountermodel,
+#                   DifficultyMetrics, PatternKey, RuleProfile.

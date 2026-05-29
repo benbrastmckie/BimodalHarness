@@ -198,7 +198,7 @@ next_project_number: 24
 
 ### 4. Define training data schema and action space
 - **Effort**: M
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Task Type**: python
 - **Dependencies**: none
 - **Research**: [004_define_training_data_schema_and_action_space/reports/01_data-schema-research.md]
@@ -210,7 +210,7 @@ next_project_number: 24
 
 ### 3. Design cross-repo integration architecture
 - **Effort**: S
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Task Type**: general
 - **Dependencies**: none
 - **Research**: [003_design_cross_repo_integration_architecture/reports/01_cross-repo-design.md]
@@ -222,7 +222,7 @@ next_project_number: 24
 
 ### 2. Initialize Python project structure
 - **Effort**: S
-- **Status**: [PLANNED]
+- **Status**: [IMPLEMENTING]
 - **Task Type**: python
 - **Dependencies**: none
 - **Research**: [002_initialize_python_project_structure/reports/01_python-project-setup.md]

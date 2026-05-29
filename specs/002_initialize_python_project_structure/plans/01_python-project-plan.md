@@ -125,7 +125,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 2: Configure Code Quality Toolchain [NOT STARTED]
+### Phase 2: Configure Code Quality Toolchain [COMPLETED]
 
 **Goal**: Set up ruff linting/formatting, mypy type checking configuration in pyproject.toml so that quality checks pass on the stub codebase.
 

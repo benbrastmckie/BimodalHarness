@@ -102,7 +102,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 2: Validation and Serialization [NOT STARTED]
+### Phase 2: Validation and Serialization [COMPLETED]
 
 **Goal**: Implement validation functions ensuring schema conformance and JSONL serialization matching Lean DataExport.lean format.
 
@@ -127,7 +127,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 3: Parquet Serialization [NOT STARTED]
+### Phase 3: Parquet Serialization [IN PROGRESS]
 
 **Goal**: Implement Parquet read/write with flattened columnar layout for efficient ML training.
 
