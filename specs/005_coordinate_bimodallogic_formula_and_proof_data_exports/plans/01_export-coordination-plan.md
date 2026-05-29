@@ -100,25 +100,15 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 2: Build canonical ingest adapter in data/ingestion.py [NOT STARTED]
+### Phase 2: Build canonical ingest adapter in data/ingestion.py [COMPLETED]
 
 **Goal**: Implement `lean_export_to_training_record()` that maps a raw Lean JSONL dict to a `TrainingRecord`, handling all field-name translations identified in the research report.
 
 **Tasks**:
-- [ ] Implement `lean_export_to_training_record(data: dict) -> TrainingRecord` in `src/bimodal_harness/data/ingestion.py` that performs:
-  - `id` -> `record_id` (or generate UUID if absent)
-  - `formula_ast` -> `formula_json`
-  - `formula_str` -> `formula_pretty`
-  - `label`: pass through lowercase (already matches `VALID_LABELS`)
-  - `pattern_key`: pass camelCase dict to `PatternKey.from_dict`
-  - `metrics`: translate camelCase keys to `DifficultyMetrics.from_dict` (using updated from Phase 1)
-  - `proof_trace`: pass to `ProofTrace.from_dict` (handles both formats from Phase 1)
-  - `countermodel`: pass to `SimpleCountermodel.from_dict`
-  - `frame_class`: pass through (defaults to `"Base"`)
-  - Set `search_depth=0`, `source="lean_export"`, `logic_system="TM_BX"`
-- [ ] Implement `load_lean_jsonl(path: Path, *, skip_timeout: bool = True) -> list[TrainingRecord]` that reads a Lean-exported JSONL file, applies `lean_export_to_training_record` per line, optionally filtering timeout records
-- [ ] Implement `filter_timeout_records(records: list[TrainingRecord]) -> list[TrainingRecord]` utility for filtering `"timeout"` label records after ingest
-- [ ] Add type annotations and docstrings following existing codebase style
+- [x] Implement `lean_export_to_training_record(data: dict) -> TrainingRecord` in `src/bimodal_harness/data/ingestion.py` *(completed)*
+- [x] Implement `load_lean_jsonl(path: Path, *, skip_timeout: bool = True) -> list[TrainingRecord]` *(completed)*
+- [x] Implement `filter_timeout_records(records: list[TrainingRecord]) -> list[TrainingRecord]` *(completed)*
+- [x] Add type annotations and docstrings *(completed)*
 
 **Timing**: 1 hour
 

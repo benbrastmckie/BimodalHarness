@@ -1,6 +1,26 @@
 """
 Data schema definitions for BimodalHarness.
 
+.. deprecated::
+    This module (``bimodal_harness.data.schema``) is **deprecated** and will be
+    removed in a future release.  It was the initial attempt to mirror the Lean 4
+    JSON export format but has several mismatches with the actual Lean output:
+
+    - ``Label`` uses uppercase values (``"VALID"``, ``"INVALID"``, ``"TIMEOUT"``)
+      but Lean emits lowercase (``"valid"``, ``"invalid"``, ``"timeout"``)
+    - ``PatternKey.from_json`` reads snake_case keys but Lean emits camelCase
+    - ``DifficultyMetrics.difficulty_tier`` is an integer (1-5) but Lean emits
+      a string (``"easy"``, ``"medium"``, ``"hard"``, ``"very_hard"``)
+    - ``RuleProfile`` field names (``imp_left``, ``box_right`` etc.) do not match
+      the actual Lean ``RuleProfile`` fields
+    - ``box`` AST nodes require an ``event`` field that Lean does not emit
+
+    **Migration guide**:
+    - Use ``bimodal_harness.schema.records.TrainingRecord`` for ML-pipeline code
+    - Use ``bimodal_harness.data.ingestion.ingest_jsonl`` to load JSONL files
+    - Use ``bimodal_harness.data.ingestion.lean_export_to_training_record`` for
+      direct Lean JSONL dict translation
+
 This module defines Python dataclasses that exactly mirror the Lean 4 JSON export
 format produced by BimodalLogic's DatasetGenerator.lean. The schema covers:
 
@@ -24,6 +44,17 @@ Version: 1 (matches BimodalLogic schema as of Lean v4.27.0-rc1)
 """
 
 from __future__ import annotations
+
+import warnings as _warnings
+
+_warnings.warn(
+    "bimodal_harness.data.schema is deprecated and will be removed in a future release. "
+    "Use bimodal_harness.schema.records.TrainingRecord for ML-pipeline code "
+    "and bimodal_harness.data.ingestion for loading JSONL files. "
+    "See the module docstring for migration details.",
+    DeprecationWarning,
+    stacklevel=2,
+)
 
 import json
 from collections.abc import Iterator

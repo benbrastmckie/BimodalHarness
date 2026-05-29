@@ -406,3 +406,146 @@ def is_cache_fresh(jsonl_dir: Path, cache_path: Path, *, glob: str = "*.jsonl") 
 
     newest_source_mtime = max(f.stat().st_mtime for f in jsonl_files)
     return cache_mtime > newest_source_mtime
+
+
+# ---------------------------------------------------------------------------
+# Layer 2: Lean JSONL dict -> TrainingRecord (direct Lean export adapter)
+# ---------------------------------------------------------------------------
+
+
+def lean_export_to_training_record(data: dict) -> TrainingRecord:
+    """Translate a raw Lean-exported JSONL dict to a ``TrainingRecord``.
+
+    This is the canonical adapter for BimodalLogic's ``lake exe dataset_generator``
+    output.  It handles all 12 field-level mismatches identified in the research
+    report between the Lean JSONL format and ``schema.records.TrainingRecord``.
+
+    Field-name translations performed:
+
+    - ``id``           -> ``record_id``  (auto-generated UUID if absent)
+    - ``formula_ast``  -> ``formula_json``  (also accepts ``formula_json``)
+    - ``formula_str``  -> ``formula_pretty``  (also accepts ``formula_pretty``)
+    - ``label``        -> ``label``  (passthrough; already lowercase in Lean)
+    - ``pattern_key``  -> ``PatternKey.from_dict``  (camelCase keys)
+    - ``metrics``      -> ``DifficultyMetrics.from_dict``  (camelCase keys)
+    - ``proof_trace``  -> ``ProofTrace.from_dict``  (both ``rules`` dict and ``rules_applied`` list)
+    - ``countermodel`` -> ``SimpleCountermodel.from_dict``  (Atom-object format)
+    - ``frame_class``  -> ``frame_class``  (passthrough; defaults to ``"Base"`` if absent)
+
+    Parameters
+    ----------
+    data:
+        A Python dict decoded from a single JSONL line written by
+        ``lake exe dataset_generator``.
+
+    Returns
+    -------
+    TrainingRecord
+        Fully populated training record.
+    """
+    import uuid as _uuid  # local import to avoid module-level dependency
+
+    record_id = data.get("id") or str(_uuid.uuid4())
+    formula_json = data.get("formula_ast", data.get("formula_json", {}))
+    formula_pretty = data.get("formula_str", data.get("formula_pretty", ""))
+    label = str(data.get("label", "")).lower()
+    frame_class = str(data.get("frame_class", "Base"))
+
+    pattern_key = PatternKey.from_dict(data["pattern_key"])
+    difficulty_metrics = DifficultyMetrics.from_dict(data.get("metrics", {}))
+
+    proof_trace: ProofTrace | None = None
+    if data.get("proof_trace") is not None:
+        proof_trace = ProofTrace.from_dict(data["proof_trace"])
+
+    countermodel: SimpleCountermodel | None = None
+    if data.get("countermodel") is not None:
+        countermodel = SimpleCountermodel.from_dict(data["countermodel"])
+
+    return TrainingRecord(
+        record_id=record_id,
+        formula_json=formula_json,
+        formula_pretty=formula_pretty,
+        label=label,
+        pattern_key=pattern_key,
+        difficulty_metrics=difficulty_metrics,
+        proof_trace=proof_trace,
+        countermodel=countermodel,
+        frame_class=frame_class,
+        source="lean_export",
+        logic_system="TM_BX",
+    )
+
+
+def load_lean_jsonl(
+    path: Path,
+    *,
+    skip_timeout: bool = True,
+) -> list[TrainingRecord]:
+    """Load a Lean-exported JSONL file directly into ``TrainingRecord`` objects.
+
+    Each line must be a JSON object matching the ``lake exe dataset_generator``
+    output format.  Uses ``lean_export_to_training_record`` for field translation.
+
+    Unlike ``ingest_jsonl`` (which bridges via the legacy ``data.schema`` types),
+    this function operates directly on the raw Lean JSONL format, handling
+    camelCase keys and other Lean-specific format differences natively.
+
+    Parameters
+    ----------
+    path:
+        Path to a JSONL file produced by ``lake exe dataset_generator``.
+    skip_timeout:
+        If ``True`` (default), records with label ``"timeout"`` are silently
+        dropped.  If ``False``, all records are returned (note that
+        ``TrainingRecord`` now accepts ``"timeout"`` as a valid label per
+        Phase 1 changes).
+
+    Returns
+    -------
+    list[TrainingRecord]
+        Translated records in file order.
+
+    Raises
+    ------
+    FileNotFoundError
+        If ``path`` does not exist.
+    """
+    import json as _json  # local import to keep module-level imports minimal
+
+    if not path.exists():
+        raise FileNotFoundError(f"JSONL file not found: {path}")
+
+    records: list[TrainingRecord] = []
+    with path.open("r", encoding="utf-8") as fh:
+        for _line_no, line in enumerate(fh, start=1):
+            stripped = line.strip()
+            if not stripped or stripped.startswith("#"):
+                continue
+            data = _json.loads(stripped)
+            rec = lean_export_to_training_record(data)
+            if skip_timeout and rec.label == "timeout":
+                continue
+            records.append(rec)
+
+    log.info("load_lean_jsonl: %s -> %d records", path, len(records))
+    return records
+
+
+def filter_timeout_records(records: list[TrainingRecord]) -> list[TrainingRecord]:
+    """Return a copy of ``records`` with all ``"timeout"`` label entries removed.
+
+    Convenience utility for post-ingest filtering when records were loaded
+    with ``skip_timeout=False``.
+
+    Parameters
+    ----------
+    records:
+        List of ``TrainingRecord`` objects potentially including timeouts.
+
+    Returns
+    -------
+    list[TrainingRecord]
+        New list with all ``label == "timeout"`` records excluded.
+    """
+    return [r for r in records if r.label != "timeout"]
