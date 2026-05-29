@@ -1,21 +1,21 @@
 {
-  "status": "planned",
+  "status": "implemented",
   "artifacts": [
     {
-      "type": "plan",
-      "path": "specs/012_build_evaluation_benchmark_suite/plans/01_benchmark-plan.md",
-      "summary": "5-phase implementation plan for 700-formula evaluation benchmark with SR@K metrics, SuccessPatterns baseline, and publishable artifact format"
+      "type": "summary",
+      "path": "specs/012_build_evaluation_benchmark_suite/summaries/01_benchmark-summary.md",
+      "summary": "Complete evaluation benchmark suite: BenchmarkGenerator (stratified 700-formula generation), metrics framework (SR@K at 1K/5K/10K nodes), baseline runners (MockBaseline + SuccessPatterns + NaiveBFS), BenchmarkSuite orchestrator with JSONL I/O, and argparse CLI. 82 new tests all passing, no regressions."
     }
   ],
-  "next_steps": "Run /implement 12 to execute the plan",
-  "metadata": {
-    "session_id": "sess_1780082747_f42944",
-    "agent_type": "planner-agent",
-    "delegation_depth": 1,
-    "delegation_path": ["orchestrator", "plan", "planner-agent"],
-    "phase_count": 5,
-    "estimated_hours": 10,
-    "dependency_waves": [[1], [2, 3], [4], [5]]
+  "completion_data": {
+    "completion_summary": "Built a 700-formula held-out evaluation benchmark suite with stratified generation (easy/medium/hard/very_hard tiers, Base/Dense/Discrete frame classes), SR@K metrics at 1K/5K/10K node budgets, MockBaseline/SuccessPatternsBaseline/NaiveBFSBaseline runners, BenchmarkSuite orchestrator with JSONL artifact generation, SHA-256 checksums, and a full argparse CLI. 82 tests passing, ruff clean, no regressions in 932-test suite."
   },
-  "memory_candidates": []
+  "metadata": {
+    "session_id": "sess_1780086457_029818",
+    "agent_type": "python-implementation-agent",
+    "delegation_depth": 2,
+    "delegation_path": ["orchestrator", "implement", "skill-python-implementation", "python-implementation-agent"],
+    "phases_completed": 4,
+    "phases_total": 4
+  }
 }
