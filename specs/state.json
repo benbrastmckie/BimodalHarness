@@ -269,20 +269,25 @@
     {
       "project_number": 9,
       "project_name": "extract_supervised_training_data_from_existing_proofs",
-      "status": "researched",
+      "status": "planned",
       "task_type": "python",
       "dependencies": [
         6
       ],
       "created": "2026-05-29T18:00:00Z",
-      "last_updated": "2026-05-29T19:22:11Z",
-      "session_id": "sess_1780082099_328b90",
+      "last_updated": "2026-05-29T19:29:23Z",
+      "session_id": "sess_1780082747_f42944",
       "next_artifact_number": 2,
       "artifacts": [
         {
           "path": "specs/009_extract_supervised_training_data_from_existing_proofs/reports/01_proof-extraction.md",
           "type": "research",
           "summary": "Proof trace extraction: ~108 actionable theorems, need new extractStepSequence Lean function, augmentation to 10-20K steps"
+        },
+        {
+          "path": "specs/009_extract_supervised_training_data_from_existing_proofs/plans/01_proof-extraction-plan.md",
+          "type": "plan",
+          "summary": "Proof extraction: 5 phases, new Lean extractStepSequence + Python pipeline + augmentation"
         }
       ]
     },
@@ -320,48 +325,58 @@
     {
       "project_number": 11,
       "project_name": "implement_value_network_proof_progress_predictor",
-      "status": "researched",
+      "status": "planned",
       "task_type": "python",
       "dependencies": [
         7,
         10
       ],
       "created": "2026-05-29T18:00:00Z",
-      "last_updated": "2026-05-29T19:22:00Z",
-      "session_id": "sess_1780082099_328b90",
+      "last_updated": "2026-05-29T19:29:23Z",
+      "session_id": "sess_1780082747_f42944",
       "next_artifact_number": 2,
       "artifacts": [
         {
           "path": "specs/011_implement_value_network_proof_progress_predictor/reports/01_value-network.md",
           "type": "research",
           "summary": "MLP value network design: D_IN=12 (log1p+one-hot), hidden=[2048,1024,512,256] (2.78M params), GELU+LayerNorm, Softplus output, Huber loss, SuccessPatterns.lean baseline analysis"
+        },
+        {
+          "path": "specs/011_implement_value_network_proof_progress_predictor/plans/01_value-network-plan.md",
+          "type": "plan",
+          "summary": "Value network: 4 phases, 2.78M param MLP, Huber loss, CurriculumSampler integration"
         }
       ]
     },
     {
       "project_number": 12,
       "project_name": "build_evaluation_benchmark_suite",
-      "status": "researched",
+      "status": "planned",
       "task_type": "python",
       "dependencies": [
         7
       ],
       "created": "2026-05-29T18:00:00Z",
-      "last_updated": "2026-05-29T19:22:00Z",
-      "session_id": "sess_1780082099_328b90",
+      "last_updated": "2026-05-29T19:29:23Z",
+      "session_id": "sess_1780082747_f42944",
       "next_artifact_number": 2,
       "artifacts": [
         {
           "path": "specs/012_build_evaluation_benchmark_suite/reports/01_benchmark-design.md",
           "type": "research",
           "summary": "700-formula stratified benchmark design: SR@K/NV/TTP metrics, SuccessPatterns.lean baseline characterization, TABLEAUX/CADE publication format, 4-phase implementation roadmap"
+        },
+        {
+          "path": "specs/012_build_evaluation_benchmark_suite/plans/01_benchmark-plan.md",
+          "type": "plan",
+          "summary": "Benchmark: 5 phases, 700-formula stratified suite, SR@K metrics, SuccessPatterns baseline"
         }
       ]
     },
     {
       "project_number": 13,
       "project_name": "integrate_value_network_with_lean_proof_search",
-      "status": "researched",
+      "status": "planned",
       "task_type": "python",
       "dependencies": [
         6,
@@ -369,14 +384,19 @@
         12
       ],
       "created": "2026-05-29T18:00:00Z",
-      "last_updated": "2026-05-29T19:30:00Z",
-      "session_id": "sess_1780082099_328b90",
+      "last_updated": "2026-05-29T19:29:23Z",
+      "session_id": "sess_1780082747_f42944",
       "next_artifact_number": 2,
       "artifacts": [
         {
           "path": "specs/013_integrate_value_network_with_lean_proof_search/reports/01_value-integration.md",
           "type": "research",
           "summary": "Architecture analysis: Python A* loop in search/best_first.py mirrors Lean bestFirst_search but scores nodes with neural additive bonus from value network. Covers search node design, heuristic combination formula, latency constraints, evaluation protocol (McNemar test, 200-formula benchmark), and full dependency chain."
+        },
+        {
+          "path": "specs/013_integrate_value_network_with_lean_proof_search/plans/01_value-integration-plan.md",
+          "type": "plan",
+          "summary": "Value-Lean integration: 4 phases, Python-drives-search, additive bonus, A/B comparison"
         }
       ]
     },

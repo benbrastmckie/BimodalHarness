@@ -1,1 +1,29 @@
-{"status": "researched", "summary": "Research complete. Option A (Python drives search, Lean verifies) is the only viable architecture. The search/best_first.py stub is the primary implementation target. Value network provides additive bonus to the rule-based heuristic score with weight alpha. Tasks 11 (value network) and 12 (benchmark suite) must complete before task 13 can be implemented. No Lean source modifications needed.", "artifacts": [{"type": "research", "path": "specs/013_integrate_value_network_with_lean_proof_search/reports/01_value-integration.md", "summary": "Architecture analysis: Python A* loop in search/best_first.py mirrors Lean bestFirst_search but scores nodes with neural additive bonus from value network. Covers search node design, heuristic combination formula, latency constraints, evaluation protocol (McNemar test, 200-formula benchmark), and full dependency chain."}], "metadata": {"session_id": "sess_1780082099_328b90", "agent_type": "python-research-agent"}}
+{
+  "status": "planned",
+  "artifacts": [
+    {
+      "type": "plan",
+      "path": "specs/013_integrate_value_network_with_lean_proof_search/plans/01_value-integration-plan.md",
+      "summary": "4-phase implementation plan for Python best-first search with neural value network scoring and A/B comparison runner"
+    }
+  ],
+  "next_steps": "Run /implement 13 to execute the plan",
+  "metadata": {
+    "session_id": "sess_1780082747_f42944",
+    "agent_type": "planner-agent",
+    "delegation_depth": 1,
+    "delegation_path": ["orchestrator", "plan", "planner-agent"],
+    "phase_count": 4,
+    "estimated_hours": 8,
+    "dependency_waves": [[1], [2], [3], [4]]
+  },
+  "memory_candidates": [
+    {
+      "content": "When integrating a neural network scorer into an existing rule-based search system, the Python-drives-search architecture (Option A) is necessary when the target system (Lean REPL) cannot callback into Python during execution. The pattern is: reimplement the search loop in Python with the rule-based heuristic as baseline, add the neural component as an additive bonus with configurable weight (alpha) and temperature scaling, and validate baseline parity against the original system before enabling the neural component. Define a typing.Protocol for the value network interface to decouple testing from the actual model implementation.",
+      "category": "PATTERN",
+      "source_artifact": "specs/013_integrate_value_network_with_lean_proof_search/plans/01_value-integration-plan.md",
+      "confidence": 0.75,
+      "suggested_keywords": ["neural-search", "additive-bonus", "python-drives-search", "baseline-parity", "value-network"]
+    }
+  ]
+}

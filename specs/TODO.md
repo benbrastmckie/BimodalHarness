@@ -108,10 +108,11 @@ next_project_number: 24
 
 ### 13. Integrate value network with Lean proof search
 - **Effort**: L
-- **Status**: [RESEARCHED]
+- **Status**: [PLANNED]
 - **Task Type**: python
 - **Dependencies**: Task 6, Task 11, Task 12
 - **Research**: [013_integrate_value_network_with_lean_proof_search/reports/01_value-integration.md]
+- **Plan**: [013_integrate_value_network_with_lean_proof_search/plans/01_value-integration-plan.md]
 
 **Description**: Connect trained value network to Lean proof search via bridge. Network provides additive bonus to modal_search heuristic scorer. Evaluate performance vs baseline on benchmark. Requires runtime bridge.
 
@@ -119,10 +120,11 @@ next_project_number: 24
 
 ### 12. Build evaluation benchmark suite
 - **Effort**: M
-- **Status**: [RESEARCHED]
+- **Status**: [PLANNED]
 - **Task Type**: python
 - **Dependencies**: Task 7
 - **Research**: [specs/012_build_evaluation_benchmark_suite/reports/01_benchmark-design.md]
+- **Plan**: [012_build_evaluation_benchmark_suite/plans/01_benchmark-plan.md]
 
 **Description**: Create held-out benchmark of 500-1K formulas with ground-truth provability, difficulty tier, DerivationTree.height. Implement metrics: nodes visited, time-to-proof, success rate. Compare against SuccessPatterns.lean baseline. Design as publishable open benchmark.
 
@@ -130,10 +132,11 @@ next_project_number: 24
 
 ### 11. Implement value network (proof-progress predictor)
 - **Effort**: L
-- **Status**: [RESEARCHED]
+- **Status**: [PLANNED]
 - **Task Type**: python
 - **Dependencies**: Task 7, Task 10
 - **Research**: [specs/011_implement_value_network_proof_progress_predictor/reports/01_value-network.md]
+- **Plan**: [011_implement_value_network_proof_progress_predictor/plans/01_value-network-plan.md]
 
 **Description**: Build PyTorch MLP taking PatternKey features, predicting DerivationTree.height. Start with shallow MLP (1.5M-10M params, CPU-trainable). Include configurable hyperparameters and training script.
 
@@ -154,10 +157,11 @@ next_project_number: 24
 
 ### 9. Extract supervised training data from existing proofs
 - **Effort**: M
-- **Status**: [RESEARCHED]
+- **Status**: [PLANNED]
 - **Task Type**: python
 - **Dependencies**: Task 6
 - **Research**: [009_extract_supervised_training_data_from_existing_proofs/reports/01_proof-extraction.md]
+- **Plan**: [009_extract_supervised_training_data_from_existing_proofs/plans/01_proof-extraction-plan.md]
 
 **Description**: Use LeanDojo tracing (or bridge) to extract (goal_state, tactic, result) pairs from ~2,519 theorem/lemma declarations in BimodalLogic. Produce supervised dataset of human-written proof traces.
 

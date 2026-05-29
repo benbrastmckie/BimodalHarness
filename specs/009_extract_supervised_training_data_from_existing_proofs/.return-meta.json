@@ -1,1 +1,29 @@
-{"status": "researched", "summary": "Existing ProofTrace captures summary stats only (height, axioms_used, rules_applied); all 888 valid records in the 53K deep dataset are height=0 single-axiom proofs. Recommended approach: build a new extractStepSequence Lean function that walks DerivationTree objects from the ~108 Theorems/ definitions, compiling into a new lake exe proof_extractor. This yields ~500-1600 step triples matching the 49-action space. Augmentation (higher-complexity formulas, temporal duals, context variation) needed to reach 10K-20K examples. LeanDojo/lean-interact not applicable for this project's custom DerivationTree proof system.", "artifacts": [{"type": "research", "path": "specs/009_extract_supervised_training_data_from_existing_proofs/reports/01_proof-extraction.md", "summary": "Full analysis of existing proof infrastructure, dataset format audit, extraction strategy comparison, step-sequence schema design, scale considerations, and 3-phase implementation plan"}], "metadata": {"session_id": "sess_1780082099_328b90", "agent_type": "python-research-agent"}}
+{
+  "status": "planned",
+  "artifacts": [
+    {
+      "type": "plan",
+      "path": "specs/009_extract_supervised_training_data_from_existing_proofs/plans/01_proof-extraction-plan.md",
+      "summary": "5-phase implementation plan for extracting supervised training data via Lean proof step extraction, Python schema extension, ingestion pipeline, and augmentation to 10-20K steps"
+    }
+  ],
+  "next_steps": "Run /implement 9 to execute the plan",
+  "metadata": {
+    "session_id": "sess_1780082747_f42944",
+    "agent_type": "planner-agent",
+    "delegation_depth": 1,
+    "delegation_path": ["orchestrator", "plan", "planner-agent"],
+    "phase_count": 5,
+    "estimated_hours": 10,
+    "dependency_waves": [[1, 2], [3], [4], [5]]
+  },
+  "memory_candidates": [
+    {
+      "content": "In the BimodalLogic proof system, DerivationTree is defined as a Type (not Prop), which means Lean preserves constructor applications at compile time. This allows extractStepSequence to pattern-match on the 7 constructors and emit step-level data, unlike Prop-valued proofs which are erased. The existing walkDerivationTree function in DataExport.lean provides the canonical pattern for recursive tree traversal with accumulation. Theorems in Theories/Bimodal/Theorems/ use tactic mode ('by') but produce the same term-level DerivationTree values as term-mode definitions, so they are equally extractable.",
+      "category": "INSIGHT",
+      "source_artifact": "specs/009_extract_supervised_training_data_from_existing_proofs/plans/01_proof-extraction-plan.md",
+      "confidence": 0.85,
+      "suggested_keywords": ["DerivationTree", "Type-vs-Prop", "proof-extraction", "walkDerivationTree", "lean4"]
+    }
+  ]
+}
