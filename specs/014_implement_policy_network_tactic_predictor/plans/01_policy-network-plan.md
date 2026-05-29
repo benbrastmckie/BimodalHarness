@@ -158,7 +158,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 4: Synthetic Data Generator [NOT STARTED]
+### Phase 4: Synthetic Data Generator [COMPLETED]
 
 **Goal**: Build a synthetic proof step data generator that creates labeled `ProofStepRecord` objects from formula structure rules, covering all 49 actions.
 
