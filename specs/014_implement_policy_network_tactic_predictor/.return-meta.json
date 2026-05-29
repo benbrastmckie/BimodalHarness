@@ -1,9 +1,14 @@
 {
-  "status": "in_progress",
-  "summary": "Implementation in progress",
-  "artifacts": [],
+  "status": "implemented",
+  "summary": "Policy network (tactic predictor) fully implemented: MLP baseline (PolicyNetwork, 699K params, 25-dim features), ProofStepDataset with frame-class mask-aware collation, PolicyTrainer with masked cross-entropy and AdamW, synthetic data generator covering all valid action indices, CLI training/evaluation scripts, formula AST tokenizer and transformer encoder (PolicyNetworkV2, ~1.3M params). End-to-end training achieves 79.4% top-1 accuracy on 5K synthetic steps.",
+  "artifacts": [
+    {
+      "path": "specs/014_implement_policy_network_tactic_predictor/summaries/01_policy-network-summary.md",
+      "type": "summary"
+    }
+  ],
   "metadata": {
-    "phases_completed": 0,
+    "phases_completed": 6,
     "phases_total": 6,
     "session_id": "sess_1780090536_455880"
   }
