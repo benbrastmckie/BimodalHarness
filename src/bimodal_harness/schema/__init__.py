@@ -43,6 +43,10 @@ from bimodal_harness.schema.formula import (
     formula_json_to_pretty,
     validate_formula_json,
 )
+from bimodal_harness.schema.features import (
+    extract_atom_count,
+    extract_pattern_key,
+)
 from bimodal_harness.schema.records import (
     DifficultyMetrics,
     PatternKey,
@@ -78,6 +82,9 @@ __all__ = [
     "FormulaJson",
     "formula_json_to_pretty",
     "validate_formula_json",
+    # Features
+    "extract_atom_count",
+    "extract_pattern_key",
     # Records
     "DifficultyMetrics",
     "PatternKey",
