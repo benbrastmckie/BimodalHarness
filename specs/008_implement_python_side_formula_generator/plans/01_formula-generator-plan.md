@@ -103,7 +103,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 2: Exhaustive Enumerator and Random Generator [NOT STARTED]
+### Phase 2: Exhaustive Enumerator and Random Generator [COMPLETED]
 
 **Goal**: Implement exhaustive enumeration of all formulas at a given complexity level over a configurable atom set, plus a random formula generator with weighted operator sampling.
 
