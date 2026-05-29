@@ -103,7 +103,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 2: ProofStepDataset and Collate Function [NOT STARTED]
+### Phase 2: ProofStepDataset and Collate Function [COMPLETED]
 
 **Goal**: Create the PyTorch Dataset and collate function for policy network training on `ProofStepRecord` data.
 
