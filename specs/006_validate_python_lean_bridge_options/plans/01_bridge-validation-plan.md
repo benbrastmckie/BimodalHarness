@@ -1,7 +1,7 @@
 # Implementation Plan: Validate Python-Lean Bridge Options
 
 - **Task**: 6 - Validate Python-Lean bridge options
-- **Status**: [NOT STARTED]
+- **Status**: [IMPLEMENTING]
 - **Effort**: 4 hours
 - **Dependencies**: Task 2 (Python project structure)
 - **Research Inputs**: specs/006_validate_python_lean_bridge_options/reports/01_bridge-validation.md
@@ -73,7 +73,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 1: Install lean-interact and Smoke Test [NOT STARTED]
+### Phase 1: Install lean-interact and Smoke Test [COMPLETED]
 
 **Goal**: Verify lean-interact v0.11.3 installs cleanly and can connect to BimodalLogic via the Lean REPL.
 
@@ -98,7 +98,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 2: Implement LeanBridge Wrapper Class [NOT STARTED]
+### Phase 2: Implement LeanBridge Wrapper Class [COMPLETED]
 
 **Goal**: Flesh out `bridge.py` with a `LeanBridge` class providing the core API for downstream tasks (Task 9, 13, 15+).
 
