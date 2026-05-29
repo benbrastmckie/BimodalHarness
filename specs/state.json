@@ -61,9 +61,16 @@
       "task_type": "python",
       "dependencies": [],
       "created": "2026-05-29T18:00:00Z",
-      "last_updated": "2026-05-29T18:00:23Z",
-      "session_id": "sess_1780077263_bef9fc",
-      "next_artifact_number": 2
+      "last_updated": "2026-05-29T18:04:31Z",
+      "session_id": "sess_1780077715_24640e",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "path": "specs/002_initialize_python_project_structure/reports/01_python-project-setup.md",
+          "type": "research",
+          "summary": "Python project setup research: hatchling, src layout, dependency versions, CI/CD, ruff/mypy config"
+        }
+      ]
     },
     {
       "project_number": 3,

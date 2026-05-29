@@ -223,6 +223,7 @@ next_project_number: 24
 - **Status**: [RESEARCHED]
 - **Task Type**: python
 - **Dependencies**: none
+- **Research**: [002_initialize_python_project_structure/reports/01_python-project-setup.md]
 
 **Description**: Set up pyproject.toml, src/ layout, pytest, CI pipeline, dev dependencies (PyTorch, numpy, Z3). Configure ruff linting, mypy type checking.
 

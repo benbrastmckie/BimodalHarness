@@ -1,6 +1,15 @@
 {
   "status": "researched",
-  "summary": "Researched Python project setup for BimodalHarness: hatchling build backend, src/bimodal_harness layout, PyTorch 2.12 + z3-solver 4.16 + lean-interact 0.11, dependency groups (core/dev/gpu/lean), ruff + mypy configuration, GitHub Actions CI with GPU-skip markers, pre-commit hooks.",
-  "artifacts": [{"type": "research", "path": "specs/002_initialize_python_project_structure/reports/01_python-project-setup.md", "summary": "Comprehensive pyproject.toml setup, directory layout, dependency versions, CI/CD design, ruff/mypy config for ML training harness"}],
-  "metadata": {"session_id": "sess_1780077263_bef9fc", "agent_type": "python-research-agent"}
+  "summary": "Researched Python project structure for BimodalHarness: hatchling build backend, src/bimodal_harness layout with data/models/search/training/evaluation/lean/z3 subpackages, dependency versions (torch 2.12, numpy 2.4.6, z3-solver 4.16, lean-interact 0.11.3, datasets 4.8.5, wandb 0.27.0), ruff 0.15 + mypy 2.1 + pytest 9.0 toolchain, GitHub Actions CI with selective [ci] trigger and separate gpu-ci workflow.",
+  "artifacts": [
+    {
+      "type": "research",
+      "path": "specs/002_initialize_python_project_structure/reports/01_python-project-setup.md",
+      "summary": "Complete research report covering project structure, confirmed dependency versions, pyproject.toml skeleton, CI patterns, ruff/mypy configuration, and risks."
+    }
+  ],
+  "metadata": {
+    "session_id": "sess_1780077715_24640e",
+    "agent_type": "python-research-agent"
+  }
 }
