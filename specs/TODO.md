@@ -198,9 +198,10 @@ next_project_number: 24
 
 ### 4. Define training data schema and action space
 - **Effort**: M
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHED]
 - **Task Type**: python
 - **Dependencies**: none
+- **Research**: [004_define_training_data_schema_and_action_space/reports/01_data-schema-research.md]
 
 **Description**: Design JSON/Parquet schema for (formula, label, proof_trace_or_countermodel, PatternKey_features, difficulty_metrics). Precisely enumerate action space (resolve 42 vs 57 axiom constructor count). Schema must be extensible for full Logos operator set.
 
@@ -208,9 +209,10 @@ next_project_number: 24
 
 ### 3. Design cross-repo integration architecture
 - **Effort**: S
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHED]
 - **Task Type**: general
 - **Dependencies**: none
+- **Research**: [003_design_cross_repo_integration_architecture/reports/01_cross-repo-design.md]
 
 **Description**: Decide how BimodalHarness references BimodalLogic (git submodule, path config, exported artifacts). Define boundary: BimodalHarness is Python-only, consumes Lean-exported data. Document version compatibility (Lean v4.27.0-rc1).
 
@@ -218,7 +220,7 @@ next_project_number: 24
 
 ### 2. Initialize Python project structure
 - **Effort**: S
-- **Status**: [NOT STARTED]
+- **Status**: [RESEARCHED]
 - **Task Type**: python
 - **Dependencies**: none
 

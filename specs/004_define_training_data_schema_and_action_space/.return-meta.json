@@ -1,0 +1,15 @@
+{
+  "status": "researched",
+  "summary": "Resolved 42 vs 57 discrepancy (42 is correct: counted all pipe lines in Axioms.lean including FrameClass enum and pattern match arms). Formula has 6 primitive constructors. PatternKey has 5 features. Policy network output dimension is 42 axioms + 7 inference rules = 49 total actions. BimodalLogic already implements complete JSON serialization layer (DataExport.lean) and LabeledFormula record structure (DatasetGenerator.lean) that defines the canonical schema. Full Python schema and action space arrays specified.",
+  "artifacts": [
+    {
+      "type": "research",
+      "path": "specs/004_define_training_data_schema_and_action_space/reports/01_data-schema-research.md",
+      "summary": "Complete schema design: 6-constructor Formula AST with tag-based JSON, 42-axiom action space enumeration resolving the 42 vs 57 discrepancy, 5-feature PatternKey, LabeledFormula training record schema with proof trace and countermodel fields, extensibility plan for Logos operators"
+    }
+  ],
+  "metadata": {
+    "session_id": "sess_1780077263_bef9fc",
+    "agent_type": "python-research-agent"
+  }
+}

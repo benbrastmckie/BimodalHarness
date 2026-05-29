@@ -57,29 +57,49 @@
     {
       "project_number": 2,
       "project_name": "initialize_python_project_structure",
-      "status": "not_started",
+      "status": "researched",
       "task_type": "python",
       "dependencies": [],
       "created": "2026-05-29T18:00:00Z",
-      "last_updated": "2026-05-29T18:00:00Z"
+      "last_updated": "2026-05-29T18:00:23Z",
+      "session_id": "sess_1780077263_bef9fc",
+      "next_artifact_number": 2
     },
     {
       "project_number": 3,
       "project_name": "design_cross_repo_integration_architecture",
-      "status": "not_started",
+      "status": "researched",
       "task_type": "general",
       "dependencies": [],
       "created": "2026-05-29T18:00:00Z",
-      "last_updated": "2026-05-29T18:00:00Z"
+      "last_updated": "2026-05-29T18:00:23Z",
+      "session_id": "sess_1780077263_bef9fc",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "path": "specs/003_design_cross_repo_integration_architecture/reports/01_cross-repo-design.md",
+          "type": "research",
+          "summary": "Cross-repo integration architecture research"
+        }
+      ]
     },
     {
       "project_number": 4,
       "project_name": "define_training_data_schema_and_action_space",
-      "status": "not_started",
+      "status": "researched",
       "task_type": "python",
       "dependencies": [],
       "created": "2026-05-29T18:00:00Z",
-      "last_updated": "2026-05-29T18:00:00Z"
+      "last_updated": "2026-05-29T18:00:23Z",
+      "session_id": "sess_1780077263_bef9fc",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "path": "specs/004_define_training_data_schema_and_action_space/reports/01_data-schema-research.md",
+          "type": "research",
+          "summary": "Training data schema and action space research"
+        }
+      ]
     },
     {
       "project_number": 5,
