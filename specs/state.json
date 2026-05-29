@@ -4,11 +4,11 @@
     {
       "project_number": 1,
       "project_name": "implement_alphazero_proof_search_training_harness",
-      "status": "researched",
+      "status": "planned",
       "task_type": "python",
       "created": "2026-05-29T17:21:22Z",
-      "last_updated": "2026-05-29T17:32:35Z",
-      "session_id": "sess_1780075588_5ee266",
+      "last_updated": "2026-05-29T17:39:42Z",
+      "session_id": "sess_1780076164_a40dde",
       "researched": "2026-05-29T17:32:35Z",
       "next_artifact_number": 2,
       "artifacts": [
@@ -16,6 +16,11 @@
           "path": "specs/001_implement_alphazero_proof_search_training_harness/reports/01_team-research.md",
           "type": "research",
           "summary": "Team research with 4 teammates"
+        },
+        {
+          "path": "specs/001_implement_alphazero_proof_search_training_harness/plans/01_task-creation-plan.md",
+          "type": "plan",
+          "summary": "Implementation plan for creating 25 training harness sub-tasks across 8 layers with dependency management"
         }
       ]
     }
