@@ -198,11 +198,12 @@ next_project_number: 24
 
 ### 4. Define training data schema and action space
 - **Effort**: M
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETED]
 - **Task Type**: python
 - **Dependencies**: none
 - **Research**: [004_define_training_data_schema_and_action_space/reports/01_data-schema-research.md]
 - **Plan**: [004_define_training_data_schema_and_action_space/plans/01_data-schema-plan.md]
+- **Summary**: [004_define_training_data_schema_and_action_space/summaries/01_schema-implementation-summary.md]
 
 **Description**: Design JSON/Parquet schema for (formula, label, proof_trace_or_countermodel, PatternKey_features, difficulty_metrics). Precisely enumerate action space (resolve 42 vs 57 axiom constructor count). Schema must be extensible for full Logos operator set.
 
@@ -210,11 +211,12 @@ next_project_number: 24
 
 ### 3. Design cross-repo integration architecture
 - **Effort**: S
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETED]
 - **Task Type**: general
 - **Dependencies**: none
 - **Research**: [003_design_cross_repo_integration_architecture/reports/01_cross-repo-design.md]
 - **Plan**: [003_design_cross_repo_integration_architecture/plans/01_cross-repo-plan.md]
+- **Summary**: [003_design_cross_repo_integration_architecture/summaries/01_cross-repo-summary.md]
 
 **Description**: Decide how BimodalHarness references BimodalLogic (git submodule, path config, exported artifacts). Define boundary: BimodalHarness is Python-only, consumes Lean-exported data. Document version compatibility (Lean v4.27.0-rc1).
 
@@ -222,11 +224,12 @@ next_project_number: 24
 
 ### 2. Initialize Python project structure
 - **Effort**: S
-- **Status**: [IMPLEMENTING]
+- **Status**: [COMPLETED]
 - **Task Type**: python
 - **Dependencies**: none
 - **Research**: [002_initialize_python_project_structure/reports/01_python-project-setup.md]
 - **Plan**: [002_initialize_python_project_structure/plans/01_python-project-plan.md]
+- **Summary**: [002_initialize_python_project_structure/summaries/01_project-setup-summary.md]
 
 **Description**: Set up pyproject.toml, src/ layout, pytest, CI pipeline, dev dependencies (PyTorch, numpy, Z3). Configure ruff linting, mypy type checking.
 
