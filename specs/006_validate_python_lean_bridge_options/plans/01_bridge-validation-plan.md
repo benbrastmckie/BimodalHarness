@@ -131,7 +131,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 3: Write Validation Tests [NOT STARTED]
+### Phase 3: Write Validation Tests [COMPLETED]
 
 **Goal**: Create a comprehensive test suite (marked `@pytest.mark.lean`) that validates both REPL and subprocess paths against live BimodalLogic.
 
