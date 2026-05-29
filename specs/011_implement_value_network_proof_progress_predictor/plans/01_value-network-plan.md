@@ -76,7 +76,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 1: Core Model and Feature Encoding [NOT STARTED]
+### Phase 1: Core Model and Feature Encoding [COMPLETED]
 
 **Goal**: Implement the ValueNetwork module, ValueNetworkConfig, encode_pattern_key, and FeatureNormalizer in `models/value.py`. Update `models/__init__.py` exports.
 
