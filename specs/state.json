@@ -269,14 +269,22 @@
     {
       "project_number": 9,
       "project_name": "extract_supervised_training_data_from_existing_proofs",
-      "status": "researching",
+      "status": "researched",
       "task_type": "python",
       "dependencies": [
         6
       ],
       "created": "2026-05-29T18:00:00Z",
-      "last_updated": "2026-05-29T19:15:06Z",
-      "session_id": "sess_1780082099_328b90"
+      "last_updated": "2026-05-29T19:22:11Z",
+      "session_id": "sess_1780082099_328b90",
+      "next_artifact_number": 2,
+      "artifacts": [
+        {
+          "path": "specs/009_extract_supervised_training_data_from_existing_proofs/reports/01_proof-extraction.md",
+          "type": "research",
+          "summary": "Proof trace extraction: ~108 actionable theorems, need new extractStepSequence Lean function, augmentation to 10-20K steps"
+        }
+      ]
     },
     {
       "project_number": 10,

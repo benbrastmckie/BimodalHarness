@@ -154,9 +154,10 @@ next_project_number: 24
 
 ### 9. Extract supervised training data from existing proofs
 - **Effort**: M
-- **Status**: [RESEARCHING]
+- **Status**: [RESEARCHED]
 - **Task Type**: python
 - **Dependencies**: Task 6
+- **Research**: [009_extract_supervised_training_data_from_existing_proofs/reports/01_proof-extraction.md]
 
 **Description**: Use LeanDojo tracing (or bridge) to extract (goal_state, tactic, result) pairs from ~2,519 theorem/lemma declarations in BimodalLogic. Produce supervised dataset of human-written proof traces.
 
