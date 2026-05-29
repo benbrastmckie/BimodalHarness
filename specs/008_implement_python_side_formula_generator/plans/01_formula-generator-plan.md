@@ -137,7 +137,7 @@ Phases within the same wave can execute in parallel.
 
 ---
 
-### Phase 3: Near-Miss Mutation Operators [NOT STARTED]
+### Phase 3: Near-Miss Mutation Operators [COMPLETED]
 
 **Goal**: Implement 10 mutation operators that produce syntactically valid formulas differing minimally from the input, for contrastive training pair generation.
 
