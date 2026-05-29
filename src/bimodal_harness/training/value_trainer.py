@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import math
 import os
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Any
 
 import torch
@@ -22,7 +22,6 @@ from scipy.stats import spearmanr
 from bimodal_harness.data.dataset import BimodalDataset, CurriculumSampler
 from bimodal_harness.models.value import FeatureNormalizer, ValueNetwork, ValueNetworkConfig
 from bimodal_harness.schema.records import TrainingRecord
-
 
 # ---------------------------------------------------------------------------
 # value_collate_fn
